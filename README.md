@@ -2,7 +2,10 @@
 Turtle online 是Turtle框架的PC前端架构，包括组件和API两大部分，可以快速的搭建PC前端开发环境。
 组件包括日历、分页、图片轮播/图片浏览、各类提示弹框/自定义弹层、气泡提示等。
 API包括常用JS方法封装（cookie操作、ajax封装、日期处理、浏览器判断、当前位置获取页面跳转、其他常用方法等）、基于Backbone.View/Require.text.js的框架、前端模板。
-##重要说明：Turtle online组件部分使用了第三方js库layerUI（http://layer.layui.com/）、poshytip（http://vadikom.com/tools/poshy-tip-jquery-plugin-for-stylish-tooltips）。
+重要说明：Turtle online组件部分使用了第三方js库 [layerUI](http://layer.layui.com)、[poshytip](http://vadikom.com/tools/poshy-tip-jquery-plugin-for-stylish-tooltips)。
+
+##演示
+[Turtle Online](http://htmlpreview.github.com/?https://github.com/Alec-Yin/Turtle-Online/blob/master/code/views/index.html)
 
 ##一、使用方法
 	1. 把build目录放到你项目中；
@@ -57,14 +60,14 @@ API包括常用JS方法封装（cookie操作、ajax封装、日期处理、浏�
 		5. 把build目录下文件拷贝你项目中就可以直接使用了。
 
 ##四、项目架构说明
-	![项目架构说明](https://git.oschina.net/yinluhui/Pictures/raw/master/TurtleOnline/1.png "项目架构说明")
+	![项目架构说明](https://git.oschina.net/yinluhui/Pictures/raw/master/TurtleOnline/1.png)
 
 ##五、Turtle Online框架运行图
-	![Turtle Online框架运行图](https://git.oschina.net/yinluhui/Pictures/raw/master/TurtleOnline/2.png "Turtle Online框架运行图")
-	![Turtle Online框架运行图](https://git.oschina.net/yinluhui/Pictures/raw/master/TurtleOnline/3.png "Turtle Online框架运行图")
-	![Turtle Online框架运行图](https://git.oschina.net/yinluhui/Pictures/raw/master/TurtleOnline/4.png "Turtle Online框架运行图")
-	![Turtle Online框架运行图](https://git.oschina.net/yinluhui/Pictures/raw/master/TurtleOnline/5.png "Turtle Online框架运行图")
-	![Turtle Online框架运行图](https://git.oschina.net/yinluhui/Pictures/raw/master/TurtleOnline/6.png "Turtle Online框架运行图")
-	![Turtle Online框架运行图](https://git.oschina.net/yinluhui/Pictures/raw/master/TurtleOnline/7.png "Turtle Online框架运行图")
+	![Turtle Online框架运行图](https://git.oschina.net/yinluhui/Pictures/raw/master/TurtleOnline/2.png)
+	![Turtle Online框架运行图](https://git.oschina.net/yinluhui/Pictures/raw/master/TurtleOnline/3.png)
+	![Turtle Online框架运行图](https://git.oschina.net/yinluhui/Pictures/raw/master/TurtleOnline/4.png)
+	![Turtle Online框架运行图](https://git.oschina.net/yinluhui/Pictures/raw/master/TurtleOnline/5.png)
+	![Turtle Online框架运行图](https://git.oschina.net/yinluhui/Pictures/raw/master/TurtleOnline/6.png)
+	![Turtle Online框架运行图](https://git.oschina.net/yinluhui/Pictures/raw/master/TurtleOnline/7.png)
 	
 	
