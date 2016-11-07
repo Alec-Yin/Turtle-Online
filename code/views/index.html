@@ -6,10 +6,61 @@
 	<title>Turtle.online</title>
 	<meta name="keywords" content="PC前端框架，JS" />
     <meta name="description" content="一款专注于PC前端的架构" />
-	<link type="text/css" rel="stylesheet" href="../build/css/Turtle.min.css"/>
-	<script type="text/javascript" src="../build/Turtle.min.js"></script>
 	<script type="text/javascript">
-			
+		function _getQS(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null)
+				return unescape(r[2]);
+			return null;
+		}
+		function _loadCss(urlList) {			
+			for (var i = 0; i < urlList.length; i++) {
+				var link = document.createElement("link");
+				link.type = "text/css";
+				link.rel = "stylesheet";
+				link.href = urlList[i];
+				document.getElementsByTagName("head")[0].appendChild(link);
+			}
+		}
+		var interval='';
+		function _loadJS(urlList){
+			var mark=0;
+			interval = setInterval(function(){
+				var script = document.createElement("script");
+				script.type = "text/javascript";
+				script.src = urlList[mark];
+				document.getElementsByTagName("head")[0].appendChild(script);
+				if(mark==urlList.length-1){
+					clearInterval(interval);
+				}
+				mark++;
+			}, 100)
+		}
+		if(_getQS('debug')==1){
+			_loadCss([
+				"../components/css/Turtle.css",
+				"../components/css/laydate.css",
+				"../components/css/poshytip.css",
+				"../components/css/layerpop.css"
+			]);
+			_loadJS([
+				'../common/jquery.js',
+				'../common/underscore.js',
+				'../common/require.js',
+				'../common/backbone.js',
+				'../common/jquery.underscore.plugin.js',
+				'../components/laydate.js',
+				'../components/poshytip.js',
+				'../components/layerpop.js',
+				'../components/uiImgSlider.js',
+				'../components/uiPaging.js',
+				'../components/Turtle.js'
+			]);
+		}else{
+			_loadCss(["../build/css/Turtle.min.css"]);
+			_loadJS(["../build/Turtle.min.js"]);
+		}	
 	</script>
 	<style type="text/css">
 		ul.componentsUL{margin: 0;background: #fff}
