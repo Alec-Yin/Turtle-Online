@@ -5,6 +5,7 @@ API包括常用JS方法封装（cookie操作、ajax封装、日期处理、浏�
 重要说明：Turtle online组件部分使用了第三方js库 [layerUI](http://layer.layui.com)、[poshytip](http://vadikom.com/tools/poshy-tip-jquery-plugin-for-stylish-tooltips)。
 
 ##演示
+使用github知道预览功能，速度稍慢，请耐心等待。部分功能因url原因无法访问，请按照下面【二、运行Turtle online】的说明操作，体验更好效果。
 [Turtle Online](http://htmlpreview.github.com/?https://github.com/Alec-Yin/Turtle-Online/blob/master/code/views/index.html)
 
 ##一、使用方法
