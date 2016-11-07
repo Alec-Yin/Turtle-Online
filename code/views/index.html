@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Turtle.online</title>
+	<meta name="keywords" content="PC前端框架，JS" />
+    <meta name="description" content="一款专注于PC前端的架构" />
+	<script type="text/javascript">
+		function _getQS(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null)
+				return unescape(r[2]);
+			return null;
+		}
+		function _loadCss(urlList) {			
+			for (var i = 0; i < urlList.length; i++) {
+				var link = document.createElement("link");
+				link.type = "text/css";
+				link.rel = "stylesheet";
+				link.href = urlList[i];
+				document.getElementsByTagName("head")[0].appendChild(link);
+			}
+		}
+		var interval='';
+		function _loadJS(urlList){
+			var mark=0;
+			interval = setInterval(function(){
+				var script = document.createElement("script");
+				script.type = "text/javascript";
+				script.src = urlList[mark];
+				document.getElementsByTagName("head")[0].appendChild(script);
+				if(mark==urlList.length-1){
+					clearInterval(interval);
+				}
+				mark++;
+			}, 100)
+		}
+		if(_getQS('debug')==1){
+			_loadCss([
+				"../components/css/Turtle.css",
+				"../components/css/laydate.css",
+				"../components/css/poshytip.css",
+				"../components/css/layerpop.css"
+			]);
+			_loadJS([
+				'../common/jquery.js',
+				'../common/underscore.js',
+				'../common/require.js',
+				'../common/backbone.js',
+				'../common/jquery.underscore.plugin.js',
+				'../components/laydate.js',
+				'../components/poshytip.js',
+				'../components/layerpop.js',
+				'../components/uiImgSlider.js',
+				'../components/uiPaging.js',
+				'../components/Turtle.js'
+			]);
+		}else{
+			_loadCss(["../build/css/Turtle.min.css"]);
+			_loadJS(["../build/Turtle.min.js"]);
+		}
+	</script>
+	<style type="text/css">
+		ul.componentsUL{margin: 0;background: #fff}
+		ul.componentsUL>li{border-top: 1px solid #666;padding: 5px 10px;}
+		ul.componentsUL>li:nth-child(2){border-top: none;}
+		ul.componentsUL>li>a{color: blue;display: block;height: 30px;line-height: 30px;border-top: 1px solid #A9A6A6;padding-left: 10px;}
+		ul.componentsUL.api>li>a{border: 1px solid;display: inline-block;border-radius: 5px;}
+		ul.componentsUL>li>a:first-child{border-top: none;}
+		ul.componentsUL>li.titleLi{color: #666;background-color: #efefef;border-bottom: #bcbcbc 1px solid;line-height: 20px;padding: 5px 10px;display: block;border-top: none;}
+		ul.componentsUL>li.titleLi:after{content: '';height:10px;width:10px;border-top: 2px solid #939393;border-right: 2px solid #939393;display: inline-block;float: right;margin-top: 4px;-webkit-transform: rotate(-45deg);-moz-transform: rotate(-45deg);-ms-transform: rotate(-45deg);transform: rotate(-45deg)}
+		ul.componentsUL>li.titleLi.down:after{-webkit-transform: rotate(135deg);-moz-transform: rotate(135deg);-ms-transform: rotate(135deg);transform: rotate(135deg)}
+		.calendarli input,.poshyTipli input{width: 180px;border: 1px solid #999;height: 22px;margin: 5px 0;}
+		.calendarli #showCalendarA{padding: 5px;border: 1px solid #999;cursor: pointer;}
+		.poshyTipli p{width: 200px;height: 20px;background: #CCCDCA;padding: 5px;text-align: center;margin:5px;display: inline-block;}
+		.poshyTipli .colorsDiv p{background: #EAEBE8;}
+		.poshyTipli .colorsDiv span{background: #F9CC9D;padding: 5px;margin: 10px;cursor: pointer;}
+		ul.componentsUL.layerpopWrapper>li>a{display: inline-block;border: 1px solid #999;padding: 5px;}
+		.layer-photos-demo img{width: 150px;}
+		.mainTitle{height: 40px;line-height: 40px;background: #83D31B;text-align: center;}
+		code{word-wrap: break-word;}
+		.apidesc p{line-height: 30px;}
+		.apidesc p i{color: red;}
+		.tiptxt{position: fixed;bottom: 0;left: 0;height: 40px;background: yellow;display: inline-block;width: 100%;text-align: CENTER;line-height: 40px;color: #B322BF;}
+		body{margin-bottom: 40px;height: auto;}
+		ul.componentsUL>li.titleLi>a.atipmsg,a.atipmsg{border: none;text-decoration: underline;color: #E65E28;padding: 0;margin-left: 10px;}
+	</style>
+</head>
+<body>
+	<div class="tiptxt">url后增加【?debug=1】查看源代码，否则使用压缩代码。</div>
+	<div class="mainTitle">组件</div>
+	<ul class='componentsUL'>
+		<li class="titleLi">常用组件</li>
+		<li class="calendarli">
+			<a href="javascript:void(0);" id="showCalendar">日历</a>
+			<div class="calendardiv" style="display:none;">
+				<p><a class="atipmsg" target="_blank" href="http://laydate.layui.com">laydate.js，参考【layDate v1.1】</a></p>
+				<input id="txtShowCalendar" class="laydate-icon"/>默认格式<br/>
+				<input id="txtShowCalendarSelf" class="laydate-icon"/>自定义参数<br/>
+				<input id="txtShowCalendar2"/><span href="javascript:void(0);" id='showCalendarA'>点击我显示日历</span><br/>
+				<input id="txtShowCalendar3" class="laydate-icon"/>自定义日期格式<br/>
+				<input id="txtShowCalendar4" class="laydate-icon"/>日期范围限定在昨天到明天<br/>
+				<input id="txtShowCalendarBegin" class="laydate-icon"/>-<input id="txtShowCalendarEnd" class="laydate-icon"/> 日期范围<br/>
+				<input id="txtShowCalendarSkin1" class="laydate-icon-dahong"/>大红皮肤<br/>
+				<input id="txtShowCalendarSkin2" class="laydate-icon-danlan"/>淡蓝皮肤<br/>
+				<input id="txtShowCalendarSkin3" class="laydate-icon-molv"/>墨绿皮肤<br/>
+				<input id="txtShowCalendarSkin4" class="laydate-icon-qianhuang"/>浅黄皮肤<br/>
+				<input id="txtShowCalendarSkin5" class="laydate-icon-yahui"/>雅灰皮肤<br/>
+				<input id="txtShowCalendarSkin6" class="laydate-icon-yalan"/>雅兰皮肤<br/>
+				<input id="txtShowCalendarSkin7" class="laydate-icon-huanglv"/>黄绿皮肤<br/>
+			</div>
+		</li>
+		<li  class="poshyTipli">
+			<a href="javascript:void(0);" id="showPoshyTip">气泡弹框提示</a>
+			<div class="poshyTipdiv" style="display:none;">
+				<div><a class="atipmsg" target="_blank" href="http://vadikom.com/tools/poshy-tip-jquery-plugin-for-stylish-tooltips">poshytip.js，参考【Poshy Tip jQuery plugin v1.0】</a></div>
+				<div class="colorsDiv">				
+					<p id="showPoshyTipColors1" title="鼠标悬停提示内容！">鼠标悬停提示，黄色(默认)</p>
+					<p id="showPoshyTipColors2" title="鼠标悬停提示内容！">鼠标悬停提示，黄色简单模式</p>
+					<p id="showPoshyTipColors3" title="鼠标悬停提示内容！">鼠标悬停提示，紫色</p>
+					<p id="showPoshyTipColors4" title="鼠标悬停提示内容！">鼠标悬停提示，twitter颤抖</p>
+					<p id="showPoshyTipColors5" title="鼠标悬停提示内容！">鼠标悬停提示，天蓝</p>
+					<p id="showPoshyTipColors6" title="鼠标悬停提示内容！">鼠标悬停提示，绿色</p>
+					<p id="showPoshyTipColors7" title="鼠标悬停提示内容！">鼠标悬停提示，深灰色</p>
+					<span id="showAll">全部显示</span>
+					<span id="hideAll">全部隐藏</span>
+				</div>
+				<div style="padding:20px;width:400px;text-align:center;">
+					<p id="showPoshyTip1">立即显示，目标元素，上面</p>
+					<p id="showPoshyTip2">立即显示，目标元素，右边</p>
+					<p id="showPoshyTip3">立即显示，目标元素，下边</p>
+					<p id="showPoshyTip4">立即显示，目标元素，左边</p>
+				</div>
+				<p id="showPoshySelf1" style="width:300px;height:100px;">提示跟随鼠标</p>
+				<p id="showPoshySelf2">没有动画</p>
+				<p id="showPoshySelf3">内容包含html</p>
+				<img id="showPoshySelf4" style="width:100px;height:100px;" src="http://uploads.xuexila.com/allimg/1608/704-160Q1092441.jpg"/>
+				<p id="showPoshySelf5">提示动态修改</p>
+				<br/>
+				姓名：<input id="showPoshyInput1" title="输入姓名" /><br/>
+				邮箱：<input id="showPoshyInput2" title="输入邮箱" /><br/>
+				地址：<input id="showPoshyInput3" title="输入地址" /><br/>
+				爱好：<input id="showPoshyInput4" title="输入爱好" /><br/>
+			</div>
+		</li>	
+		<li class="pagewli">
+			<a href="javascript:void(0);" id="showPage">分页控件</a>
+			<div class="pageDiv"></div>
+			<div class="pageDiv2" style="margin-top: 5px;"></div>
+			<div class="pageDiv3" style="margin-top: 5px;"></div>
+		</li>
+		<li>
+			<a href="javascript:void(0);" id="showImgSlider">图片轮播</a>
+			<div class="imgSliderDiv" style="display:none;width:100%;height:300px;"></div>
+			
+		</li>
+	</ul>
+	<ul class='componentsUL layerpopWrapper'>
+		<li class="titleLi">弹出框/层提示组件<a class="atipmsg" target="_blank" href="http://layer.layui.com">layerpop.js，参考【layer v2.4】</a></li>
+		<li>
+			<a href="javascript:void(0);" id="showMsg">消息提示，默认</a>
+			<a href="javascript:void(0);" id="showMsg2">消息提示，有背景，4秒关闭，点击背景关闭，有关闭按钮</a>
+			<a href="javascript:void(0);" id="showMsg3">消息提示，弹窗不固定，随窗口滚动而滚动</a>
+			<a href="javascript:void(0);" id="showMsg4">消息提示，不允许浏览器滚动</a>
+			<br/><br/>
+			<a href="javascript:void(0);" id="showMsgShift0">消息提示，动画 Shift=0，默认</a>
+			<a href="javascript:void(0);" id="showMsgShift1">消息提示，动画 Shift=1</a>
+			<a href="javascript:void(0);" id="showMsgShift2">消息提示，动画 Shift=2</a>
+			<a href="javascript:void(0);" id="showMsgShift3">消息提示，动画 Shift=3</a>
+			<a href="javascript:void(0);" id="showMsgShift4">消息提示，动画 Shift=4</a>
+			<a href="javascript:void(0);" id="showMsgShift5">消息提示，动画 Shift=5</a>
+			<a href="javascript:void(0);" id="showMsgShift6">消息提示，动画 Shift=6</a>
+		</li>
+		<li>
+			<a href="javascript:void(0);" id="showAlert">弹出框提示，icon=-1,默认,无图片</a>
+			<a href="javascript:void(0);" id="showAlert1">弹出框提示，icon=1，感叹号：重要提示</a>
+			<a href="javascript:void(0);" id="showAlert2">弹出框提示，icon=2，对勾：操作完成提示</a>
+			<a href="javascript:void(0);" id="showAlert3">弹出框提示，icon=3，叉号：错误提示</a>
+			<a href="javascript:void(0);" id="showAlert4">弹出框提示，icon=4，问号：有问题提示</a>
+			<a href="javascript:void(0);" id="showAlert5">弹出框提示，icon=5，锁：锁定提示</a>
+			<a href="javascript:void(0);" id="showAlert6">弹出框提示，icon=6，不高兴：好遗憾提示</a>
+			<br/><br/>
+			<a href="javascript:void(0);" id="showAlert7">弹出框提示，不允许拖动</a>
+			<a href="javascript:void(0);" id="showAlert8">弹出框提示，允许内容拖动</a>
+			<br/><br/>
+			<a href="javascript:void(0);" id="showAlert9">弹出框提示，拖动风格0，默认</a>
+			<a href="javascript:void(0);" id="showAlert10">弹出框提示，拖动风格1</a>
+			<br/><br/>
+			<a href="javascript:void(0);" id="showAlert11">弹出框提示，窗口内拖拽，默认</a>
+			<a href="javascript:void(0);" id="showAlert12">弹出框提示，可拖到窗外</a>
+			<a href="javascript:void(0);" id="showAlert13">弹出框提示，拖动结束触发事件</a>
+		</li>
+		<li>
+			<a href="javascript:void(0);" id="showConfirm">询问框,默认</a>
+			<a href="javascript:void(0);" id="showConfirm2">询问框</a>
+			<a href="javascript:void(0);" id="showConfirm3">询问框，自定义按钮</a>
+		</li>
+		<li>
+			<a href="javascript:void(0);" id="showSelfCeng">弹出自定义层，默认</a>
+			<a href="javascript:void(0);" id="showSelfCeng2">弹出自定义层，有最大化最小化按钮</a>
+		</li>
+		<li>
+			<a href="javascript:void(0);" id="showIframe">以iframe方式弹出另一个页面</a>
+		</li>
+		<li>
+			<a href="javascript:void(0);" id="showLoadingPop">弹出加载中层，1秒后自动关闭</a>
+			<a href="javascript:void(0);" id="showLoadingPop1">弹出加载中层，1秒后自动关闭,icon=1</a>
+			<a href="javascript:void(0);" id="showLoadingPop2">弹出加载中层，1秒后自动关闭,icon=2</a>
+			<a href="javascript:void(0);" id="showLoadingPop3">弹出加载中层，使用msg模拟</a>
+		</li>
+		<li>
+			<a href="javascript:void(0);" id="showTip1">弹出气泡层提示，上面</a>
+			<a href="javascript:void(0);" id="showTip2">弹出气泡层提示，右边，默认</a>
+			<a href="javascript:void(0);" id="showTip3">弹出气泡层提示，下面</a>
+			<a href="javascript:void(0);" id="showTip4">弹出气泡层提示，左边</a>
+			<br/><br/>
+			<a href="javascript:void(0);" id="showTip5">弹出气泡层提示，自定义颜色</a>
+			<a href="javascript:void(0);" id="showTip6">弹出气泡层提示，弹出后回调方法</a>
+		</li>
+		<li>
+			<a href="javascript:void(0);" id="showPrompt">输入弹框,文本框，默认</a>
+			<a href="javascript:void(0);" id="showPrompt2">输入弹框,密码框</a>
+			<a href="javascript:void(0);" id="showPrompt3">输入弹框，多行文本</a>
+			<a href="javascript:void(0);" id="showPrompt4">输入弹框，指定长度，有默认值</a>
+		</li>
+		<li>
+			<a href="javascript:void(0);" id="showLayerTab">tab层</a>
+		</li>
+		<li>
+			<a href="javascript:void(0);" id="showPhoto">图片查看器</a>
+			<a href="javascript:void(0);" id="showPhoto2">图片查看器，从下面DOM中获取图片，要求img标签必须有相应属性</a>
+			<div id="layer-photos-demo" class="layer-photos-demo">
+	          <img layer-src="images/lb1.jpg" layer-pid="" src="images/lb1.jpg" alt="layer宣传图" layer-index="0">
+	          <img layer-src="images/lb2.jpg" layer-pid="" src="images/lb2.jpg" alt="我入互联网这五年" layer-index="1">
+	          <img layer-src="" layer-pid="" src="images/lb3.jpg" alt="微摄影" layer-index="2">
+	          <img layer-src="images/lb4.jpg" layer-pid="" src="images/lb4.jpg" alt="国足" layer-index="3">
+	          <img layer-src="images/lb5.jpg" layer-pid="" src="images/lb5.jpg" alt="三清山" layer-index="4">
+	        </div>
+		</li>
+	</ul>
+	<div class="mainTitle">API</div>
+	<ul class='componentsUL api'>
+		<li class="titleLi">页面框架:cPageView</li>
+		<li class="apidesc">			
+			<p>1. 继承Backbone.View</p>
+			<p>2. 自定义事件方法：<i>on、off、trigger、once</i></p>
+			<p>3. 页面交互事件定义：<i>events{}</i></p>
+			<p>4. 页面初始化：<i>initiapze()</i></p>
+			<p>5. 全局jquery对象：<i>$el</i></p>
+		</li>
+		<li>			
+			<p>实例如下：</p>
+			<p>初始化时被改变：<span id="cpageviewTest3">初始化时会帮给我赋值</span></p>
+			<a href="javascript:;" id="cpageviewTest1">apitest帮我定义事件</a>
+			<div id="cpageviewTest2">点击上面的按钮改变我的html</div>
+			<pre>
+			<code>
+define(['cPageView'],function(PageView) {
+	var View = PageView.extend({
+		events:{
+			'click #cpageviewTest1':'clicktest1'
+		},
+		initialize: function () {
+			console.log('initialize');
+			this.$el.find('#cpageviewTest3').html('默认值被改变');
+			this.on('initpage',function(){
+				console.log('initpage');
+			});
+			this.trigger('initpage');
+		},
+		clicktest1:function(e){
+			this.$el.find('#cpageviewTest2').html('赋值成功！'+new Date())
+		}
+	})
+	return new View();
+});
+			</code>
+			</pre>
+		</li>		
+	</ul>
+	<ul class='componentsUL api'>
+		<li class="titleLi">模板Require.text.js</li>
+		<li class="apidesc">			
+			<p>Require.text.js已经打包入Turtle框架中，不需要独立引用。</p>
+		</li>
+		<li>
+			<p>实例如下：</p>
+			<a href="javascript:;" id="templateA">点击我获取模板html</a>
+			<p id="templateTest">点击上面的按钮改变我</p>
+			<pre>
+			<code>
+html模板：
+&lt;div&gt;
+	你好，<%=name%>，我来自模板 temptest.html
+&lt;/div&gt;
+
+js调用：
+define(['cPageView','text!views/temple/temptest.html'],function(PageView,temptest) {
+	var View = PageView.extend({
+		events:{
+			'click #templateA':'clicktest2'
+		},
+		clicktest2:function(){
+			$('#templateTest').html(_.template(temptest)({name:'Alec yin'}));
+		}
+	})
+	return new View();
+});
+			</code>
+			</pre>
+		</li>
+	</ul>
+	<ul class='componentsUL api'>
+			<li class="titleLi">全局对象Turtle</li>
+			<li class="apidesc">
+				<p><i>msg/layer.msg</i>：显示提示信息，在一定时间内自动消失</p>
+				<p><i>alert/layer.alert</i>：显示提示框</p>
+				<p><i>confirm/layer.confirm</i>：显示确认框</p>
+				<p><i>showLoading</i>：显示加载中动画</p>
+				<p><i>hideLoading</i>：隐藏加载中动画</p>
+				<hr/>
+				<p><i>goBack</i>：返回上一页</p>
+				<p><i>goTo</i>：跳转指定url</p>
+				<hr/>
+				<p><i>setCookie</i>: 保存cookie</p>
+				<p><i>getCookie</i>: 获取cookie</p>
+				<p><i>removeCookie</i>: 移除cookie</p>
+				<p><i>setStorage</i>: 保存Storage</p>
+				<p><i>getStorage</i>: 获取Storage</p>
+				<hr/>
+				<p><i>dateUtil.formatNum</i>：1-9返回01,02,...；eg：formatNum(5) // 05 ；formatNum(10) //10</p>
+				<p><i>dateUtil.parse</i>：将字符串转换为日期，支持格式y-m-d ymd (y m r)以及标准的。返回日期对象；dateUtil.parse('2015/5/3','y/m/d')；dateUtil.parse('2015-5-3','y-m-d')</p>
+				<p><i>dateUtil.format</i>：将日期格式化为字符串。format(new Date(), 'y/m/d')；format(new Date(), 'Y/M/D H:F:S');</p>
+				<p><i>dateUtil.isDate</i>：判断是不是时间对象</p>
+				<p><i>dateUtil.isLeapYear</i>：是否为闰年</p>
+				<p><i>dateUtil.getDaysOfMonth</i>：获取一个月份的天数</p>
+				<p><i>dateUtil.getBeginDayOfMouth</i>：获取一个月份1号是星期几，注意此时的月份传入时需要自主减一。return {num} 当月一号为星期几，0是星期天，1是星期一</p>
+				<p><i>dateUtil.ToDate</i>：把格式为 /Date(136883030349000)/ 转化为"yyyy-MM-dd hh:mm:ss"格式</p>
+				<p><i>dateUtil.dateDiff(date1, date2, interval)</i>：获取两个日期的间隔时间。参数：interval {String} 间隔类型（毫秒、秒、分钟、小时、天、月、年）</p>
+
+				<p><i>日期对象.addYears</i>：加上特定的年份。返回加好年份的日期对象</p> 
+				<p><i>日期对象.addMonths</i>：加上特定的月份。返回加好月份的日期对象</p> 
+				<p><i>日期对象.addDays</i>：加上特定的天数。返回加好天数的日期对象</p> 
+				<p><i>日期对象.addHours</i>：加上特定的小时数。返回加好小时数的日期对象</p> 
+				<p><i>日期对象.addMinutes</i>：加上特定的分钟数。返回加好分钟数的日期对象</p> 
+				<p><i>日期对象.addSeconds</i>：加上特定的秒数。返回加好秒数的日期对象</p> 
+				<p><i>日期对象.toDate</i>：生成对应的日期对象,去掉时分秒，只保留年月日星期</p> 
+				<p><i>日期对象.toStdDateString</i>：生成对应的日期字符串，yyyy-MM-dd</p> 
+				<p><i>日期对象.toStdDateTimeString</i>：生成对应的日期字符串，yyyy-MM-dd HH:mm:ss</p> 
+				<p><i>日期对象.toEngDateString</i>：生成对应的英文版日期字符串，Oct-31-2016</p>
+				<p><i>日期对象.toFormatString</i>：生成需要的格式的日期字符串，参数：yMdhmsS=>年月日时分秒毫秒，如yyyy-MM-dd hh:mm:ss:SS</p> 
+				<hr/>
+				<p><i>ajax.GetJsonP</i>: ajax get jsonp</p>
+				<p><i>ajax.PostJsonP</i>: ajax post jsonp</p>
+				<p><i>ajax.PostJson</i>: ajax post json</p>
+				<p><i>ajax.GetJson</i>: ajax get json</p>
+				<hr/>
+				<p><i>position.getCurrentPosition</i>: 获取当前位置（省市区街道）<br/>
+						turtle.position.getCurrentPosition('baidu',function(position){console.log(position)})；//["协和路", "长宁区", "上海市", "上海市", "中国"]<br/>
+						turtle.position.getCurrentPosition('google',function(position){console.log(position)})；//["S20外环高速入口", "长宁区", "上海市", "上海市", "中国"]<br/>
+				</p>
+				<hr/>
+				<p><i>isNullValue</i>: 是否是：undefined/""/null/"null"</p>
+				<p><i>isEmptyObject</i>: 是否空对象</p>
+				<p><i>isEmail</i>: 验证邮箱</p>
+				<p><i>enterClick(event, fn)</i>: 回车执行fn</p>
+				<p><i>getQueryString</i>: 获取url参数</p>
+				<p><i>clone</i>: 克隆对象</p>
+				<p><i>stringFormat</i>: str字符串格式化赋值。eg：stringFormat('我叫$1,来自$2','Alec','中国')</p>
+				<p><i>getType</i>: 获取对象类型【'boolean'、'number'、'string'、'function'、'array'、'date'、'regexp'、'error'】</p>
+				<p><i>stringifyJSONstr</i>: 任何对象转化为json字符串</p>
+				<p><i>strToJson</i>: str转化为json对象</p>
+				<p><i>jsonToObject</i>: json转换成对象</p>
+				<p><i>createGuid</i>: 创建GUID</p>
+				<p><i>createHtmlObj</i>: 根据html创建html对象</p>
+				<p><i>toArraySelf</i>: 把list转化为数组</p>
+				<p><i>loadCss</i>: 加载CSS，直接把css内容加载到head中</p>
+				<p><i>loadCssHref</i>: 加载CSS引用到head中，参数：数组/字符串</p>
+				<p><i>loadJs</i>: 加载js脚本，直接把css内容加载body后</p>
+				<p><i>loadJsSrc</i>: 加载js引用到head中，参数：数组/字符串</p>
+				<hr/>
+				<p><i>os.tablet</i>：平板电脑</p>
+				<p><i>os.phone</i>：手机</p>
+				<p><i>os.android</i>：android系统</p>
+				<p><i>os.ipad</i>：ipad</p>
+				<p><i>os.ipod</i>：ipod</p>
+				<p><i>os.iphone</i>：iphone</p>
+				<p><i>os.webos</i>：webos系统</p>
+				<p><i>os.wp</i>：Windows Phone系统</p>
+				<p><i>os.touchpad</i>：TouchPad</p>
+				<p><i>os.kindle</i>：Kindle</p>
+				<p><i>os.blackberry</i>：BlackBerry黑莓手机系统</p>
+				<p><i>os.bb10</i>：黑莓BB10系统</p>
+				<p><i>os.rimtabletos</i>：RIM Tablet OS，黑莓PlayBook</p>
+				<hr/>
+				<p><i>browser.silk</i>：Silk浏览器，亚马逊推出的云浏览器</p>
+				<p><i>browser.playbook</i>：黑莓PlayBook平板机</p>
+				<p><i>browser.chrome</i>：chrome浏览器</p>
+				<p><i>browser.firefox</i>：firefox</p>
+				<p><i>browser.ie</i>：ie</p>
+				<p><i>browser.webview</i>：iPhone|iPod|iPad系统下的AppleWebKit，不是chrome</p>
+				<p><i>browser.safari</i>：safari</p>
+				<p><i>browser.weixin</i>：weixin内置浏览器</p>
+			</li>
+		</ul>
+	<script type="text/javascript">
+		// 控制页面ul 展开折叠
+		function ulliMange() {
+			$('.titleLi').click(function() {
+				if($(this).hasClass('down')){
+					$(this).siblings().show();
+					$(this).removeClass('down');
+				}else{
+					$(this).siblings().hide();
+					$(this).addClass('down');
+				}
+			});
+			//测试代码
+			$('.titleLi').siblings().hide();
+			$('.titleLi').addClass('down')
+			// $('.titleLi').eq(0).siblings().show();
+			// $('.titleLi').eq(0).removeClass('down');
+		}
+		// 测试min的时候，只保留paths中的index/apiTest
+		var _paths={
+			"index": "views/js/index",
+			"apiTest": "views/js/apitest"
+		};
+		if(_getQS('debug')==1){
+			_paths={
+				"index": "views/js/index",
+				"apiTest": "views/js/apitest",
+				"text": "common/require.text",
+				"cPageView": "api/c.page.view"
+			};
+		}
+		function requirejsLoad(){
+			requirejs.config({
+				baseUrl: "http://localhost/TurtleOnline",
+				paths: _paths,
+				waitSeconds: 20
+			});
+			require(["index", "apiTest"]);
+		}
+		var inter = setInterval(function() {
+			if (typeof define === 'function'&& typeof _ ==='function' && typeof jQuery ==='function' && typeof Backbone==='object') {
+				requirejsLoad();
+				clearInterval(inter);
+				ulliMange();
+			}
+		}, 100);
+	</script>
+</body>
+</html>
