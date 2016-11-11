@@ -1,0 +1,41 @@
+/**
+ * Alec Yin
+ *  本样式仅用于演示
+ */
+.dm_header{height:65px;color:#000;line-height:65px;text-align:center;font-size:30px;border-bottom:1px solid #000;}
+.dm_main{width:100%;display:inline-block;}
+.dm_main .dm_nav.dm_fixNav{position:fixed;left:0;top:0;}
+.dm_main .dm_nav{width:220px;float:left;border-right:1px solid #000;min-height:900px;}
+.dm_main .dm_nav ul{line-height:32px;}
+.dm_main .dm_nav ul li a:hover:before,.dm_main .dm_nav ul li.dm_select a:before{content:'';width:10px;display:inline-block;height:10px;background:#000;vertical-align:middle;margin-left:5px;margin-right:-15px;border-radius:50%;}
+.dm_main .dm_nav ul li{text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
+.dm_main .dm_nav ul li>h2{line-height:36px;border-left:5px solid #999;margin:0 0 5px 0;padding:0 10px;background-color:#dedede;}
+.dm_main .dm_nav ul li a{display:inline-block;vertical-align:top;width:100%;cursor:pointer;transition:all .3s;-webkit-transition:all .3s;}
+
+/*.dm_main .dm_nav ul li a:hover cite{    padding-left: 0px;     transition: all .3s; -webkit-transition: all .3s; }*/
+.dm_center{margin:0 auto;}
+.dm_main .dm_nav ul li a cite{padding:0 8px 0 15px;}
+.dm_main .dm_nav ul li a em{font-size:12px;color:#bbb;padding-right:5px;font-style:normal;}
+.dm_main .dm_content{margin-left:220px;min-height:900px;padding:20px;}
+.dm_main .dm_content .dm_title{border-bottom:1px solid #dedede;padding-bottom:10px;font-size:30px;}
+.dm_main .dm_content .dm_title3{line-height:36px;padding:0 10px;background-color:#F3F3F3;font-weight:bold;font-size:14px;margin:10px 0 0 10px;display:inline-block;}
+.dm_main .dm_content .dm_title2{line-height:36px;border-left:5px solid #999;margin:0 0 5px 0;padding:0 10px;background-color:#dedede;font-weight:bold;font-size:20px;margin:10px 0 10px 10px;}
+.dm_main .dm_content .dm_desc{padding:5px 10px}
+.dm_main .dm_content .dm_desc a{color:blue;text-decoration:underline;}
+.dm_main .dm_content .dm_desc p i{color:red;}
+.dm_main .dm_content .dm-item .ttl-form-item{display:inline-block}
+.dm_main .dm_content .dm-item pre,.dm_code{margin-left:10px;background:#F3F3F3;}
+.dm_btnOpt{overflow:hidden;}
+.dm_btnOpt button{margin-top:21px;}
+.dm_btnOpt>span{width:145px;height:48px;background:#CCCDCA;padding:5px;text-align:center;margin:5px;float:left;}
+.dm_4Direction{height:170px;position:relative;width:281px;top:10px;margin:0 auto;}
+.dm_4Direction span{position:absolute;}
+.dm_4Direction span.dm_t{top:0;left:103px;}
+.dm_4Direction span.dm_r{right:0;top:67px;margin-left:0;}
+.dm_4Direction span.dm_b{bottom:0;left:103px;margin-left:0;}
+.dm_4Direction span.dm_l{left:0;top:67px;margin-left:0;}
+.dm_withMouse{height:300px;width:300px;border:1px solid #999;margin:0 auto;margin-top:20px;text-align:center;line-height:300px;background:#eee;}
+.dm_tit2Content{margin:0 auto;margin-left:20px;margin-bottom:10px;}
+.dm_tit2Content a{margin:5px;}
+.dm_imgeList img{width:200px;height:200px;margin:5px 10px;}
+.dm_footer{text-align:center;color:#000;font-weight:300;height:70px;line-height:70px;border-top:1px solid #000;width:100%;}

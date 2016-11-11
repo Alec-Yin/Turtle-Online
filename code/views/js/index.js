@@ -1,7 +1,34 @@
 define([], function() {
+	scrollWindow();
+	calendarShow();
+	poshyTipShow();
+	showPopLayer();
+	pictureShow();
+	pagingShow();
+
+	// 滚动页面事件
+	function scrollWindow(){
+		var initNavTop = $('.dm_nav').offset().top;
+		scrollHanlder();
+		setTimeout(function() {
+          ["scroll", "touchmove"].forEach(function(evtName) {
+            $(window).on(evtName, scrollHanlder);
+          }.bind(this));
+        }.bind(this), 500);
+
+        function scrollHanlder(){
+        	this.scrollTop = $(window).scrollTop();
+			var isStickyNav = this.scrollTop >= initNavTop;
+			if (isStickyNav && !$('.dm_nav').hasClass('dm_fixNav')) {
+				$('.dm_nav').addClass('dm_fixNav');
+			}else if(!isStickyNav && $('.dm_nav').hasClass('dm_fixNav')){
+				$('.dm_nav').removeClass('dm_fixNav');
+			}
+        }
+	}
+
 	// 日历
-	$('#showCalendar').click(function(){
-		$('.calendardiv').show();
+	function calendarShow(){
 		$('#txtShowCalendar').click(function(){
 			Turtle.laydate({
 			    elem: '#txtShowCalendar', //目标元素。elem还允许你传入class、tag但必须按照这种方式 '#id .class'
@@ -77,8 +104,7 @@ define([], function() {
 		});
 		$('#txtShowCalendarEnd').click(function(){
 			Turtle.laydate(end);
-		});
-		
+		});		
 		// 其他颜色皮肤
 		var skinList=['dahong','danlan','molv','qianhuang','yahui','yalan','huanglv'];
 		for(var i=0;i<skinList.length;i++){
@@ -94,10 +120,31 @@ define([], function() {
 			}
 			$('#txtShowCalendarSkin'+(i+1)).click(fun(i));
 		}
-	});	
-	// 气泡弹框提示
-	$('#showPoshyTip').click(function(){
-		$('.poshyTipdiv').show();
+	}
+
+	// 气泡弹层提示
+	function poshyTipShow(){
+		// 各种颜色皮肤
+		var skinList=['yellow','yellowsimple','violet','twitter','skyblue','green','darkgray'];
+		for(var i=0;i<skinList.length;i++){
+			$('#showPoshyTipColors'+(i+1)).poshytip({className: 'tip-'+skinList[i],alignTo: 'target',alignX: 'center',hideTimeout:1, offsetY: 5,allowTipHover:false});
+		}
+		$('#showAll').click(function(){
+			for(var i=0;i<skinList.length;i++){
+				$('#showPoshyTipColors'+(i+1)).poshytip('hide');
+				// 先重置参数，修改showOn:'none'，方式鼠标移动到上面后，离开隐藏提示信息。
+				$('#showPoshyTipColors'+(i+1)).poshytip({className: 'tip-'+skinList[i],alignTo: 'target',alignX: 'center',hideTimeout:1,offsetY: 5,allowTipHover:false,showOn:'none'});
+				$('#showPoshyTipColors'+(i+1)).poshytip('show');
+			}
+		});
+		$('#hideAll').click(function(){
+			for(var i=0;i<skinList.length;i++){
+				$('#showPoshyTipColors'+(i+1)).poshytip('hide');
+				// 恢复原来的初始化参数
+				$('#showPoshyTipColors'+(i+1)).poshytip({className: 'tip-'+skinList[i],alignTo: 'target',alignX: 'center',hideTimeout:1,offsetY: 5,allowTipHover:false});
+			}
+		});
+
 		$('#showPoshyTip1').poshytip({
 			content: 'hello,你好！',
 			showTimeout: 1,
@@ -155,7 +202,7 @@ define([], function() {
 			hideTimeout:1
 		});
 		$('#showPoshySelf4').poshytip({
-			content: '<img src="http://uploads.xuexila.com/allimg/1608/704-160Q1092441.jpg"/>',
+			content: '<img style="width:400px;height:400px;" src="images/my.jpg"/>',
 			bgImageFrameSize:1,
 			showTimeout:1,
 			hideTimeout:1,
@@ -169,27 +216,6 @@ define([], function() {
 					updateCallback('提示更新完毕!');
 				}, 1200);
 				return '加载中...';
-			}
-		});
-
-		// 其他颜色皮肤
-		var skinList=['yellow','yellowsimple','violet','twitter','skyblue','green','darkgray'];
-		for(var i=0;i<skinList.length;i++){
-			$('#showPoshyTipColors'+(i+1)).poshytip({className: 'tip-'+skinList[i],alignTo: 'target',alignX: 'center',hideTimeout:1, offsetY: 5,allowTipHover:false});
-		}
-		$('#showAll').click(function(){
-			for(var i=0;i<skinList.length;i++){
-				$('#showPoshyTipColors'+(i+1)).poshytip('hide');
-				// 先重置参数，修改showOn:'none'，方式鼠标移动到上面后，离开隐藏提示信息。
-				$('#showPoshyTipColors'+(i+1)).poshytip({className: 'tip-'+skinList[i],alignTo: 'target',alignX: 'center',hideTimeout:1,offsetY: 5,allowTipHover:false,showOn:'none'});
-				$('#showPoshyTipColors'+(i+1)).poshytip('show');
-			}
-		});
-		$('#hideAll').click(function(){
-			for(var i=0;i<skinList.length;i++){
-				$('#showPoshyTipColors'+(i+1)).poshytip('hide');
-				// 恢复原来的初始化参数
-				$('#showPoshyTipColors'+(i+1)).poshytip({className: 'tip-'+skinList[i],alignTo: 'target',alignX: 'center',hideTimeout:1,offsetY: 5,allowTipHover:false});
 			}
 		});
 
@@ -227,8 +253,270 @@ define([], function() {
 			offsetX: 0,
 			offsetY: 5
 		});
-	});
-	$('#showPage').click(function(){
+
+		//来自Layer弹框
+		$('#showTip1').on('click', function(){Turtle.layer.tips('气泡泡!', '#showTip1',{tips:1});});
+		$('#showTip2').on('click', function(){Turtle.layer.tips('气泡泡!', '#showTip2',{tips:2});});
+		$('#showTip3').on('click', function(){Turtle.layer.tips('气泡泡!', '#showTip3',{tips:3});});
+		$('#showTip4').on('click', function(){Turtle.layer.tips('气泡泡!', '#showTip4',{tips:4});});
+
+		$('#showTip5').on('click', function(){Turtle.layer.tips('气泡泡!', '#showTip5',{tips: [1, '#c00']});});
+		$('#showTip6').on('click', function(){Turtle.layer.tips('气泡泡!', '#showTip6',{success: function(layero, index){
+	    	console.log(layero, index);
+	    	alert('弹出成功！');
+	  	}});});
+	}
+
+	// 弹出层
+	function showPopLayer () {
+		$('#showMsg').click(function(){
+			Turtle.layer.msg('Hello layer');
+		});
+		$('#showMsg2').click(function(){
+			Turtle.layer.msg('Hello layer',{shade:0.5,shadeClose:true,time:4000,closeBtn:1});
+		});
+		$('#showMsg3').click(function(){Turtle.layer.msg('Hello layer',{shade:0.5,fix:false});});
+		$('#showMsg4').click(function(){Turtle.layer.msg('Hello layer',{shade:0.5,scrollbar:false});});
+		// 7种动画效果
+		$('#showMsgShift0').click(function(){Turtle.layer.msg('Hello layer',{shift:0});});
+		$('#showMsgShift1').click(function(){Turtle.layer.msg('Hello layer',{shift:1});});
+		$('#showMsgShift2').click(function(){Turtle.layer.msg('Hello layer',{shift:2});});
+		$('#showMsgShift3').click(function(){Turtle.layer.msg('Hello layer',{shift:3});});
+		$('#showMsgShift4').click(function(){Turtle.layer.msg('Hello layer',{shift:4});});
+		$('#showMsgShift5').click(function(){Turtle.layer.msg('Hello layer',{shift:5});});
+		$('#showMsgShift6').click(function(){Turtle.layer.msg('Hello layer',{shift:6});});
+		// 8种提示类型
+		$('#showAlert').click(function(){Turtle.layer.alert('Hello layer');});
+		$('#showAlert0').click(function(){Turtle.layer.alert('Hello layer',{icon: 0,});});
+		$('#showAlert1').click(function(){Turtle.layer.alert('Hello layer',{icon: 1,});});
+		$('#showAlert2').click(function(){Turtle.layer.alert('Hello layer',{icon: 2,});});
+		$('#showAlert3').click(function(){Turtle.layer.alert('Hello layer',{icon: 3,});});
+		$('#showAlert4').click(function(){Turtle.layer.alert('Hello layer',{icon: 4,});});
+		$('#showAlert5').click(function(){Turtle.layer.alert('Hello layer',{icon: 5,});});
+		$('#showAlert6').click(function(){Turtle.layer.alert('Hello layer',{icon: 6,});});
+		// 拖动行为
+		$('#showAlert7').click(function(){Turtle.layer.alert('Hello layer',{move: false});});
+		$('#showAlert8').click(function(){Turtle.layer.alert('Hello layer',{move: '.layui-layer-content'});});
+		$('#showAlert9').click(function(){Turtle.layer.alert('Hello layer',{moveType: 0});});
+		$('#showAlert10').click(function(){Turtle.layer.alert('Hello layer',{moveType: 1});});
+		$('#showAlert11').click(function(){Turtle.layer.alert('Hello layer',{moveOut: false});});
+		$('#showAlert12').click(function(){Turtle.layer.alert('Hello layer',{moveOut: true});});
+		$('#showAlert13').click(function(){Turtle.layer.alert('Hello layer',{moveEnd: function(){
+			alert('拖动结束')
+		}});});
+		// 询问框
+		$('#showConfirm').click(function(){
+			Turtle.layer.confirm('你好吗？');
+		});
+		$('#showConfirm2').click(function(){
+			Turtle.layer.confirm('你好吗？',{icon:3,title:'提示'},function(index){
+				Turtle.layer.close(index);
+			});
+		});
+		$('#showConfirm3').click(function(){
+			Turtle.layer.confirm('你好吗？', {
+				btn: ['好', '凑活', '不好'],
+				btn1: function(index) {
+					Turtle.layer.alert('你很好！')
+					Turtle.layer.close(index);
+				},
+				btn2: function(index) {
+					Turtle.layer.alert('凑活就行！');
+					Turtle.layer.close(index);
+				},
+				btn3: function(index) {
+					Turtle.layer.alert('瞎愁啥！');
+					Turtle.layer.close(index);
+				}
+			});
+		});
+
+		//自定义弹出层
+		$('#showSelfCeng').click(function() {
+			Turtle.layer.open({
+				type: 1,
+				area: ['600px', '360px'],
+				shadeClose: true, //点击遮罩关闭
+				content: '\<\div style="padding:20px;">自定义内容，点击遮罩关闭\<\/div>'
+			});
+		});
+		$('#showSelfCeng2').click(function() {
+			Turtle.layer.open({
+				type: 1,
+				maxmin:true,
+				area: ['600px', '360px'],
+				shadeClose: true, //点击遮罩关闭
+				content: '\<\div style="padding:20px;">自定义内容，点击遮罩关闭\<\/div>'
+			});
+		});
+		//弹出一个iframe层
+		$('#showIframe').on('click', function() {
+			Turtle.layer.open({
+				type: 2,
+				title: 'iframe父子操作',
+				maxmin: true,
+				shadeClose: true, //点击遮罩关闭层
+				area: ['500px', '320px'],
+				content: 'pageForLayerpop.html'
+			});
+		});
+		//加载中动画Loading
+		$('#showLoadingPop').on('click', function() {
+			var ii = Turtle.layer.load(0,{shade:0.3});
+			setTimeout(function() {
+				Turtle.layer.close(ii);
+			}, 1000);
+		});
+		$('#showLoadingPop1').on('click', function() {
+			var ii1 = Turtle.layer.load(1,{shade:0.5});
+			setTimeout(function() {
+				Turtle.layer.close(ii1);
+			}, 1000);
+		});
+		$('#showLoadingPop2').on('click', function() {
+			var ii2 = Turtle.layer.load(2,{shade:0.5});
+			setTimeout(function() {
+				Turtle.layer.close(ii2);
+			}, 1000);
+		});
+		$('#showLoadingPop3').on('click', function() {
+			Turtle.layer.msg('加载中...', {shade:0.5,icon: 16});
+		});		
+	  	// 输入型弹框
+	  	$('#showPrompt').click(function(){
+	  		Turtle.layer.prompt({
+	  			title:'请输入姓名，并确认',
+	  			formType:0,
+	  		},function(name){
+	  			 Turtle.layer.msg('你好，'+name);
+	  		})
+	  	});
+	  	$('#showPrompt2').click(function(){
+	  		Turtle.layer.prompt({
+	  			title:'请输入密码，并确认',
+	  			formType:1,
+	  		},function(pwd){
+	  			 Turtle.layer.msg('口令为：'+pwd);
+	  		})
+	  	});
+	  	$('#showPrompt3').click(function(){
+	  		Turtle.layer.prompt({
+	  			title:'请输入自我介绍，并确认',
+	  			formType:2,
+	  		},function(txt){
+	  			 Turtle.layer.msg(txt);
+	  		})
+	  	});
+	  	$('#showPrompt4').click(function(){
+	  		Turtle.layer.prompt({
+	  			title:'请输入6个字符，并确认',
+	  			value:'abc-',
+	  			maxlength:6,
+	  			formType:0
+	  		},function(txt){
+	  			 Turtle.layer.msg(txt);
+	  		})
+	  	});
+
+	  	// 弹出Tab
+	  	$('#showLayerTab').click(function(){
+			Turtle.layer.tab({
+				area: ['600px', '300px'],
+				tab: [{
+					title: 'TAB1',
+					content: '内容1'
+				}, {
+					title: 'TAB2',
+					content: '内容2'
+				}, {
+					title: 'TAB3',
+					content: '内容3'
+				}]
+			});
+	  	});
+	}
+
+	// 图片展示
+	function pictureShow () {
+		// 图片轮播
+		$('.imgSliderDiv').createImgSlider({
+			imgList:[{
+				url:'images/lb1.jpg',
+				desc:'这是第一个图片的说明文字。'
+			},{
+				url:'images/lb2.jpg',
+				desc:'这是第二个图片的说明文字。'
+			},{
+				url:'images/lb3.jpg',
+				desc:'这是第三个图片的说明文字。'
+			}]
+		})
+		// photo	
+		$('#showPhoto').click(function() {
+			/*
+				json需严格按照如下格式：
+				{
+					"title": "", //相册标题
+					"id": 123, //相册id
+					"start": 0, //初始显示的图片序号，默认0
+					"data": [ //相册包含的图片，数组格式
+						{
+							"alt": "图片名",
+							"pid": 666, //图片id
+							"src": "", //原图地址
+							"thumb": "" //缩略图地址
+						}
+					]
+				}
+			*/
+			var json = {
+				"status": 1,
+				"msg": "",
+				"title": "JSON请求的相册",
+				"id": 8,
+				"start": 0,
+				"data": [{
+					"alt": "越来越喜欢观察微小的事物",
+					"pid": 109,
+					"src": "images/lb1.jpg",
+					"thumb": ""
+				}, {
+					"alt": "决定，意味着对与错的并存",
+					"pid": 110,
+					"src": "images/lb2.jpg",
+					"thumb": "images/lb2.jpg"
+				}, {
+					"alt": "梦想还是要有的，万一实现了呢",
+					"pid": 111,
+					"src": "images/lb3.jpg",
+					"thumb": "images/lb3.jpg"
+				}, {
+					"alt": "人与人关系图",
+					"pid": 112,
+					"src": "images/lb4.jpg",
+					"thumb": ""
+				}, {
+					"alt": "那忧郁的眼神，含着一丝晶莹的泪花",
+					"pid": 113,
+					"src": "images/lb5.jpg",
+					"thumb": "images/lb5.jpg"
+				}]
+			}
+			Turtle.layer.photos({
+				photos: json,
+				shift:1 //不传动画效果，随机播放
+			});
+		});
+		$('#showPhoto2').click(function() {
+			Turtle.layer.photos({
+			    photos: '#layer-photos-demo'
+			 });
+			$('#layer-photos-demo img:first').click();
+		});
+	}
+
+	// 分页
+	function pagingShow () {
 		var pageIndex = Turtle.getQueryString('pageIndex');
         pageIndex = pageIndex ? +pageIndex - 1 : 0;
 		$('.pageDiv').createPage({
@@ -246,261 +534,5 @@ define([], function() {
 			pageTotal:50,
 			pageIndex:pageIndex
 		});
-	});
-	// 轮播图
-	$('#showImgSlider').click(function(){
-		$('.imgSliderDiv').show();
-		$('.imgSliderDiv').createImgSlider({
-			imgList:[{
-				url:'images/lb1.jpg',
-				desc:'这是第一个图片的说明文字。'
-			},{
-				url:'images/lb2.jpg',
-				desc:'这是第二个图片的说明文字。'
-			},{
-				url:'images/lb3.jpg',
-				desc:'这是第三个图片的说明文字。'
-			}]
-		})
-	})
-	/**************************************************************/
-	/**************************************************************/
-	$('#showMsg').click(function(){
-		Turtle.layer.msg('Hello layer');
-	});
-	$('#showMsg2').click(function(){
-		Turtle.layer.msg('Hello layer',{shade:0.5,shadeClose:true,time:4000,closeBtn:1});
-	});
-	$('#showMsg3').click(function(){Turtle.layer.msg('Hello layer',{shade:0.5,fix:false});});
-	$('#showMsg4').click(function(){Turtle.layer.msg('Hello layer',{shade:0.5,scrollbar:false});});
-	// 动画
-	$('#showMsgShift0').click(function(){Turtle.layer.msg('Hello layer',{shift:0});});
-	$('#showMsgShift1').click(function(){Turtle.layer.msg('Hello layer',{shift:1});});
-	$('#showMsgShift2').click(function(){Turtle.layer.msg('Hello layer',{shift:2});});
-	$('#showMsgShift3').click(function(){Turtle.layer.msg('Hello layer',{shift:3});});
-	$('#showMsgShift4').click(function(){Turtle.layer.msg('Hello layer',{shift:4});});
-	$('#showMsgShift5').click(function(){Turtle.layer.msg('Hello layer',{shift:5});});
-	$('#showMsgShift6').click(function(){Turtle.layer.msg('Hello layer',{shift:6});});
-
-	$('#showAlert').click(function(){Turtle.layer.alert('Hello layer');});
-	$('#showAlert1').click(function(){Turtle.layer.alert('Hello layer',{icon: 1,});});
-	$('#showAlert2').click(function(){Turtle.layer.alert('Hello layer',{icon: 2,});});
-	$('#showAlert3').click(function(){Turtle.layer.alert('Hello layer',{icon: 3,});});
-	$('#showAlert4').click(function(){Turtle.layer.alert('Hello layer',{icon: 4,});});
-	$('#showAlert5').click(function(){Turtle.layer.alert('Hello layer',{icon: 5,});});
-	$('#showAlert6').click(function(){Turtle.layer.alert('Hello layer',{icon: 6,});});
-
-	$('#showAlert7').click(function(){Turtle.layer.alert('Hello layer',{move: false});});
-	$('#showAlert8').click(function(){Turtle.layer.alert('Hello layer',{move: '.layui-layer-content'});});
-	$('#showAlert9').click(function(){Turtle.layer.alert('Hello layer',{moveType: 0});});
-	$('#showAlert10').click(function(){Turtle.layer.alert('Hello layer',{moveType: 1});});
-
-	$('#showAlert11').click(function(){Turtle.layer.alert('Hello layer',{moveOut: false});});
-	$('#showAlert12').click(function(){Turtle.layer.alert('Hello layer',{moveOut: true});});
-	$('#showAlert13').click(function(){Turtle.layer.alert('Hello layer',{moveEnd: function(){
-		alert('拖动结束')
-	}});});
-	// 询问框
-	$('#showConfirm').click(function(){
-		Turtle.layer.confirm('你好吗？');
-	});
-	$('#showConfirm2').click(function(){
-		Turtle.layer.confirm('你好吗？',{icon:3,title:'提示'},function(index){
-			Turtle.layer.close(index);
-		});
-	});
-	$('#showConfirm3').click(function(){
-		Turtle.layer.confirm('你好吗？', {
-			btn: ['好', '凑活', '不好'],
-			btn1: function(index) {
-				Turtle.layer.alert('你很好！')
-				Turtle.layer.close(index);
-			},
-			btn2: function(index) {
-				Turtle.layer.alert('凑活就行！');
-				Turtle.layer.close(index);
-			},
-			btn3: function(index) {
-				Turtle.layer.alert('瞎愁啥！');
-				Turtle.layer.close(index);
-			}
-		});
-	});
-
-	//弹出一个页面层
-	$('#showSelfCeng').click(function() {
-		Turtle.layer.open({
-			type: 1,
-			area: ['600px', '360px'],
-			shadeClose: true, //点击遮罩关闭
-			content: '\<\div style="padding:20px;">自定义内容，点击遮罩关闭\<\/div>'
-		});
-	});
-	$('#showSelfCeng2').click(function() {
-		Turtle.layer.open({
-			type: 1,
-			maxmin:true,
-			area: ['600px', '360px'],
-			shadeClose: true, //点击遮罩关闭
-			content: '\<\div style="padding:20px;">自定义内容，点击遮罩关闭\<\/div>'
-		});
-	});
-	//弹出一个iframe层
-	$('#showIframe').on('click', function() {
-		Turtle.layer.open({
-			type: 2,
-			title: 'iframe父子操作',
-			maxmin: true,
-			shadeClose: true, //点击遮罩关闭层
-			area: ['500px', '320px'],
-			content: 'pageForLayerpop.html'
-		});
-	});
-	//弹出一个loading层
-	$('#showLoadingPop').on('click', function() {
-		var ii = Turtle.layer.load(0,{shade:0.3});
-		setTimeout(function() {
-			Turtle.layer.close(ii);
-		}, 1000);
-	});
-	$('#showLoadingPop1').on('click', function() {
-		var ii1 = Turtle.layer.load(1,{shade:0.5});
-		setTimeout(function() {
-			Turtle.layer.close(ii1);
-		}, 1000);
-	});
-	$('#showLoadingPop2').on('click', function() {
-		var ii2 = Turtle.layer.load(2,{shade:0.5});
-		setTimeout(function() {
-			Turtle.layer.close(ii2);
-		}, 1000);
-	});
-	$('#showLoadingPop3').on('click', function() {
-		Turtle.layer.msg('加载中...', {shade:0.5,icon: 16});
-	});
-	//弹出一个tips层
-	$('#showTip1').on('click', function(){Turtle.layer.tips('气泡泡!', '#showTip1',{tips:1});});
-	$('#showTip2').on('click', function(){Turtle.layer.tips('气泡泡!', '#showTip2',{tips:2});});
-	$('#showTip3').on('click', function(){Turtle.layer.tips('气泡泡!', '#showTip3',{tips:3});});
-	$('#showTip4').on('click', function(){Turtle.layer.tips('气泡泡!', '#showTip4',{tips:4});});
-
-	$('#showTip5').on('click', function(){Turtle.layer.tips('气泡泡!', '#showTip5',{tips: [1, '#c00']});});
-	$('#showTip6').on('click', function(){Turtle.layer.tips('气泡泡!', '#showTip6',{success: function(layero, index){
-    	console.log(layero, index);
-    	alert('弹出成功！');
-  	}});});
-  	// 输入弹框
-  	$('#showPrompt').click(function(){
-  		Turtle.layer.prompt({
-  			title:'请输入姓名，并确认',
-  			formType:0,
-  		},function(name){
-  			 Turtle.layer.msg('你好，'+name);
-  		})
-  	});
-  	$('#showPrompt2').click(function(){
-  		Turtle.layer.prompt({
-  			title:'请输入密码，并确认',
-  			formType:1,
-  		},function(pwd){
-  			 Turtle.layer.msg('口令为：'+pwd);
-  		})
-  	});
-  	$('#showPrompt3').click(function(){
-  		Turtle.layer.prompt({
-  			title:'请输入自我介绍，并确认',
-  			formType:2,
-  		},function(txt){
-  			 Turtle.layer.msg(txt);
-  		})
-  	});
-  	$('#showPrompt4').click(function(){
-  		Turtle.layer.prompt({
-  			title:'请输入6个字符，并确认',
-  			value:'abc-',
-  			maxlength:6,
-  			formType:0
-  		},function(txt){
-  			 Turtle.layer.msg(txt);
-  		})
-  	});
-
-  	// tab
-  	$('#showLayerTab').click(function(){
-		Turtle.layer.tab({
-			area: ['600px', '300px'],
-			tab: [{
-				title: 'TAB1',
-				content: '内容1'
-			}, {
-				title: 'TAB2',
-				content: '内容2'
-			}, {
-				title: 'TAB3',
-				content: '内容3'
-			}]
-		});
-  	});
-  	// photo	
-	$('#showPhoto').click(function() {
-		/*
-			json需严格按照如下格式：
-			{
-				"title": "", //相册标题
-				"id": 123, //相册id
-				"start": 0, //初始显示的图片序号，默认0
-				"data": [ //相册包含的图片，数组格式
-					{
-						"alt": "图片名",
-						"pid": 666, //图片id
-						"src": "", //原图地址
-						"thumb": "" //缩略图地址
-					}
-				]
-			}
-		*/
-		var json = {
-			"status": 1,
-			"msg": "",
-			"title": "JSON请求的相册",
-			"id": 8,
-			"start": 0,
-			"data": [{
-				"alt": "越来越喜欢观察微小的事物",
-				"pid": 109,
-				"src": "images/lb1.jpg",
-				"thumb": ""
-			}, {
-				"alt": "决定，意味着对与错的并存",
-				"pid": 110,
-				"src": "images/lb2.jpg",
-				"thumb": "images/lb2.jpg"
-			}, {
-				"alt": "梦想还是要有的，万一实现了呢",
-				"pid": 111,
-				"src": "images/lb3.jpg",
-				"thumb": "images/lb3.jpg"
-			}, {
-				"alt": "人与人关系图",
-				"pid": 112,
-				"src": "images/lb4.jpg",
-				"thumb": ""
-			}, {
-				"alt": "那忧郁的眼神，含着一丝晶莹的泪花",
-				"pid": 113,
-				"src": "images/lb5.jpg",
-				"thumb": "images/lb5.jpg"
-			}]
-		}
-		Turtle.layer.photos({
-			photos: json,
-			shift:1 //不传动画效果，随机播放
-		});
-	});
-	$('#showPhoto2').click(function() {
-		Turtle.layer.photos({
-		    photos: '#layer-photos-demo'
-		 });
-		$('#layer-photos-demo img:first').click();
-	});
-});
+	}
+});	

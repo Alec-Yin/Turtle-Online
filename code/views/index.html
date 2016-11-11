@@ -6,9 +6,8 @@
 	<title>Turtle.online</title>
 	<meta name="keywords" content="PC前端框架，JS" />
     <meta name="description" content="一款专注于PC前端的架构" />
-	<link rel="stylesheet" type="text/css" href="../build/css/Turtle.min.css">
-	<script type="text/javascript" src="../build/Turtle.min.js"></script>
-	<script type="text/javascript">
+    <link type="text/css" rel="stylesheet" href="css/demo.css"></link>
+    <script type="text/javascript">
 		function _getQS(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
 			var r = window.location.search.substr(1).match(reg);
@@ -62,368 +61,893 @@
 		}else{
 			_loadCss(["../build/css/Turtle.min.css"]);
 			_loadJS(["../build/Turtle.min.js"]);
-		}	
+		}
 	</script>
-	<style type="text/css">
-		ul.componentsUL{margin: 0;background: #fff}
-		ul.componentsUL>li{border-top: 1px solid #666;padding: 5px 10px;}
-		ul.componentsUL>li:nth-child(2){border-top: none;}
-		ul.componentsUL>li>a{color: blue;display: block;height: 30px;line-height: 30px;border-top: 1px solid #A9A6A6;padding-left: 10px;}
-		ul.componentsUL.api>li>a{border: 1px solid;display: inline-block;border-radius: 5px;}
-		ul.componentsUL>li>a:first-child{border-top: none;}
-		ul.componentsUL>li.titleLi{color: #666;background-color: #efefef;border-bottom: #bcbcbc 1px solid;line-height: 20px;padding: 5px 10px;display: block;border-top: none;}
-		ul.componentsUL>li.titleLi:after{content: '';height:10px;width:10px;border-top: 2px solid #939393;border-right: 2px solid #939393;display: inline-block;float: right;margin-top: 4px;-webkit-transform: rotate(-45deg);-moz-transform: rotate(-45deg);-ms-transform: rotate(-45deg);transform: rotate(-45deg)}
-		ul.componentsUL>li.titleLi.down:after{-webkit-transform: rotate(135deg);-moz-transform: rotate(135deg);-ms-transform: rotate(135deg);transform: rotate(135deg)}
-		.calendarli input,.poshyTipli input{width: 180px;border: 1px solid #999;height: 22px;margin: 5px 0;}
-		.calendarli #showCalendarA{padding: 5px;border: 1px solid #999;cursor: pointer;}
-		.poshyTipli p{width: 200px;height: 20px;background: #CCCDCA;padding: 5px;text-align: center;margin:5px;display: inline-block;}
-		.poshyTipli .colorsDiv p{background: #EAEBE8;}
-		.poshyTipli .colorsDiv span{background: #F9CC9D;padding: 5px;margin: 10px;cursor: pointer;}
-		ul.componentsUL.layerpopWrapper>li>a{display: inline-block;border: 1px solid #999;padding: 5px;}
-		.layer-photos-demo img{width: 150px;}
-		.mainTitle{height: 40px;line-height: 40px;background: #83D31B;text-align: center;}
-		code{word-wrap: break-word;}
-		.apidesc p{line-height: 30px;}
-		.apidesc p i{color: red;}
-		.tiptxt{position: fixed;bottom: 0;left: 0;height: 40px;background: yellow;display: inline-block;width: 100%;text-align: CENTER;line-height: 40px;color: #B322BF;}
-		body{margin-bottom: 40px;height: auto;}
-		ul.componentsUL>li.titleLi>a.atipmsg,a.atipmsg{border: none;text-decoration: underline;color: #E65E28;padding: 0;margin-left: 10px;}
-	</style>
 </head>
 <body>
-	<div class="tiptxt">url后增加【?debug=1】查看源代码，否则使用压缩代码。</div>
-	<div class="mainTitle">组件</div>
-	<ul class='componentsUL'>
-		<li class="titleLi">常用组件</li>
-		<li class="calendarli">
-			<a href="javascript:void(0);" id="showCalendar">日历</a>
-			<div class="calendardiv" style="display:none;">
-				<p><a class="atipmsg" target="_blank" href="http://laydate.layui.com">laydate.js，参考【layDate v1.1】</a></p>
-				<input id="txtShowCalendar" class="laydate-icon"/>默认格式<br/>
-				<input id="txtShowCalendarSelf" class="laydate-icon"/>自定义参数<br/>
-				<input id="txtShowCalendar2"/><span href="javascript:void(0);" id='showCalendarA'>点击我显示日历</span><br/>
-				<input id="txtShowCalendar3" class="laydate-icon"/>自定义日期格式<br/>
-				<input id="txtShowCalendar4" class="laydate-icon"/>日期范围限定在昨天到明天<br/>
-				<input id="txtShowCalendarBegin" class="laydate-icon"/>-<input id="txtShowCalendarEnd" class="laydate-icon"/> 日期范围<br/>
-				<input id="txtShowCalendarSkin1" class="laydate-icon-dahong"/>大红皮肤<br/>
-				<input id="txtShowCalendarSkin2" class="laydate-icon-danlan"/>淡蓝皮肤<br/>
-				<input id="txtShowCalendarSkin3" class="laydate-icon-molv"/>墨绿皮肤<br/>
-				<input id="txtShowCalendarSkin4" class="laydate-icon-qianhuang"/>浅黄皮肤<br/>
-				<input id="txtShowCalendarSkin5" class="laydate-icon-yahui"/>雅灰皮肤<br/>
-				<input id="txtShowCalendarSkin6" class="laydate-icon-yalan"/>雅兰皮肤<br/>
-				<input id="txtShowCalendarSkin7" class="laydate-icon-huanglv"/>黄绿皮肤<br/>
-			</div>
-		</li>
-		<li  class="poshyTipli">
-			<a href="javascript:void(0);" id="showPoshyTip">气泡弹框提示</a>
-			<div class="poshyTipdiv" style="display:none;">
-				<div><a class="atipmsg" target="_blank" href="http://vadikom.com/tools/poshy-tip-jquery-plugin-for-stylish-tooltips">poshytip.js，参考【Poshy Tip jQuery plugin v1.0】</a></div>
-				<div class="colorsDiv">				
-					<p id="showPoshyTipColors1" title="鼠标悬停提示内容！">鼠标悬停提示，黄色(默认)</p>
-					<p id="showPoshyTipColors2" title="鼠标悬停提示内容！">鼠标悬停提示，黄色简单模式</p>
-					<p id="showPoshyTipColors3" title="鼠标悬停提示内容！">鼠标悬停提示，紫色</p>
-					<p id="showPoshyTipColors4" title="鼠标悬停提示内容！">鼠标悬停提示，twitter颤抖</p>
-					<p id="showPoshyTipColors5" title="鼠标悬停提示内容！">鼠标悬停提示，天蓝</p>
-					<p id="showPoshyTipColors6" title="鼠标悬停提示内容！">鼠标悬停提示，绿色</p>
-					<p id="showPoshyTipColors7" title="鼠标悬停提示内容！">鼠标悬停提示，深灰色</p>
-					<span id="showAll">全部显示</span>
-					<span id="hideAll">全部隐藏</span>
-				</div>
-				<div style="padding:20px;width:400px;text-align:center;">
-					<p id="showPoshyTip1">立即显示，目标元素，上面</p>
-					<p id="showPoshyTip2">立即显示，目标元素，右边</p>
-					<p id="showPoshyTip3">立即显示，目标元素，下边</p>
-					<p id="showPoshyTip4">立即显示，目标元素，左边</p>
-				</div>
-				<p id="showPoshySelf1" style="width:300px;height:100px;">提示跟随鼠标</p>
-				<p id="showPoshySelf2">没有动画</p>
-				<p id="showPoshySelf3">内容包含html</p>
-				<img id="showPoshySelf4" style="width:100px;height:100px;" src="http://uploads.xuexila.com/allimg/1608/704-160Q1092441.jpg"/>
-				<p id="showPoshySelf5">提示动态修改</p>
-				<br/>
-				姓名：<input id="showPoshyInput1" title="输入姓名" /><br/>
-				邮箱：<input id="showPoshyInput2" title="输入邮箱" /><br/>
-				地址：<input id="showPoshyInput3" title="输入地址" /><br/>
-				爱好：<input id="showPoshyInput4" title="输入爱好" /><br/>
-			</div>
-		</li>	
-		<li class="pagewli">
-			<a href="javascript:void(0);" id="showPage">分页控件</a>
-			<div class="pageDiv"></div>
-			<div class="pageDiv2" style="margin-top: 5px;"></div>
-			<div class="pageDiv3" style="margin-top: 5px;"></div>
-		</li>
-		<li>
-			<a href="javascript:void(0);" id="showImgSlider">图片轮播</a>
-			<div class="imgSliderDiv" style="display:none;width:100%;height:300px;"></div>
-			
-		</li>
-	</ul>
-	<ul class='componentsUL layerpopWrapper'>
-		<li class="titleLi">弹出框/层提示组件<a class="atipmsg" target="_blank" href="http://layer.layui.com">layerpop.js，参考【layer v2.4】</a></li>
-		<li>
-			<a href="javascript:void(0);" id="showMsg">消息提示，默认</a>
-			<a href="javascript:void(0);" id="showMsg2">消息提示，有背景，4秒关闭，点击背景关闭，有关闭按钮</a>
-			<a href="javascript:void(0);" id="showMsg3">消息提示，弹窗不固定，随窗口滚动而滚动</a>
-			<a href="javascript:void(0);" id="showMsg4">消息提示，不允许浏览器滚动</a>
-			<br/><br/>
-			<a href="javascript:void(0);" id="showMsgShift0">消息提示，动画 Shift=0，默认</a>
-			<a href="javascript:void(0);" id="showMsgShift1">消息提示，动画 Shift=1</a>
-			<a href="javascript:void(0);" id="showMsgShift2">消息提示，动画 Shift=2</a>
-			<a href="javascript:void(0);" id="showMsgShift3">消息提示，动画 Shift=3</a>
-			<a href="javascript:void(0);" id="showMsgShift4">消息提示，动画 Shift=4</a>
-			<a href="javascript:void(0);" id="showMsgShift5">消息提示，动画 Shift=5</a>
-			<a href="javascript:void(0);" id="showMsgShift6">消息提示，动画 Shift=6</a>
-		</li>
-		<li>
-			<a href="javascript:void(0);" id="showAlert">弹出框提示，icon=-1,默认,无图片</a>
-			<a href="javascript:void(0);" id="showAlert1">弹出框提示，icon=1，感叹号：重要提示</a>
-			<a href="javascript:void(0);" id="showAlert2">弹出框提示，icon=2，对勾：操作完成提示</a>
-			<a href="javascript:void(0);" id="showAlert3">弹出框提示，icon=3，叉号：错误提示</a>
-			<a href="javascript:void(0);" id="showAlert4">弹出框提示，icon=4，问号：有问题提示</a>
-			<a href="javascript:void(0);" id="showAlert5">弹出框提示，icon=5，锁：锁定提示</a>
-			<a href="javascript:void(0);" id="showAlert6">弹出框提示，icon=6，不高兴：好遗憾提示</a>
-			<br/><br/>
-			<a href="javascript:void(0);" id="showAlert7">弹出框提示，不允许拖动</a>
-			<a href="javascript:void(0);" id="showAlert8">弹出框提示，允许内容拖动</a>
-			<br/><br/>
-			<a href="javascript:void(0);" id="showAlert9">弹出框提示，拖动风格0，默认</a>
-			<a href="javascript:void(0);" id="showAlert10">弹出框提示，拖动风格1</a>
-			<br/><br/>
-			<a href="javascript:void(0);" id="showAlert11">弹出框提示，窗口内拖拽，默认</a>
-			<a href="javascript:void(0);" id="showAlert12">弹出框提示，可拖到窗外</a>
-			<a href="javascript:void(0);" id="showAlert13">弹出框提示，拖动结束触发事件</a>
-		</li>
-		<li>
-			<a href="javascript:void(0);" id="showConfirm">询问框,默认</a>
-			<a href="javascript:void(0);" id="showConfirm2">询问框</a>
-			<a href="javascript:void(0);" id="showConfirm3">询问框，自定义按钮</a>
-		</li>
-		<li>
-			<a href="javascript:void(0);" id="showSelfCeng">弹出自定义层，默认</a>
-			<a href="javascript:void(0);" id="showSelfCeng2">弹出自定义层，有最大化最小化按钮</a>
-		</li>
-		<li>
-			<a href="javascript:void(0);" id="showIframe">以iframe方式弹出另一个页面</a>
-		</li>
-		<li>
-			<a href="javascript:void(0);" id="showLoadingPop">弹出加载中层，1秒后自动关闭</a>
-			<a href="javascript:void(0);" id="showLoadingPop1">弹出加载中层，1秒后自动关闭,icon=1</a>
-			<a href="javascript:void(0);" id="showLoadingPop2">弹出加载中层，1秒后自动关闭,icon=2</a>
-			<a href="javascript:void(0);" id="showLoadingPop3">弹出加载中层，使用msg模拟</a>
-		</li>
-		<li>
-			<a href="javascript:void(0);" id="showTip1">弹出气泡层提示，上面</a>
-			<a href="javascript:void(0);" id="showTip2">弹出气泡层提示，右边，默认</a>
-			<a href="javascript:void(0);" id="showTip3">弹出气泡层提示，下面</a>
-			<a href="javascript:void(0);" id="showTip4">弹出气泡层提示，左边</a>
-			<br/><br/>
-			<a href="javascript:void(0);" id="showTip5">弹出气泡层提示，自定义颜色</a>
-			<a href="javascript:void(0);" id="showTip6">弹出气泡层提示，弹出后回调方法</a>
-		</li>
-		<li>
-			<a href="javascript:void(0);" id="showPrompt">输入弹框,文本框，默认</a>
-			<a href="javascript:void(0);" id="showPrompt2">输入弹框,密码框</a>
-			<a href="javascript:void(0);" id="showPrompt3">输入弹框，多行文本</a>
-			<a href="javascript:void(0);" id="showPrompt4">输入弹框，指定长度，有默认值</a>
-		</li>
-		<li>
-			<a href="javascript:void(0);" id="showLayerTab">tab层</a>
-		</li>
-		<li>
-			<a href="javascript:void(0);" id="showPhoto">图片查看器</a>
-			<a href="javascript:void(0);" id="showPhoto2">图片查看器，从下面DOM中获取图片，要求img标签必须有相应属性</a>
-			<div id="layer-photos-demo" class="layer-photos-demo">
-	          <img layer-src="images/lb1.jpg" layer-pid="" src="images/lb1.jpg" alt="layer宣传图" layer-index="0">
-	          <img layer-src="images/lb2.jpg" layer-pid="" src="images/lb2.jpg" alt="我入互联网这五年" layer-index="1">
-	          <img layer-src="" layer-pid="" src="images/lb3.jpg" alt="微摄影" layer-index="2">
-	          <img layer-src="images/lb4.jpg" layer-pid="" src="images/lb4.jpg" alt="国足" layer-index="3">
-	          <img layer-src="images/lb5.jpg" layer-pid="" src="images/lb5.jpg" alt="三清山" layer-index="4">
-	        </div>
-		</li>
-	</ul>
-	<div class="mainTitle">API</div>
-	<ul class='componentsUL api'>
-		<li class="titleLi">页面框架:cPageView</li>
-		<li class="apidesc">			
-			<p>1. 继承Backbone.View</p>
-			<p>2. 自定义事件方法：<i>on、off、trigger、once</i></p>
-			<p>3. 页面交互事件定义：<i>events{}</i></p>
-			<p>4. 页面初始化：<i>initiapze()</i></p>
-			<p>5. 全局jquery对象：<i>$el</i></p>
-		</li>
-		<li>			
-			<p>实例如下：</p>
-			<p>初始化时被改变：<span id="cpageviewTest3">初始化时会帮给我赋值</span></p>
-			<a href="javascript:;" id="cpageviewTest1">apitest帮我定义事件</a>
-			<div id="cpageviewTest2">点击上面的按钮改变我的html</div>
-			<pre>
-			<code>
-define(['cPageView'],function(PageView) {
-	var View = PageView.extend({
-		events:{
-			'click #cpageviewTest1':'clicktest1'
-		},
-		initialize: function () {
-			console.log('initialize');
-			this.$el.find('#cpageviewTest3').html('默认值被改变');
-			this.on('initpage',function(){
-				console.log('initpage');
-			});
-			this.trigger('initpage');
-		},
-		clicktest1:function(e){
-			this.$el.find('#cpageviewTest2').html('赋值成功！'+new Date())
-		}
-	})
-	return new View();
-});
-			</code>
-			</pre>
-		</li>		
-	</ul>
-	<ul class='componentsUL api'>
-		<li class="titleLi">模板Require.text.js</li>
-		<li class="apidesc">			
-			<p>Require.text.js已经打包入Turtle框架中，不需要独立引用。</p>
-		</li>
-		<li>
-			<p>实例如下：</p>
-			<a href="javascript:;" id="templateA">点击我获取模板html</a>
-			<p id="templateTest">点击上面的按钮改变我</p>
-			<pre>
-			<code>
-html模板：
-&lt;div&gt;
-	你好，<%=name%>，我来自模板 temptest.html
-&lt;/div&gt;
+	<div class="dm_header">
+		Turtle Online
+	</div>
+	<div class="dm_main">
+		<div class="dm_nav">
+			<ul>
+				<li>
+					<h2>基本组件</h2>
+				</li>
+				<li class="dm_select"><a href="#calendarAnchor"><cite>日历</cite><em>LayDate</em></a></li>
+				<li><a href="#poshyTipAnchor"><cite>气泡弹层提示</cite><em>PoshyTip</em></a></li>
+				<li><a href="#showPopAnchor"><cite>弹出层</cite></a></li>
+				<li><a href="#pictureAnchor"><cite>图片展示</cite></a></li>
+				<li><a href="#pagingAnchor"><cite>分页</cite></a></li>
+				<li><a href="javascript:;"><cite>导航</cite><em>菜单、tab</em></a></li>
+				<li><a href="javascript:;"><cite>图标icon</cite></a></li>
+				<li><a href="javascript:;"><cite>表单</cite></a></li>
+				<li><a href="javascript:;"><cite>表格</cite></a></li>
 
-js调用：
-define(['cPageView','text!views/temple/temptest.html'],function(PageView,temptest) {
-	var View = PageView.extend({
-		events:{
-			'click #templateA':'clicktest2'
-		},
-		clicktest2:function(){
-			$('#templateTest').html(_.template(temptest)({name:'Alec yin'}));
-		}
-	})
-	return new View();
-});
-			</code>
-			</pre>
-		</li>
-	</ul>
-	<ul class='componentsUL api'>
-			<li class="titleLi">全局对象Turtle</li>
-			<li class="apidesc">
-				<p><i>msg/layer.msg</i>：显示提示信息，在一定时间内自动消失</p>
-				<p><i>alert/layer.alert</i>：显示提示框</p>
-				<p><i>confirm/layer.confirm</i>：显示确认框</p>
-				<p><i>showLoading</i>：显示加载中动画</p>
-				<p><i>hideLoading</i>：隐藏加载中动画</p>
-				<hr/>
-				<p><i>goBack</i>：返回上一页</p>
-				<p><i>goTo</i>：跳转指定url</p>
-				<hr/>
-				<p><i>setCookie</i>: 保存cookie</p>
-				<p><i>getCookie</i>: 获取cookie</p>
-				<p><i>removeCookie</i>: 移除cookie</p>
-				<p><i>setStorage</i>: 保存Storage</p>
-				<p><i>getStorage</i>: 获取Storage</p>
-				<hr/>
-				<p><i>dateUtil.formatNum</i>：1-9返回01,02,...；eg：formatNum(5) // 05 ；formatNum(10) //10</p>
-				<p><i>dateUtil.parse</i>：将字符串转换为日期，支持格式y-m-d ymd (y m r)以及标准的。返回日期对象；dateUtil.parse('2015/5/3','y/m/d')；dateUtil.parse('2015-5-3','y-m-d')</p>
-				<p><i>dateUtil.format</i>：将日期格式化为字符串。format(new Date(), 'y/m/d')；format(new Date(), 'Y/M/D H:F:S');</p>
-				<p><i>dateUtil.isDate</i>：判断是不是时间对象</p>
-				<p><i>dateUtil.isLeapYear</i>：是否为闰年</p>
-				<p><i>dateUtil.getDaysOfMonth</i>：获取一个月份的天数</p>
-				<p><i>dateUtil.getBeginDayOfMouth</i>：获取一个月份1号是星期几，注意此时的月份传入时需要自主减一。return {num} 当月一号为星期几，0是星期天，1是星期一</p>
-				<p><i>dateUtil.ToDate</i>：把格式为 /Date(136883030349000)/ 转化为"yyyy-MM-dd hh:mm:ss"格式</p>
-				<p><i>dateUtil.dateDiff(date1, date2, interval)</i>：获取两个日期的间隔时间。参数：interval {String} 间隔类型（毫秒、秒、分钟、小时、天、月、年）</p>
+				<li>
+					<h2>API</h2>
+				</li>
+				<li><a href="#cpageViewAnchor"><cite>cPageView</cite><em>页面框架</em></a></li>
+				<li><a href="#templateAnchor"><cite>模板</cite><em>Require.text.js</em></a></li>
+				<li><a href="#commonAPI"><cite>公共方法</cite><em>调用时以Turtle.开头</em></a></li>
+			</ul>
+		</div>
+		<div class="dm_content">
+			<div class="dm_title" id='calendarAnchor'>日历</div>
+			<div class="dm_desc">
+				<a target="_blank" href="http://laydate.layui.com">laydate.js，参考【layDate v1.1】</a>
+			</div>
+			<div class="dm-item">
+				<!-- <input type="text" name="title" placeholder="请输入标题" class="ttl-input">
+				<div class="ttl-form-item">
+		          <label>输入框</label>
+		          <p class="ttl-full">
+		          	<input type="text" name="title" placeholder="请输入标题" class="ttl-input">
+		          </p>
+		        </div> -->
 
-				<p><i>日期对象.addYears</i>：加上特定的年份。返回加好年份的日期对象</p> 
-				<p><i>日期对象.addMonths</i>：加上特定的月份。返回加好月份的日期对象</p> 
-				<p><i>日期对象.addDays</i>：加上特定的天数。返回加好天数的日期对象</p> 
-				<p><i>日期对象.addHours</i>：加上特定的小时数。返回加好小时数的日期对象</p> 
-				<p><i>日期对象.addMinutes</i>：加上特定的分钟数。返回加好分钟数的日期对象</p> 
-				<p><i>日期对象.addSeconds</i>：加上特定的秒数。返回加好秒数的日期对象</p> 
-				<p><i>日期对象.toDate</i>：生成对应的日期对象,去掉时分秒，只保留年月日星期</p> 
-				<p><i>日期对象.toStdDateString</i>：生成对应的日期字符串，yyyy-MM-dd</p> 
-				<p><i>日期对象.toStdDateTimeString</i>：生成对应的日期字符串，yyyy-MM-dd HH:mm:ss</p> 
-				<p><i>日期对象.toEngDateString</i>：生成对应的英文版日期字符串，Oct-31-2016</p>
-				<p><i>日期对象.toFormatString</i>：生成需要的格式的日期字符串，参数：yMdhmsS=>年月日时分秒毫秒，如yyyy-MM-dd hh:mm:ss:SS</p> 
-				<hr/>
-				<p><i>ajax.GetJsonP</i>: ajax get jsonp</p>
-				<p><i>ajax.PostJsonP</i>: ajax post jsonp</p>
-				<p><i>ajax.PostJson</i>: ajax post json</p>
-				<p><i>ajax.GetJson</i>: ajax get json</p>
-				<hr/>
-				<p><i>position.getCurrentPosition</i>: 获取当前位置（省市区街道）<br/>
-						turtle.position.getCurrentPosition('baidu',function(position){console.log(position)})；//["协和路", "长宁区", "上海市", "上海市", "中国"]<br/>
-						turtle.position.getCurrentPosition('google',function(position){console.log(position)})；//["S20外环高速入口", "长宁区", "上海市", "上海市", "中国"]<br/>
+		        <div class="ttl-form-item">
+		          <label>默认格式</label>
+		          <p class="ttl-normal">
+		          	<input type="text" id="txtShowCalendar" class="ttl-input laydate-icon">
+		          </p>
+		        </div>
+		        <div class="ttl-form-item">
+		          <label>自定义参数</label>
+		          <p class="ttl-normal">
+		          	<input type="text" id="txtShowCalendarSelf" class="ttl-input laydate-icon">
+		          </p>
+		        </div>
+		        <div class="ttl-form-item">
+		          <label>点击我显示日历</label>
+		          <p class="ttl-mult">
+		          	<input type="text" id="txtShowCalendar2" class="ttl-input laydate-icon">
+		          	<button id='showCalendarA' class="ttl-btn ttl-btn-small">点击我显示日历</button>
+		          </p>
+		        </div>
+		        <div class="ttl-form-item">
+		          <label>自定义日期格式</label>
+		          <p class="ttl-normal">
+		          	<input type="text" id="txtShowCalendar3" class="ttl-input laydate-icon">
+		          </p>
+		        </div>
+		        <div class="ttl-form-item">
+		          <label>限定日期</label>
+		          <p class="ttl-mult">
+		          	<input type="text" id="txtShowCalendar4" class="ttl-input laydate-icon">
+		          	<i class='ttl-mark'>日期范围限定在昨天到明天</i>
+		          </p>
+		        </div>
+		        <div class="ttl-form-item">
+		          <label>日期范围</label>
+		          <p class="ttl-mult">
+		          	<input type="text" id="txtShowCalendarBegin" class="ttl-input laydate-icon"> -
+		          	<input type="text" id="txtShowCalendarEnd" class="ttl-input laydate-icon">
+		          </p>
+		        </div>
+		        <div class="dm_moreskin">
+		        	<div class="dm_title2">更多皮肤</div>
+					<div class="ttl-form-item">
+			          <label>大红皮肤</label>
+			          <p class="ttl-normal">
+			          	<input type="text" id="txtShowCalendarSkin1" class="ttl-input laydate-icon-dahong">
+			          </p>
+			        </div>
+					<div class="ttl-form-item">
+			          <label>淡蓝皮肤</label>
+			          <p class="ttl-normal">
+			          	<input type="text" id="txtShowCalendarSkin2" class="ttl-input laydate-icon-danlan">
+			          </p>
+			        </div>
+					<div class="ttl-form-item">
+			          <label>墨绿皮肤</label>
+			          <p class="ttl-normal">
+			          	<input type="text" id="txtShowCalendarSkin3" class="ttl-input laydate-icon-molv">
+			          </p>
+			        </div>
+					<div class="ttl-form-item">
+			          <label>浅黄皮肤</label>
+			          <p class="ttl-normal">
+			          	<input type="text" id="txtShowCalendarSkin4" class="ttl-input laydate-icon-qianhuang">
+			          </p>
+			        </div>
+					<div class="ttl-form-item">
+			          <label>雅灰皮肤</label>
+			          <p class="ttl-normal">
+			          	<input type="text" id="txtShowCalendarSkin5" class="ttl-input laydate-icon-yahui">
+			          </p>
+			        </div>
+					<div class="ttl-form-item">
+			          <label>雅兰皮肤</label>
+			          <p class="ttl-normal">
+			          	<input type="text" id="txtShowCalendarSkin6" class="ttl-input laydate-icon-yalan">
+			          </p>
+			        </div>
+					<div class="ttl-form-item">
+			          <label>黄绿皮肤</label>
+			          <p class="ttl-normal">
+			          	<input type="text" id="txtShowCalendarSkin7" class="ttl-input laydate-icon-huanglv">
+			          </p>
+			        </div>
+		        </div>
+		        <div class="dm_title2">参考代码</div>
+		        <div>
+					<pre><span style="color: #000000;">            Turtle.laydate({
+		                elem: </span>'#txtShowCalendarSelf', <span style="color: #008000;">//</span><span style="color: #008000;">需显示日期的元素选择器</span>
+		                event: 'click', <span style="color: #008000;">//</span><span style="color: #008000;">触发事件</span>
+		                format: 'YYYY-MM-DD hh:mm:ss', <span style="color: #008000;">//</span><span style="color: #008000;">日期格式</span>
+		                istime: <span style="color: #0000ff;">false</span>, <span style="color: #008000;">//</span><span style="color: #008000;">是否开启时间选择,即可选几点几分几秒</span>
+		                isclear: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;">是否显示清空按钮</span>
+		                istoday: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;">是否显示今天按钮</span>
+		                issure: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;">是否显示确认按钮</span>
+		                festival: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;">是否显示节日，国庆、元旦、清明等阳历节日</span>
+		                init: <span style="color: #0000ff;">false</span>,<span style="color: #008000;">//</span><span style="color: #008000;">是否在elem中显示当前时间，默认为false</span>
+		                min: '1900-01-01 00:00:00', <span style="color: #008000;">//</span><span style="color: #008000;">最小日期，可选的最小日期</span>
+		                max: '2099-12-31 23:59:59', <span style="color: #008000;">//</span><span style="color: #008000;">最大日期，可选的最大日期</span>
+		                start: '2014-6-15 23:00:00',    <span style="color: #008000;">//</span><span style="color: #008000;">如果init==false，把start设置为开始日期，如果init==true时，该值无效。即如果elem有值，该值无效</span>
+		                fixed: <span style="color: #0000ff;">false</span>, <span style="color: #008000;">//</span><span style="color: #008000;">是否固定在可视区域</span>
+		                zIndex: 99999999, <span style="color: #008000;">//</span><span style="color: #008000;">css z-index</span>
+		                choose: <span style="color: #0000ff;">function</span>(dates){ <span style="color: #008000;">//</span><span style="color: #008000;">选择好日期的回调,dates是选择日期的字符串，如&ldquo;2016-09-21 12:57:27&rdquo;</span>
+					<span style="color: #000000;">                }
+					            });</span></pre>
+					</div>
+				<div class="dm_title2">更多API</div>
+				<div>
+					<pre><span style="color: #000000;">
+					一、核心方法：laydate(options);
+			                    options是一个对象，它包含了以下key: </span>'默认值'<span style="color: #000000;">
+			                    {
+			                      elem: </span>'#id', <span style="color: #008000;">//</span><span style="color: #008000;">需显示日期的元素选择器</span>
+			                      event: 'click', <span style="color: #008000;">//</span><span style="color: #008000;">触发事件</span>
+			                      format: 'YYYY-MM-DD hh:mm:ss', <span style="color: #008000;">//</span><span style="color: #008000;">日期格式</span>
+			                      istime: <span style="color: #0000ff;">false</span>, <span style="color: #008000;">//</span><span style="color: #008000;">是否开启时间选择</span>
+			                      isclear: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;">是否显示清空</span>
+			                      istoday: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;">是否显示今天</span>
+			                      issure: <span style="color: #0000ff;">true</span><span style="color: #000000;">, 是否显示确认
+			                      festival: </span><span style="color: #0000ff;">true</span> <span style="color: #008000;">//</span><span style="color: #008000;">是否显示节日</span>
+			                      min: '1900-01-01 00:00:00', <span style="color: #008000;">//</span><span style="color: #008000;">最小日期</span>
+			                      max: '2099-12-31 23:59:59', <span style="color: #008000;">//</span><span style="color: #008000;">最大日期</span>
+			                      start: '2014-6-15 23:00:00',  <span style="color: #008000;">//</span><span style="color: #008000;">开始日期</span>
+			                      fixed: <span style="color: #0000ff;">false</span>, <span style="color: #008000;">//</span><span style="color: #008000;">是否固定在可视区域</span>
+			                      zIndex: 99999999, <span style="color: #008000;">//</span><span style="color: #008000;">css z-index</span>
+			                      choose: <span style="color: #0000ff;">function</span>(dates){ <span style="color: #008000;">//</span><span style="color: #008000;">选择好日期的回调</span>
+								<span style="color: #000000;">                     
+			                      }
+			                    }
+			        	二、其它方法</span>/属性
+			                    laydate.v   <span style="color: #008000;">//</span><span style="color: #008000;">获取laydate版本号</span>
+			                    laydate.skin(lib);  <span style="color: #008000;">//</span><span style="color: #008000;">加载皮肤，参数lib为皮肤名 </span>
+			                    <span style="color: #008000;">/*</span><span style="color: #008000;">
+			                      layer.now支持多类型参数。timestamp可以是前后若干天，也可以是一个时间戳。format为日期格式，为空时则采用默认的&ldquo;-&rdquo;分割。
+			                      如laydate.now(-2)将返回前天，laydate.now(3999634079890)将返回2096-09-28
+			                    </span><span style="color: #008000;">*/</span><span style="color: #000000;">
+			                    layer.now(timestamp, format);   </span><span style="color: #008000;">//</span><span style="color: #008000;">该方法提供了丰富的功能，推荐灵活使用。</span>
+			                    laydate.reset();  <span style="color: #008000;">//</span><span style="color: #008000;">重设日历控件坐标，一般用于页面dom结构改变时。无参</span>
+			               </pre>
+
+				</div>
+			</div>
+
+			<div class="dm_title" id='poshyTipAnchor'>气泡弹层提示</div>
+			<div class="dm_desc">
+				<a target="_blank" href="http://vadikom.com/tools/poshy-tip-jquery-plugin-for-stylish-tooltips">poshytip.js，参考【Poshy Tip jQuery plugin v1.0】</a>
+			</div>
+			<div class="dm-item">
+				<div class="dm_btnOpt">				
+					<span id="showPoshyTipColors1" title="鼠标悬停提示内容！">鼠标悬停提示，黄色(默认)</span>
+					<span id="showPoshyTipColors2" title="鼠标悬停提示内容！">鼠标悬停提示，黄色简单模式</span>
+					<span id="showPoshyTipColors3" title="鼠标悬停提示内容！">鼠标悬停提示，紫色</span>
+					<span id="showPoshyTipColors4" title="鼠标悬停提示内容！">鼠标悬停提示，twitter颤抖</span>
+					<span id="showPoshyTipColors5" title="鼠标悬停提示内容！">鼠标悬停提示，天蓝</span>
+					<span id="showPoshyTipColors6" title="鼠标悬停提示内容！">鼠标悬停提示，绿色</span>
+					<span id="showPoshyTipColors7" title="鼠标悬停提示内容！">鼠标悬停提示，深灰色</span>
+					<button id="showAll" class='ttl-btn ttl-btn-small'>全部显示</button>
+					<button id="hideAll" class='ttl-btn ttl-btn-small'>全部隐藏</button>
+				</div>
+				<div class="dm_4Direction">
+					<span id="showPoshyTip1" class='ttl-btn ttl-btn-primary dm_t'>上面</span>
+					<span id="showPoshyTip2" class='ttl-btn ttl-btn-primary dm_r'>右边</span>
+					<span id="showPoshyTip3" class='ttl-btn ttl-btn-primary dm_b'>下边</span>
+					<span id="showPoshyTip4" class='ttl-btn ttl-btn-primary dm_l'>左边</span>
+				</div>
+				<p id="showPoshySelf1" class="dm_withMouse">提示跟随鼠标</p>
+				<p id="showPoshySelf2" class="ttl-btn ttl-btn-primary">没有动画</p>
+				<p id="showPoshySelf3" class="ttl-btn ttl-btn-primary">内容包含html</p>
+				<p id="showPoshySelf5" class="ttl-btn ttl-btn-primary">提示动态修改</p>
+				<p>
+					<img id="showPoshySelf4" style="width:100px;height:100px;margin:10px 0;" src="images/my.jpg"/>
 				</p>
-				<hr/>
-				<p><i>isNullValue</i>: 是否是：undefined/""/null/"null"</p>
-				<p><i>isEmptyObject</i>: 是否空对象</p>
-				<p><i>isEmail</i>: 验证邮箱</p>
-				<p><i>enterClick(event, fn)</i>: 回车执行fn</p>
-				<p><i>getQueryString</i>: 获取url参数</p>
-				<p><i>clone</i>: 克隆对象</p>
-				<p><i>stringFormat</i>: str字符串格式化赋值。eg：stringFormat('我叫$1,来自$2','Alec','中国')</p>
-				<p><i>getType</i>: 获取对象类型【'boolean'、'number'、'string'、'function'、'array'、'date'、'regexp'、'error'】</p>
-				<p><i>stringifyJSONstr</i>: 任何对象转化为json字符串</p>
-				<p><i>strToJson</i>: str转化为json对象</p>
-				<p><i>jsonToObject</i>: json转换成对象</p>
-				<p><i>createGuid</i>: 创建GUID</p>
-				<p><i>createHtmlObj</i>: 根据html创建html对象</p>
-				<p><i>toArraySelf</i>: 把list转化为数组</p>
-				<p><i>loadCss</i>: 加载CSS，直接把css内容加载到head中</p>
-				<p><i>loadCssHref</i>: 加载CSS引用到head中，参数：数组/字符串</p>
-				<p><i>loadJs</i>: 加载js脚本，直接把css内容加载body后</p>
-				<p><i>loadJsSrc</i>: 加载js引用到head中，参数：数组/字符串</p>
-				<hr/>
-				<p><i>os.tablet</i>：平板电脑</p>
-				<p><i>os.phone</i>：手机</p>
-				<p><i>os.android</i>：android系统</p>
-				<p><i>os.ipad</i>：ipad</p>
-				<p><i>os.ipod</i>：ipod</p>
-				<p><i>os.iphone</i>：iphone</p>
-				<p><i>os.webos</i>：webos系统</p>
-				<p><i>os.wp</i>：Windows Phone系统</p>
-				<p><i>os.touchpad</i>：TouchPad</p>
-				<p><i>os.kindle</i>：Kindle</p>
-				<p><i>os.blackberry</i>：BlackBerry黑莓手机系统</p>
-				<p><i>os.bb10</i>：黑莓BB10系统</p>
-				<p><i>os.rimtabletos</i>：RIM Tablet OS，黑莓PlayBook</p>
-				<hr/>
-				<p><i>browser.silk</i>：Silk浏览器，亚马逊推出的云浏览器</p>
-				<p><i>browser.playbook</i>：黑莓PlayBook平板机</p>
-				<p><i>browser.chrome</i>：chrome浏览器</p>
-				<p><i>browser.firefox</i>：firefox</p>
-				<p><i>browser.ie</i>：ie</p>
-				<p><i>browser.webview</i>：iPhone|iPod|iPad系统下的AppleWebKit，不是chrome</p>
-				<p><i>browser.safari</i>：safari</p>
-				<p><i>browser.weixin</i>：weixin内置浏览器</p>
-			</li>
-		</ul>
+				<br/>
+				<div class="ttl-form-item">
+		          <label>姓名：</label>
+		          <p class="ttl-full">
+		          	<input type="text" id="showPoshyInput1" title="输入姓名" class="ttl-input">
+		          </p>
+		        </div>
+				<div class="ttl-form-item">
+		          <label>邮箱：</label>
+		          <p class="ttl-full">
+		          	<input type="text" id="showPoshyInput2" title="输入邮箱" class="ttl-input">
+		          </p>
+		        </div>
+				<div class="ttl-form-item">
+		          <label>地址：</label>
+		          <p class="ttl-full">
+		          	<input type="text" id="showPoshyInput3" title="输入地址" class="ttl-input">
+		          </p>
+		        </div>
+				<div class="ttl-form-item">
+		          <label>爱好：</label>
+		          <p class="ttl-full">
+		          	<input type="text" id="showPoshyInput4" title="输入爱好" class="ttl-input">
+		          </p>
+		        </div>
+
+		        <div class="dm_title2">来自Layer弹框</div>
+				<div class="dm_4Direction">
+					<span id="showTip1" class='ttl-btn ttl-btn-primary dm_t'>上面</span>
+					<span id="showTip2" class='ttl-btn ttl-btn-primary dm_r'>右边</span>
+					<span id="showTip3" class='ttl-btn ttl-btn-primary dm_b'>下边</span>
+					<span id="showTip4" class='ttl-btn ttl-btn-primary dm_l'>左边</span>
+				</div>
+				<div class="dm_tit2Content">
+					<a href="javascript:void(0);"  class="ttl-btn ttl-btn-primary" id="showTip5">自定义颜色</a>
+					<a href="javascript:void(0);"  class="ttl-btn ttl-btn-primary" id="showTip6">弹出后回调方法</a>
+				</div>
+
+		        <div class="dm_title2">参考代码</div>
+		        <div>
+					<pre>		$('#showPoshySelf3'<span style="color: #000000;">).poshytip({
+				            content: </span>'你好:&lt;p style="margin:2px 10px;"&gt;Alec Yin&lt;/p&gt;敬礼！'<span style="color: #000000;">,
+				            showTimeout:</span>1<span style="color: #000000;">,
+				            hideTimeout:</span>1<span style="color: #000000;">
+				        });</span>
+					</pre>
+				</div>
+				<div class="dm_title2">更多API</div>
+				<div>
+					<pre><span style="color: #000000;">
+					$.fn.poshytip.defaults </span>=<span style="color: #000000;"> {   
+					    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 提示内容默认为元素的标题，可以使指定的字符串、元素、回调函数、jquery对象   </span>
+					    content:'[title]'<span style="color: #000000;">, 
+					    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 指定的tips class样式   </span>
+					    className:'tip-yellow'<span style="color: #000000;">,   
+					    </span><span style="color: #008000;">//</span><span style="color: #008000;">按照像素计算背景图片和显示内容的内边距   </span>
+					    bgImageFrameSize:10<span style="color: #000000;">,   
+					    showTimeout:</span>500,<span style="color: #008000;">//</span><span style="color: #008000;"> 延时多久开始显示   </span>
+					    hideTimeout:100,<span style="color: #008000;">//</span><span style="color: #008000;"> 延时多久开始隐藏   </span>
+					    timeOnScreen:0,<span style="color: #008000;">//</span><span style="color: #008000;"> 自动隐藏之前延时多久   </span>
+					    <span style="color: #008000;">//</span><span style="color: #008000;">显示方式 支持'hover'鼠标划入、'focus' 获取焦点、'none'手动显式调用  </span>
+					    showOn:'hover'<span style="color: #000000;">,   
+					    liveEvents:</span><span style="color: #0000ff;">false</span>,<span style="color: #008000;">//</span><span style="color: #008000;"> 支持live  事件  同样可以对未来元素进行影响  </span>
+					    alignTo:'cursor',<span style="color: #008000;">//</span><span style="color: #008000;"> 和谁进行对齐 ('cursor' 鼠标, 'target' 目标元素)   </span>
+					    <span style="color: #008000;">//</span><span style="color: #008000;"> 水平方向对齐方式 可选参数：   </span>
+					    <span style="color: #008000;">//</span><span style="color: #008000;">('right', 'center', 'left', 'inner-left', 'inner-right')   </span>
+					    alignX:'right'<span style="color: #000000;">,   
+					    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 垂直方向对齐方式 可选参数：   </span>
+					    <span style="color: #008000;">//</span><span style="color: #008000;">('bottom', 'center', 'top', 'inner-bottom', 'inner-top')   </span>
+					    alignY:'top'<span style="color: #000000;">,   
+					    offsetX:</span>-22,<span style="color: #008000;">//</span><span style="color: #008000;"> 水平偏移量   </span>
+					    offsetY:18,<span style="color: #008000;">//</span><span style="color: #008000;"> 垂直方向偏移量   </span>
+					    <span style="color: #008000;">//</span><span style="color: #008000;">hover显示方式下，允许鼠标离开元素仍然显示提示信息   </span>
+					    allowTipHover:<span style="color: #0000ff;">true</span><span style="color: #000000;">,   
+					    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 提示信息随着鼠标移动  只在满足hover显示方式下，对齐方式为alignTo:'cursor' 才有效  </span>
+					    followCursor:<span style="color: #0000ff;">false</span><span style="color: #000000;">,   
+					    fade:</span><span style="color: #0000ff;">true</span>,<span style="color: #008000;">//</span><span style="color: #008000;"> 使用动画   </span>
+					    slide:<span style="color: #0000ff;">true</span>,<span style="color: #008000;">//</span><span style="color: #008000;"> 使用slie效果   </span>
+					    slideOffset:8,<span style="color: #008000;">//</span><span style="color: #008000;"> slide 动画的偏移量   </span>
+					    <span style="color: #008000;">//</span><span style="color: #008000;"> 动画显示的时间间隔 如果不想动画效果，设置为0即可   </span>
+					    showAniDuration:300<span style="color: #000000;">,   
+					    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 动画隐藏的时间间隔 如果不想动画效果，设置为0即可   </span>
+					    hideAniDuration:300<span style="color: #000000;">   
+					}; 
+					核心方法:
+					    .poshytip(</span>'show'<span style="color: #000000;">)    手动显示tip   
+					    .poshytip(</span>'hide'<span style="color: #000000;">)    手动隐藏tip   
+					    .poshytip(</span>'update'<span style="color: #000000;">, content, [ dontOverwriteOption ] )  手动更新tip   
+					    .poshytip(</span>'disable'<span style="color: #000000;">)  tip不可用   
+					    .poshytip(</span>'enable'<span style="color: #000000;">)   tip可用   
+					    .poshytip(</span>'destroy')  销毁tip </pre>
+				</div>
+			</div>
+
+			<div class="dm_title" id='showPopAnchor'>弹出层</div>
+			<div class="dm_desc">
+				<a target="_blank" href="http://layer.layui.com">layerpop.js，参考【layer v2.4】</a>
+			</div>
+			<div class="dm-item">			
+				<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showMsg">消息提示，默认</a>
+				<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showMsg2">消息提示，有背景，4秒关闭，点击背景关闭，有关闭按钮</a>
+				<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showMsg3">消息提示，弹窗不固定，随窗口滚动而滚动</a>
+				<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showMsg4">消息提示，不允许浏览器滚动</a>
+
+				<div class="dm_title2">7种动画效果</div>
+				<div class="dm_tit2Content">
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showMsgShift0">动画 Shift=0，默认</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showMsgShift1">动画 Shift=1</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showMsgShift2">动画 Shift=2</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showMsgShift3">动画 Shift=3</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showMsgShift4">动画 Shift=4</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showMsgShift5">动画 Shift=5</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showMsgShift6">动画 Shift=6</a>
+				</div>
+			
+				<div class="dm_title2">8种提示类型</div>
+				<div class="dm_tit2Content">
+					<div class="layui-layer-ico" style="height: 32px"></div>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert">icon=-1,默认,无图片</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert0">icon=0，感叹号：重要提示</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert1">icon=1，对勾：操作完成提示</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert2">icon=2，叉号：错误提示</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert3">icon=3，问号：有问题提示</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert4">icon=4，锁：锁定提示</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert5">icon=5，不高兴：好遗憾提示</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert6">icon=6，高兴：好遗憾提示</a>
+				</div>
+
+				<div class="dm_title2">拖动行为</div>
+				<div class="dm_tit2Content">
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert7">不允许拖动</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert8">允许内容拖动</a>					
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert9">拖动风格0，默认</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert10">拖动风格1</a>					
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert11">不可拖到窗外，默认</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert12">可拖到窗外</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert13">拖动结束触发事件</a>
+				</div>
+
+				<div class="dm_title2">询问框</div>
+				<div class="dm_tit2Content">
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showConfirm">询问框,默认</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showConfirm2">询问框</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showConfirm3">询问框，自定义按钮</a>
+				</div>
+
+				<div class="dm_title2">自定义弹出层</div>
+				<div class="dm_tit2Content">
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showSelfCeng">弹出自定义层，默认</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showSelfCeng2">弹出自定义层，有最大化最小化按钮</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showIframe">以iframe方式弹出另一个页面</a>
+				</div>
+			
+				<div class="dm_title2">加载中动画</div>
+				<div class="dm_tit2Content">
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showLoadingPop">1秒后自动关闭</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showLoadingPop1">1秒后自动关闭,icon=1</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showLoadingPop2">1秒后自动关闭,icon=2</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showLoadingPop3">使用msg模拟</a>
+				</div>
+
+				<div class="dm_title2">输入型弹框</div>
+				<div class="dm_tit2Content">
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showPrompt">文本框，默认</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showPrompt2">密码框</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showPrompt3">多行文本</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showPrompt4">指定长度，有默认值</a>
+				</div>
+
+				<div class="dm_title2">弹出Tab</div>
+				<div class="dm_tit2Content">
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showLayerTab">tab层</a>
+				</div>		
+				<div class="dm_title2">示例代码</div>
+				<div class="cnblogs_code">
+					<pre>		$('#showMsg').click(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+				            Turtle.layer.msg(</span>'Hello layer'<span style="color: #000000;">);
+				        });
+				        $(</span>'#showMsg2').click(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+				            Turtle.layer.msg(</span>'Hello layer',{shade:0.5,shadeClose:<span style="color: #0000ff;">true</span>,time:4000,closeBtn:1<span style="color: #000000;">});
+				        });
+				        $(</span>'#showMsg3').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.msg('Hello layer',{shade:0.5,fix:<span style="color: #0000ff;">false</span><span style="color: #000000;">});});
+				        $(</span>'#showMsg4').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.msg('Hello layer',{shade:0.5,scrollbar:<span style="color: #0000ff;">false</span><span style="color: #000000;">});});
+				        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 7种动画效果</span>
+				        $('#showMsgShift0').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.msg('Hello layer',{shift:0<span style="color: #000000;">});});
+				        $(</span>'#showMsgShift1').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.msg('Hello layer',{shift:1<span style="color: #000000;">});});
+				        $(</span>'#showMsgShift2').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.msg('Hello layer',{shift:2<span style="color: #000000;">});});
+				        $(</span>'#showMsgShift3').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.msg('Hello layer',{shift:3<span style="color: #000000;">});});
+				        $(</span>'#showMsgShift4').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.msg('Hello layer',{shift:4<span style="color: #000000;">});});
+				        $(</span>'#showMsgShift5').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.msg('Hello layer',{shift:5<span style="color: #000000;">});});
+				        $(</span>'#showMsgShift6').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.msg('Hello layer',{shift:6<span style="color: #000000;">});});
+				        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 8种提示类型</span>
+				        $('#showAlert').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer'<span style="color: #000000;">);});
+				        $(</span>'#showAlert0').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{icon: 0<span style="color: #000000;">,});});
+				        $(</span>'#showAlert1').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{icon: 1<span style="color: #000000;">,});});
+				        $(</span>'#showAlert2').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{icon: 2<span style="color: #000000;">,});});
+				        $(</span>'#showAlert3').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{icon: 3<span style="color: #000000;">,});});
+				        $(</span>'#showAlert4').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{icon: 4<span style="color: #000000;">,});});
+				        $(</span>'#showAlert5').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{icon: 5<span style="color: #000000;">,});});
+				        $(</span>'#showAlert6').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{icon: 6<span style="color: #000000;">,});});
+				        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 拖动行为</span>
+				        $('#showAlert7').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{move: <span style="color: #0000ff;">false</span><span style="color: #000000;">});});
+				        $(</span>'#showAlert8').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{move: '.layui-layer-content'<span style="color: #000000;">});});
+				        $(</span>'#showAlert9').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{moveType: 0<span style="color: #000000;">});});
+				        $(</span>'#showAlert10').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{moveType: 1<span style="color: #000000;">});});
+				        $(</span>'#showAlert11').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{moveOut: <span style="color: #0000ff;">false</span><span style="color: #000000;">});});
+				        $(</span>'#showAlert12').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{moveOut: <span style="color: #0000ff;">true</span><span style="color: #000000;">});});
+				        $(</span>'#showAlert13').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{moveEnd: <span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+				            alert(</span>'拖动结束'<span style="color: #000000;">)
+				        }});});
+				        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 询问框</span>
+				        $('#showConfirm').click(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+				            Turtle.layer.confirm(</span>'你好吗？'<span style="color: #000000;">);
+				        });
+				        $(</span>'#showConfirm2').click(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+				            Turtle.layer.confirm(</span>'你好吗？',{icon:3,title:'提示'},<span style="color: #0000ff;">function</span><span style="color: #000000;">(index){
+				                Turtle.layer.close(index);
+				            });
+				        });
+				        $(</span>'#showConfirm3').click(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+				            Turtle.layer.confirm(</span>'你好吗？'<span style="color: #000000;">, {
+				                btn: [</span>'好', '凑活', '不好'<span style="color: #000000;">],
+				                btn1: </span><span style="color: #0000ff;">function</span><span style="color: #000000;">(index) {
+				                    Turtle.layer.alert(</span>'你很好！'<span style="color: #000000;">)
+				                    Turtle.layer.close(index);
+				                },
+				                btn2: </span><span style="color: #0000ff;">function</span><span style="color: #000000;">(index) {
+				                    Turtle.layer.alert(</span>'凑活就行！'<span style="color: #000000;">);
+				                    Turtle.layer.close(index);
+				                },
+				                btn3: </span><span style="color: #0000ff;">function</span><span style="color: #000000;">(index) {
+				                    Turtle.layer.alert(</span>'瞎愁啥！'<span style="color: #000000;">);
+				                    Turtle.layer.close(index);
+				                }
+				            });
+				        });
+
+				        </span><span style="color: #008000;">//</span><span style="color: #008000;">自定义弹出层</span>
+				        $('#showSelfCeng').click(<span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+				            Turtle.layer.open({
+				                type: </span>1<span style="color: #000000;">,
+				                area: [</span>'600px', '360px'<span style="color: #000000;">],
+				                shadeClose: </span><span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;">点击遮罩关闭</span>
+				                content: '\&lt;\div style="padding:20px;"&gt;自定义内容，点击遮罩关闭\&lt;\/div&gt;'<span style="color: #000000;">
+				            });
+				        });
+				        $(</span>'#showSelfCeng2').click(<span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+				            Turtle.layer.open({
+				                type: </span>1<span style="color: #000000;">,
+				                maxmin:</span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+				                area: [</span>'600px', '360px'<span style="color: #000000;">],
+				                shadeClose: </span><span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;">点击遮罩关闭</span>
+				                content: '\&lt;\div style="padding:20px;"&gt;自定义内容，点击遮罩关闭\&lt;\/div&gt;'<span style="color: #000000;">
+				            });
+				        });
+				        </span><span style="color: #008000;">//</span><span style="color: #008000;">弹出一个iframe层</span>
+				        $('#showIframe').on('click', <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+				            Turtle.layer.open({
+				                type: </span>2<span style="color: #000000;">,
+				                title: </span>'iframe父子操作'<span style="color: #000000;">,
+				                maxmin: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+				                shadeClose: </span><span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;">点击遮罩关闭层</span>
+				                area: ['500px', '320px'<span style="color: #000000;">],
+				                content: </span>'pageForLayerpop.html'<span style="color: #000000;">
+				            });
+				        });
+				        </span><span style="color: #008000;">//</span><span style="color: #008000;">加载中动画Loading</span>
+				        $('#showLoadingPop').on('click', <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+				            </span><span style="color: #0000ff;">var</span> ii = Turtle.layer.load(0,{shade:0.3<span style="color: #000000;">});
+				            setTimeout(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+				                Turtle.layer.close(ii);
+				            }, </span>1000<span style="color: #000000;">);
+				        });
+				        $(</span>'#showLoadingPop1').on('click', <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+				            </span><span style="color: #0000ff;">var</span> ii1 = Turtle.layer.load(1,{shade:0.5<span style="color: #000000;">});
+				            setTimeout(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+				                Turtle.layer.close(ii1);
+				            }, </span>1000<span style="color: #000000;">);
+				        });
+				        $(</span>'#showLoadingPop2').on('click', <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+				            </span><span style="color: #0000ff;">var</span> ii2 = Turtle.layer.load(2,{shade:0.5<span style="color: #000000;">});
+				            setTimeout(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+				                Turtle.layer.close(ii2);
+				            }, </span>1000<span style="color: #000000;">);
+				        });
+				        $(</span>'#showLoadingPop3').on('click', <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+				            Turtle.layer.msg(</span>'加载中...', {shade:0.5,icon: 16<span style="color: #000000;">});
+				        });        
+				          </span><span style="color: #008000;">//</span><span style="color: #008000;"> 输入型弹框</span>
+				          $('#showPrompt').click(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+				              Turtle.layer.prompt({
+				                  title:</span>'请输入姓名，并确认'<span style="color: #000000;">,
+				                  formType:</span>0<span style="color: #000000;">,
+				              },</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(name){
+				                   Turtle.layer.msg(</span>'你好，'+<span style="color: #000000;">name);
+				              })
+				          });
+				          $(</span>'#showPrompt2').click(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+				              Turtle.layer.prompt({
+				                  title:</span>'请输入密码，并确认'<span style="color: #000000;">,
+				                  formType:</span>1<span style="color: #000000;">,
+				              },</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(pwd){
+				                   Turtle.layer.msg(</span>'口令为：'+<span style="color: #000000;">pwd);
+				              })
+				          });
+				          $(</span>'#showPrompt3').click(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+				              Turtle.layer.prompt({
+				                  title:</span>'请输入自我介绍，并确认'<span style="color: #000000;">,
+				                  formType:</span>2<span style="color: #000000;">,
+				              },</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(txt){
+				                   Turtle.layer.msg(txt);
+				              })
+				          });
+				          $(</span>'#showPrompt4').click(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+				              Turtle.layer.prompt({
+				                  title:</span>'请输入6个字符，并确认'<span style="color: #000000;">,
+				                  value:</span>'abc-'<span style="color: #000000;">,
+				                  maxlength:</span>6<span style="color: #000000;">,
+				                  formType:</span>0<span style="color: #000000;">
+				              },</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(txt){
+				                   Turtle.layer.msg(txt);
+				              })
+				          });
+
+				          </span><span style="color: #008000;">//</span><span style="color: #008000;"> 弹出Tab</span>
+				          $('#showLayerTab').click(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+				            Turtle.layer.tab({
+				                area: [</span>'600px', '300px'<span style="color: #000000;">],
+				                tab: [{
+				                    title: </span>'TAB1'<span style="color: #000000;">,
+				                    content: </span>'内容1'<span style="color: #000000;">
+				                }, {
+				                    title: </span>'TAB2'<span style="color: #000000;">,
+				                    content: </span>'内容2'<span style="color: #000000;">
+				                }, {
+				                    title: </span>'TAB3'<span style="color: #000000;">,
+				                    content: </span>'内容3'<span style="color: #000000;">
+				                }]
+				            });
+				          });</span>
+					</pre>
+				</div>
+			</div>
+			
+			<div class="dm_title" id='pictureAnchor'>图片展示</div>			
+			<div class="dm-item">
+				<div class="dm_title2">图片轮播</div>
+				<div class="dm_tit2Content">
+					<div class="imgSliderDiv" style="width:700px;height:300px;"></div>
+					<div class="dm_title3">示例代码</div>
+					<div>
+						<pre>		$('.imgSliderDiv'<span style="color: #000000;">).createImgSlider({
+				            imgList:[{
+				                url:</span>'images/lb1.jpg'<span style="color: #000000;">,
+				                desc:</span>'这是第一个图片的说明文字。'<span style="color: #000000;">
+				            },{
+				                url:</span>'images/lb2.jpg'<span style="color: #000000;">,
+				                desc:</span>'这是第二个图片的说明文字。'<span style="color: #000000;">
+				            },{
+				                url:</span>'images/lb3.jpg'<span style="color: #000000;">,
+				                desc:</span>'这是第三个图片的说明文字。'<span style="color: #000000;">
+				            }]
+				        })</span>
+						</pre>
+					</div>
+				</div>
+
+				<div class="dm_title2">相册浏览</div>
+				<div class="dm_desc">
+					<a target="_blank" href="http://layer.layui.com">layerpop.js，参考【layer v2.4】</a>
+				</div>
+				<div class="dm_tit2Content">
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showPhoto">图片查看器</a>
+					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showPhoto2">图片查看器，从下面DOM中获取图片，要求img标签必须有相应属性</a>
+					<div id="layer-photos-demo" class="layer-photos-demo dm_imgeList">
+			          <img layer-src="images/lb1.jpg" layer-pid="" src="images/lb1.jpg" alt="layer宣传图" layer-index="0">
+			          <img layer-src="images/lb2.jpg" layer-pid="" src="images/lb2.jpg" alt="我入互联网这五年" layer-index="1">
+			          <img layer-src="" layer-pid="" src="images/lb3.jpg" alt="微摄影" layer-index="2">
+			          <img layer-src="images/lb4.jpg" layer-pid="" src="images/lb4.jpg" alt="国足" layer-index="3">
+			          <img layer-src="images/lb5.jpg" layer-pid="" src="images/lb5.jpg" alt="三清山" layer-index="4">
+			        </div>
+			        <div class="dm_title3">示例代码</div>
+			        <div>
+						<pre>		$('#showPhoto').click(<span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+				            </span><span style="color: #008000;">/*</span><span style="color: #008000;">
+				                json需严格按照如下格式：
+				                {
+				                    "title": "", //相册标题
+				                    "id": 123, //相册id
+				                    "start": 0, //初始显示的图片序号，默认0
+				                    "data": [ //相册包含的图片，数组格式
+				                        {
+				                            "alt": "图片名",
+				                            "pid": 666, //图片id
+				                            "src": "", //原图地址
+				                            "thumb": "" //缩略图地址
+				                        }
+				                    ]
+				                }
+				            </span><span style="color: #008000;">*/</span>
+				            <span style="color: #0000ff;">var</span> json =<span style="color: #000000;"> {
+				                </span>"status": 1<span style="color: #000000;">,
+				                </span>"msg": ""<span style="color: #000000;">,
+				                </span>"title": "JSON请求的相册"<span style="color: #000000;">,
+				                </span>"id": 8<span style="color: #000000;">,
+				                </span>"start": 0<span style="color: #000000;">,
+				                </span>"data"<span style="color: #000000;">: [{
+				                    </span>"alt": "越来越喜欢观察微小的事物"<span style="color: #000000;">,
+				                    </span>"pid": 109<span style="color: #000000;">,
+				                    </span>"src": "images/lb1.jpg"<span style="color: #000000;">,
+				                    </span>"thumb": ""<span style="color: #000000;">
+				                }, {
+				                    </span>"alt": "决定，意味着对与错的并存"<span style="color: #000000;">,
+				                    </span>"pid": 110<span style="color: #000000;">,
+				                    </span>"src": "images/lb2.jpg"<span style="color: #000000;">,
+				                    </span>"thumb": "images/lb2.jpg"<span style="color: #000000;">
+				                }, {
+				                    </span>"alt": "梦想还是要有的，万一实现了呢"<span style="color: #000000;">,
+				                    </span>"pid": 111<span style="color: #000000;">,
+				                    </span>"src": "images/lb3.jpg"<span style="color: #000000;">,
+				                    </span>"thumb": "images/lb3.jpg"<span style="color: #000000;">
+				                }, {
+				                    </span>"alt": "人与人关系图"<span style="color: #000000;">,
+				                    </span>"pid": 112<span style="color: #000000;">,
+				                    </span>"src": "images/lb4.jpg"<span style="color: #000000;">,
+				                    </span>"thumb": ""<span style="color: #000000;">
+				                }, {
+				                    </span>"alt": "那忧郁的眼神，含着一丝晶莹的泪花"<span style="color: #000000;">,
+				                    </span>"pid": 113<span style="color: #000000;">,
+				                    </span>"src": "images/lb5.jpg"<span style="color: #000000;">,
+				                    </span>"thumb": "images/lb5.jpg"<span style="color: #000000;">
+				                }]
+				            }
+				            Turtle.layer.photos({
+				                photos: json,
+				                shift:</span>1 <span style="color: #008000;">//</span><span style="color: #008000;">不传动画效果，随机播放</span>
+				<span style="color: #000000;">            });
+				        });
+				        $(</span>'#showPhoto2').click(<span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+				            Turtle.layer.photos({
+				                photos: </span>'#layer-photos-demo'<span style="color: #000000;">
+				             });
+				            $(</span>'#layer-photos-demo img:first'<span style="color: #000000;">).click();
+				        });</span>
+						</pre>
+					</div>
+				</div>
+			</div>
+			
+			<div class="dm_title" id='pagingAnchor'>分页</div>
+			<div class="dm-item">
+				<div class="dm_title2">url跳转</div>
+				<div class="dm_tit2Content">
+					<div class="pageDiv"></div>
+					<div class="pageDiv2" style="margin-top: 5px;"></div>
+					<div class="pageDiv3" style="margin-top: 5px;"></div>
+					<div class="dm_title3">示例代码</div>
+					<div>
+						<pre>		<span style="color: #0000ff;">var</span> pageIndex = Turtle.getQueryString('pageIndex'<span style="color: #000000;">);
+					        pageIndex </span>= pageIndex ? +pageIndex - 1 : 0<span style="color: #000000;">;
+					        $(</span>'.pageDiv'<span style="color: #000000;">).createPage({
+					            pageTotal:</span>100<span style="color: #000000;">,
+					            pageIndex:pageIndex,
+					            isShowTotal:</span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+					            isInputPageIndex:</span><span style="color: #0000ff;">true</span><span style="color: #000000;">
+					        });
+					        $(</span>'.pageDiv2'<span style="color: #000000;">).createPage({
+					            pageTotal:</span>50<span style="color: #000000;">,
+					            pageIndex:pageIndex,
+					            isShowTotal:</span><span style="color: #0000ff;">true</span><span style="color: #000000;">
+					        });
+					        $(</span>'.pageDiv3'<span style="color: #000000;">).createPage({
+					            pageTotal:</span>50<span style="color: #000000;">,
+					            pageIndex:pageIndex
+					        });</span>
+						</pre>
+					</div>
+				</div>
+			</div>
+
+			<div class="dm_title" id='cpageViewAnchor'>cPageView（页面框架）</div>
+			<div class="dm_desc">
+				<p>1. 继承Backbone.View</p>
+				<p>2. 自定义事件方法：<i>on、off、trigger、once</i></p>
+				<p>3. 页面交互事件定义：<i>events{}</i></p>
+				<p>4. 页面初始化：<i>initiapze()</i></p>
+				<p>5. 全局jquery对象：<i>$el</i></p>
+			</div>
+			<div class="dm-item">		
+				<div class="dm_title2">实例演示</div>
+				<div class="dm_tit2Content">
+					<p>初始化时被改变：<span id="cpageviewTest3">初始化时会帮给我赋值</span></p>
+					<a href="javascript:;" class="ttl-btn ttl-btn" id="cpageviewTest1">apitest帮我定义事件</a>
+					<div id="cpageviewTest2">点击上面的按钮改变我的html</div>
+					<div class="dm_title3">示例代码</div>
+					<div><pre>		define(['cPageView'],<span style="color: #0000ff;">function</span><span style="color: #000000;">(PageView) {
+					    </span><span style="color: #0000ff;">var</span> View =<span style="color: #000000;"> PageView.extend({
+					        events:{
+					            </span>'click #cpageviewTest1':'clicktest1'<span style="color: #000000;">
+					        },
+					        initialize: </span><span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+					            console.log(</span>'initialize'<span style="color: #000000;">);
+					            </span><span style="color: #0000ff;">this</span>.$el.find('#cpageviewTest3').html('默认值被改变'<span style="color: #000000;">);
+					            </span><span style="color: #0000ff;">this</span>.on('initpage',<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+					                console.log(</span>'initpage'<span style="color: #000000;">);
+					            });
+					            </span><span style="color: #0000ff;">this</span>.trigger('initpage'<span style="color: #000000;">);
+					        },
+					        clicktest1:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(e){
+					            </span><span style="color: #0000ff;">this</span>.$el.find('#cpageviewTest2').html('赋值成功！'+<span style="color: #0000ff;">new</span><span style="color: #000000;"> Date())
+					        }
+					    })
+					    </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">new</span><span style="color: #000000;"> View();
+						});</span>
+					</pre></div>
+				</div>
+			</div>			
+
+			<div class="dm_title" id='templateAnchor'>模板（Require.text.js）</div>
+			<div class="dm_desc">
+				<p>Require.text.js已经打包入Turtle框架中，不需要独立引用</p>
+			</div>
+			<div class="dm-item">		
+				<div class="dm_title2">实例演示</div>
+				<div class="dm_tit2Content">
+					<a href="javascript:;" class="ttl-btn ttl-btn" id="templateA">点击我获取模板html</a>
+					<p id="templateTest">点击上面的按钮改变我</p>
+					<div class="dm_title3">html模板</div>
+					<div>
+						<pre>				<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+						    你好，</span><span style="background-color: #ffff00; color: #000000;">&lt;%</span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;">name</span><span style="background-color: #ffff00; color: #000000;">%&gt;</span><span style="color: #000000;">，我来自模板 temptest.html
+						</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+						</pre>
+					</div>
+					<div class="dm_title3">js调用</div>
+					<div>
+						<pre>				define(['cPageView','text!views/temple/temptest.html'],<span style="color: #0000ff;">function</span><span style="color: #000000;">(PageView,temptest) {
+						    </span><span style="color: #0000ff;">var</span> View =<span style="color: #000000;"> PageView.extend({
+						        events:{
+						            </span>'click #templateA':'clicktest2'<span style="color: #000000;">
+						        },
+						        clicktest2:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+						            $(</span>'#templateTest').html(_.template(temptest)({name:'Alec yin'<span style="color: #000000;">}));
+						        }
+						    })
+						    </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">new</span><span style="color: #000000;"> View();
+						});</span>
+						</pre>
+					</div>
+				</div>
+			</div>
+
+			
+			<div class="dm_title" id='commonAPI'>公共方法</div>
+			<div class="dm_desc">
+				<p>以下方法调用时，均是以【Turtle./turtle.】开头，如：Turtle.showLoading()/turtle.showLoading()。</p>
+				<p>Turtle内置有<a href="http://www.css88.com/doc/underscore" target="_blank">underscore.js</a>，所以underscoreJS中的方法也可使用。</p>
+			</div>
+			<div class="dm-item dm_desc">
+				<div class="dm_title2">弹层快捷调用</div>
+				<div class="dm_tit2Content">
+					<p><i>msg/layer.msg</i>：显示提示信息，在一定时间内自动消失</p>
+					<p><i>alert/layer.alert</i>：显示提示框</p>
+					<p><i>confirm/layer.confirm</i>：显示确认框</p>
+					<p><i>showLoading</i>：显示加载中动画</p>
+					<p><i>hideLoading</i>：隐藏加载中动画</p>
+				</div>
+				<div class="dm_title2">页面跳转</div>
+				<div class="dm_tit2Content">
+					<p><i>goBack</i>：返回上一页</p>
+					<p><i>goTo</i>：跳转指定url</p>
+				</div>
+				<div class="dm_title2">本地存储</div>
+				<div class="dm_tit2Content">
+					<p><i>setCookie</i>: 保存cookie</p>
+					<p><i>getCookie</i>: 获取cookie</p>
+					<p><i>removeCookie</i>: 移除cookie</p>
+					<p><i>setStorage</i>: 保存Storage</p>
+					<p><i>getStorage</i>: 获取Storage</p>
+				</div>
+				<div class="dm_title2">时间处理</div>
+				<div class="dm_tit2Content">
+					<p><i>dateUtil.formatNum</i>：1-9返回01,02,...；eg：formatNum(5) // 05 ；formatNum(10) //10</p>
+					<p><i>dateUtil.parse</i>：将字符串转换为日期，支持格式y-m-d ymd (y m r)以及标准的。返回日期对象；dateUtil.parse('2015/5/3','y/m/d')；dateUtil.parse('2015-5-3','y-m-d')</p>
+					<p><i>dateUtil.format</i>：将日期格式化为字符串。format(new Date(), 'y/m/d')；format(new Date(), 'Y/M/D H:F:S');</p>
+					<p><i>dateUtil.isDate</i>：判断是不是时间对象</p>
+					<p><i>dateUtil.isLeapYear</i>：是否为闰年</p>
+					<p><i>dateUtil.getDaysOfMonth</i>：获取一个月份的天数</p>
+					<p><i>dateUtil.getBeginDayOfMouth</i>：获取一个月份1号是星期几，注意此时的月份传入时需要自主减一。return {num} 当月一号为星期几，0是星期天，1是星期一</p>
+					<p><i>dateUtil.ToDate</i>：把格式为 /Date(136883030349000)/ 转化为"yyyy-MM-dd hh:mm:ss"格式</p>
+					<p><i>dateUtil.dateDiff(date1, date2, interval)</i>：获取两个日期的间隔时间。参数：interval {String} 间隔类型（毫秒、秒、分钟、小时、天、月、年）</p>
+					
+					<p><i>日期对象.addYears</i>：加上特定的年份。返回加好年份的日期对象</p> 
+					<p><i>日期对象.addMonths</i>：加上特定的月份。返回加好月份的日期对象</p> 
+					<p><i>日期对象.addDays</i>：加上特定的天数。返回加好天数的日期对象</p> 
+					<p><i>日期对象.addHours</i>：加上特定的小时数。返回加好小时数的日期对象</p> 
+					<p><i>日期对象.addMinutes</i>：加上特定的分钟数。返回加好分钟数的日期对象</p> 
+					<p><i>日期对象.addSeconds</i>：加上特定的秒数。返回加好秒数的日期对象</p> 
+					<p><i>日期对象.toDate</i>：生成对应的日期对象,去掉时分秒，只保留年月日星期</p> 
+					<p><i>日期对象.toStdDateString</i>：生成对应的日期字符串，yyyy-MM-dd</p> 
+					<p><i>日期对象.toStdDateTimeString</i>：生成对应的日期字符串，yyyy-MM-dd HH:mm:ss</p> 
+					<p><i>日期对象.toEngDateString</i>：生成对应的英文版日期字符串，Oct-31-2016</p>
+					<p><i>日期对象.toFormatString</i>：生成需要的格式的日期字符串，参数：yMdhmsS=>年月日时分秒毫秒，如yyyy-MM-dd hh:mm:ss:SS</p> 
+				</div>
+				<div class="dm_title2">AJAX调用</div>
+				<div class="dm_tit2Content">
+					<p><i>ajax.GetJsonP</i>: ajax get jsonp</p>
+					<p><i>ajax.PostJsonP</i>: ajax post jsonp</p>
+					<p><i>ajax.PostJson</i>: ajax post json</p>
+					<p><i>ajax.GetJson</i>: ajax get json</p>
+				</div>
+				<div class="dm_title2">获取当前位置</div>
+				<div class="dm_tit2Content">
+					<p><i>position.getCurrentPosition</i>: 获取当前位置（省市区街道）</p>
+					<div class="dm_title3">实例代码</div>
+					<div class="dm_code">
+						turtle.position.getCurrentPosition('baidu',<span style="color: #0000ff;">function</span>(position){console.log(position)})；<span style="color: #008000;">//</span><span style="color: #008000;">["协和路", "长宁区", "上海市", "上海市", "中国"]</span>
+						<br/>
+						turtle.position.getCurrentPosition('google',<span style="color: #0000ff;">function</span>(position){console.log(position)})；<span style="color: #008000;">//</span><span style="color: #008000;">["S20外环高速入口", "长宁区", "上海市", "上海市", "中国"]</span>
+					</div>					
+				</div>
+				<div class="dm_title2">其他常用</div>
+				<div class="dm_tit2Content">
+					<p><i>isNullValue</i>: 是否是：undefined/""/null/"null"</p>
+					<p><i>isEmptyObject</i>: 是否空对象</p>
+					<p><i>isEmail</i>: 验证邮箱</p>
+					<p><i>enterClick(event, fn)</i>: 回车执行fn</p>
+					<p><i>getQueryString</i>: 获取url参数</p>
+					<p><i>clone</i>: 克隆对象</p>
+					<p><i>stringFormat</i>: str字符串格式化赋值。eg：stringFormat('我叫$1,来自$2','Alec','中国')</p>
+					<p><i>getType</i>: 获取对象类型【'boolean'、'number'、'string'、'function'、'array'、'date'、'regexp'、'error'】</p>
+					<p><i>stringifyJSONstr</i>: 任何对象转化为json字符串</p>
+					<p><i>strToJson</i>: str转化为json对象</p>
+					<p><i>jsonToObject</i>: json转换成对象</p>
+					<p><i>createGuid</i>: 创建GUID</p>
+					<p><i>createHtmlObj</i>: 根据html创建html对象</p>
+					<p><i>toArraySelf</i>: 把list转化为数组</p>
+					<p><i>loadCss</i>: 加载CSS，直接把css内容加载到head中</p>
+					<p><i>loadCssHref</i>: 加载CSS引用到head中，参数：数组/字符串</p>
+					<p><i>loadJs</i>: 加载js脚本，直接把css内容加载body后</p>
+					<p><i>loadJsSrc</i>: 加载js引用到head中，参数：数组/字符串</p>
+				</div>				
+				<div class="dm_title2">浏览器判断</div>
+				<div class="dm_tit2Content">
+					<p><i>browser.silk</i>：Silk浏览器，亚马逊推出的云浏览器</p>
+					<p><i>browser.playbook</i>：黑莓PlayBook平板机</p>
+					<p><i>browser.chrome</i>：chrome浏览器</p>
+					<p><i>browser.firefox</i>：firefox</p>
+					<p><i>browser.ie</i>：ie</p>
+					<p><i>browser.webview</i>：iPhone|iPod|iPad系统下的AppleWebKit，不是chrome</p>
+					<p><i>browser.safari</i>：safari</p>
+					<p><i>browser.weixin</i>：weixin内置浏览器</p>
+				</div>
+			</div>	
+
+
+
+		</div>
+	</div>
+	<div class="dm_footer">
+		url后增加【?debug=1】查看源代码，否则使用压缩代码。
+	</div>
 	<script type="text/javascript">
 		// 控制页面ul 展开折叠
 		function ulliMange() {
-			$('.titleLi').click(function() {
-				if($(this).hasClass('down')){
-					$(this).siblings().show();
-					$(this).removeClass('down');
-				}else{
-					$(this).siblings().hide();
-					$(this).addClass('down');
+			$('.dm_nav ul li a').click(function() {
+				if(!$(this).parent().hasClass('dm_select')){
+					$('.dm_nav ul li').removeClass('dm_select');
+					$(this).parent().addClass('dm_select')
 				}
 			});
-			//测试代码
-			$('.titleLi').siblings().hide();
-			$('.titleLi').addClass('down')
-			// $('.titleLi').eq(0).siblings().show();
-			// $('.titleLi').eq(0).removeClass('down');
 		}
 		// 测试min的时候，只保留paths中的index/apiTest
 		var _paths={
@@ -447,7 +971,9 @@ define(['cPageView','text!views/temple/temptest.html'],function(PageView,temptes
 			require(["index", "apiTest"]);
 		}
 		var inter = setInterval(function() {
-			if (typeof define === 'function'&& typeof _ ==='function' && typeof jQuery ==='function' && typeof Backbone==='object') {
+			if (typeof define === 'function'&& typeof _ ==='function' && typeof jQuery ==='function' 
+				&& typeof Backbone==='object' && typeof Turtle==='object' && typeof $.Poshytip ==='function' 
+				&& typeof $.fn.createImgSlider ==='function'&& typeof Turtle.browser ==='object') {
 				requirejsLoad();
 				clearInterval(inter);
 				ulliMange();

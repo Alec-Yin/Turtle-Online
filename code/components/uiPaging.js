@@ -93,14 +93,15 @@
           if(this.options.onPageClick){
             this.options.onPageClick(pageIndex);
           }else{
-            var url = document.location.href;
+            var location = document.location,
+                url = location.href;
             if (/pageIndex=/.test(url)) {
                 url = url.replace(/pageIndex=\d+/, 'pageIndex=' + pageIndex);
             } else {
-              if(document.location.search)
-                url = url + '&pageIndex=' + pageIndex;
+              if(location.search)
+                url = url.replace(location.hash,'') + '&pageIndex=' + pageIndex + location.hash;
               else
-                url = url + '?pageIndex=' + pageIndex;
+                url = url.replace(location.hash,'') + '?pageIndex=' + pageIndex;
             }
             document.location.href = url;
           }

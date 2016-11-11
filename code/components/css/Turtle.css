@@ -34,3 +34,33 @@ table{border-collapse:collapse;border-spacing:0}
 .c_imgslider .flex-control-paging li a{background:url(../img/dot.png) no-repeat 0 -16px;display:block;height:16px;overflow:hidden;text-indent:-99em;width:16px;cursor:pointer;}
 .c_imgslider .flex-control-paging li a.flex-active,.c_imgslider .flex-control-paging li.active a{background-position:0 0;}
 .c_imgslider .slides a img{width:100%;height:100%;display:block;}
+
+/* 表单 */
+.ttl-mark{color: #999}
+.ttl-btn,.ttl-input,.ttl-textarea,.ttl-upload-button{outline:0;-webkit-transition:border-color .3s cubic-bezier(.65,.05,.35,.5);transition:border-color .3s cubic-bezier(.65,.05,.35,.5);-webkit-box-sizing:border-box!important;-moz-box-sizing:border-box!important;box-sizing:border-box!important}
+.ttl-form-item{    margin-bottom: 15px;overflow: hidden;}
+.ttl-form-item>label{float:left;display:block;padding:9px 15px;width:80px;font-weight:400;text-align:right;}
+.ttl-form-item .ttl-full{margin-left: 110px;}
+.ttl-form-item .ttl-normal{margin-left: 110px;}
+.ttl-form-item .ttl-mult{margin-left: 110px;}
+.ttl-input{width: 200px;padding-left:10px;height:38px;line-height:38px\9;border:1px solid #e6e6e6;background-color:#fff;border-radius:2px; display: block;}
+.ttl-form-item .ttl-full .ttl-input{width: 100%;}
+.ttl-form-item .ttl-mult .ttl-input{display: inline-block;}
+
+.ttl-btn{display:inline-block;height:38px;line-height:38px;padding:0 18px;background-color:#009688;color:#fff;white-space:nowrap;text-align:center;border:none;border-radius:2px;cursor:pointer;opacity:.9;filter:alpha(opacity=90)}
+.ttl-btn:hover{opacity:.8;filter:alpha(opacity=80);color:#fff}
+.ttl-btn:active{opacity:1;filter:alpha(opacity=100)}
+.ttl-btn+.ttl-btn{margin-left:10px}
+.ttl-btn-radius{border-radius:100px}
+.ttl-btn .ttl-icon{font-size:18px;vertical-align:bottom}
+.ttl-btn-primary{border:1px solid #C9C9C9;background-color:#fff;color:#555}
+.ttl-btn-primary:hover{border-color:#009688;color:#333}
+.ttl-btn-normal{background-color:#1E9FFF}
+.ttl-btn-warm{background-color:#F7B824}
+.ttl-btn-danger{background-color:#FF5722}
+.ttl-btn-disabled,.ttl-btn-disabled:active,.ttl-btn-disabled:hover{border:1px solid #e6e6e6;background-color:#FBFBFB;color:#C9C9C9;cursor:not-allowed;opacity:1}
+.ttl-btn-big{height:44px;line-height:44px;padding:0 25px;font-size:16px}
+.ttl-btn-small{height:30px;line-height:30px;padding:0 10px;font-size:12px}
+.ttl-btn-small i{font-size:16px!important}
+.ttl-btn-mini{height:22px;line-height:22px;padding:0 5px;font-size:12px}
+.ttl-btn-mini i{font-size:14px!important}
