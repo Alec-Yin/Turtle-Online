@@ -7,8 +7,6 @@
 	<meta name="keywords" content="PC前端框架，JS" />
     <meta name="description" content="一款专注于PC前端的架构" />
     <link type="text/css" rel="stylesheet" href="css/demo.css"></link>
-    <link type="text/css" rel="stylesheet" href="../build/css/Turtle.min.css">
-    <script type="text/javascript" src="../build/Turtle.min.js"></script>
     <script type="text/javascript">
 		function _getQS(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -77,10 +75,10 @@
 					<h2>基本组件</h2>
 				</li>
 				<li class="dm_select"><a href="#calendarAnchor"><cite>日历</cite><em>LayDate</em></a></li>
-				<li><a href="http://htmlpreview.github.io/?https://github.com/Alec-Yin/Turtle-Online/blob/master/code/views/index.html##poshyTipAnchor"><cite>气泡弹层提示</cite><em>PoshyTip</em></a></li>
-				<li><a href="http://htmlpreview.github.io/?https://github.com/Alec-Yin/Turtle-Online/blob/master/code/views/index.html##showPopAnchor"><cite>弹出层</cite></a></li>
-				<li><a href="http://htmlpreview.github.io/?https://github.com/Alec-Yin/Turtle-Online/blob/master/code/views/index.html##pictureAnchor"><cite>图片展示</cite></a></li>
-				<li><a href="http://htmlpreview.github.io/?https://github.com/Alec-Yin/Turtle-Online/blob/master/code/views/index.html##pagingAnchor"><cite>分页</cite></a></li>
+				<li><a href="#poshyTipAnchor"><cite>气泡弹层提示</cite><em>PoshyTip</em></a></li>
+				<li><a href="#showPopAnchor"><cite>弹出层</cite></a></li>
+				<li><a href="#pictureAnchor"><cite>图片展示</cite></a></li>
+				<li><a href="#pagingAnchor"><cite>分页</cite></a></li>
 				<li><a href="javascript:;"><cite>导航</cite><em>菜单、tab</em></a></li>
 				<li><a href="javascript:;"><cite>图标icon</cite></a></li>
 				<li><a href="javascript:;"><cite>表单</cite></a></li>
@@ -89,9 +87,9 @@
 				<li>
 					<h2>API</h2>
 				</li>
-				<li><a href="http://htmlpreview.github.io/?https://github.com/Alec-Yin/Turtle-Online/blob/master/code/views/index.html##cpageViewAnchor"><cite>cPageView</cite><em>页面框架</em></a></li>
-				<li><a href="http://htmlpreview.github.io/?https://github.com/Alec-Yin/Turtle-Online/blob/master/code/views/index.html##templateAnchor"><cite>模板</cite><em>Require.text.js</em></a></li>
-				<li><a href="http://htmlpreview.github.io/?https://github.com/Alec-Yin/Turtle-Online/blob/master/code/views/index.html##commonAPI"><cite>公共方法</cite><em>调用时以Turtle.开头</em></a></li>
+				<li><a href="#cpageViewAnchor"><cite>cPageView</cite><em>页面框架</em></a></li>
+				<li><a href="#templateAnchor"><cite>模板</cite><em>Require.text.js</em></a></li>
+				<li><a href="#commonAPI"><cite>公共方法</cite><em>调用时以Turtle.开头</em></a></li>
 			</ul>
 		</div>
 		<div class="dm_content">
@@ -737,9 +735,17 @@
 					<div class="pageDiv3" style="margin-top: 5px;"></div>
 					<div class="dm_title3">示例代码</div>
 					<div>
-						<pre>		<span style="color: #0000ff;">var</span> pageIndex = Turtle.getQueryString('pageIndex'<span style="color: #000000;">);
+						<pre>
+					        <span style="color: #0000ff;">var</span> pageIndex = Turtle.getQueryString('pageIndex'<span style="color: #000000;">);
 					        pageIndex </span>= pageIndex ? +pageIndex - 1 : 0<span style="color: #000000;">;
-					        $(</span>'.pageDiv'<span style="color: #000000;">).createPage({
+
+					        </span><span style="color: #008000;">//</span><span style="color: #008000;"> pageTotal 总条数</span>
+					        <span style="color: #008000;">//</span><span style="color: #008000;"> pageIndex 当前页索引</span>
+					        <span style="color: #008000;">//</span><span style="color: #008000;"> pageSize 每页显示条数，默认12条</span>
+					        <span style="color: #008000;">//</span><span style="color: #008000;"> isInputPageIndex 是否允许输入跳转页索引</span>
+					        <span style="color: #008000;">//</span><span style="color: #008000;"> isShowTotal 是否显示总条数</span>
+					        <span style="color: #008000;">//</span><span style="color: #008000;"> onPageClick 点击分页执行方法</span>
+					        $('.pageDiv'<span style="color: #000000;">).createPage({
 					            pageTotal:</span>100<span style="color: #000000;">,
 					            pageIndex:pageIndex,
 					            isShowTotal:</span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
@@ -754,6 +760,49 @@
 					            pageTotal:</span>50<span style="color: #000000;">,
 					            pageIndex:pageIndex
 					        });</span>
+						</pre>
+					</div>
+				</div>
+				<div class="dm_title2">AJAX分页</div>
+				<div class="dm_tit2Content">
+					<div class="pageDivAjax"></div>
+					<div class="pageDivAjax2" style="margin-top: 5px;"></div>
+					<div class="pageDivAjax3" style="margin-top: 5px;"></div>
+					<div class="dm_title3">示例代码</div>
+					<div class="cnblogs_code">
+						<pre>        
+					        <span style="color: #0000ff;">function</span><span style="color: #000000;"> getPageAjax (pageIndex,pageTotal,pageSize) {
+					            $(</span>'.pageDivAjax'<span style="color: #000000;">).createPageAjax({
+					                pageTotal:pageTotal,
+					                pageIndex:pageIndex,
+					                pageSize:pageSize,
+					                isShowTotal:</span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+					                isInputPageIndex:</span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+					                onPageClick:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(pIndex) {
+					                    </span><span style="color: #008000;">//</span><span style="color: #008000;">点击分页时调用，该方法中会调用ajax重新渲染分页</span>
+					                    mockPageAjax(pageSize, pIndex-1<span style="color: #000000;">);
+					                }.bind(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">)
+					            });
+					        }
+					        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 每页显示10条，当前索引0</span>
+					        mockPageAjax(10,0<span style="color: #000000;">);
+					        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 模拟分页时的ajax方法</span>
+					        <span style="color: #0000ff;">function</span><span style="color: #000000;"> mockPageAjax(pageSize,pIndex) {
+					            </span><span style="color: #008000;">//</span><span style="color: #008000;"> Turtle.ajax.GetJsonP('ajax url',{pageSize:pageSize,pageIndex:pIndex},function(data){</span>
+					            <span style="color: #008000;">//</span><span style="color: #008000;">     var pageIndex = data.pageIndex,pageTotal = data.;</span>
+					            <span style="color: #008000;">//</span><span style="color: #008000;">     this.getPageAjax(pageIndex,pageTotal,pageSize);</span>
+					            <span style="color: #008000;">//</span><span style="color: #008000;"> }.bind(this));</span>
+					            
+					            <span style="color: #008000;">//</span><span style="color: #008000;"> 以上是正式访问的代码，下面模拟ajax请求</span>
+								<span style="color: #000000;">
+					            Turtle.showLoading();
+					            setTimeout(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+					                </span><span style="color: #008000;">//</span><span style="color: #008000;"> 这里的总条数和当前索引应该是接口返给我的</span>
+					                <span style="color: #0000ff;">var</span> pageTotal = 120<span style="color: #000000;">;
+					                getPageAjax(pIndex,pageTotal,pageSize);
+					                Turtle.hideLoading();
+					            }.bind(</span><span style="color: #0000ff;">this</span>), 1000<span style="color: #000000;">)
+					        }</span>
 						</pre>
 					</div>
 				</div>

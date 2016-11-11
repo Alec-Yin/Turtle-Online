@@ -517,8 +517,16 @@ define([], function() {
 
 	// 分页
 	function pagingShow () {
+		// url跳转
 		var pageIndex = Turtle.getQueryString('pageIndex');
         pageIndex = pageIndex ? +pageIndex - 1 : 0;
+
+        // pageTotal 总条数
+	    // pageIndex 当前页索引
+	    // pageSize 每页显示条数，默认12条
+	    // isInputPageIndex 是否允许输入跳转页索引
+	    // isShowTotal 是否显示总条数
+	    // onPageClick 点击分页执行方法
 		$('.pageDiv').createPage({
 			pageTotal:100,
 			pageIndex:pageIndex,
@@ -534,5 +542,38 @@ define([], function() {
 			pageTotal:50,
 			pageIndex:pageIndex
 		});
+
+		// ajax分页
+		function getPageAjax (pageIndex,pageTotal,pageSize) {
+			$('.pageDivAjax').createPageAjax({
+				pageTotal:pageTotal,
+				pageIndex:pageIndex,
+				pageSize:pageSize,
+				isShowTotal:true,
+				isInputPageIndex:true,
+				onPageClick:function(pIndex) {
+					//点击分页时调用，该方法中会调用ajax重新渲染分页
+					mockPageAjax(pageSize, pIndex-1);
+				}.bind(this)
+			});
+		}
+		// 每页显示10条，当前索引0
+		mockPageAjax(10,0);
+		// 模拟分页时的ajax方法
+		function mockPageAjax(pageSize,pIndex) {
+			// Turtle.ajax.GetJsonP('ajax url',{pageSize:pageSize,pageIndex:pIndex},function(data){
+			// 	var pageIndex = data.pageIndex,pageTotal = data.;
+			// 	this.getPageAjax(pageIndex,pageTotal,pageSize);
+			// }.bind(this));
+			
+			// 以上是正式访问的代码，下面模拟ajax请求
+			Turtle.showLoading();
+			setTimeout(function(){
+				// 这里的总条数和当前索引应该是接口返给我的
+				var pageTotal = 120;
+				getPageAjax(pIndex,pageTotal,pageSize);
+				Turtle.hideLoading();
+			}.bind(this), 1000)
+		}
 	}
 });	
