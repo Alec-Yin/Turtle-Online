@@ -7,8 +7,6 @@
 	<meta name="keywords" content="PC前端框架，JS" />
     <meta name="description" content="一款专注于PC前端的架构" />
     <link type="text/css" rel="stylesheet" href="css/demo.css"></link>
-	<link rel="stylesheet" type="text/css" href="../build/css/Turtle.min.css">
-	<script type="text/javascript" src="../build/Turtle.min.js"></script>
     <script type="text/javascript">
 		function _getQS(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -58,6 +56,8 @@
 				'../components/layerpop.js',
 				'../components/uiImgSlider.js',
 				'../components/uiPaging.js',
+				'../components/uiSelect.js',
+				'../components/uiCheckbox.js',
 				'../components/Turtle.js'
 			]);
 		}else{
@@ -81,10 +81,10 @@
 				<li><a href="javascript:;" forid='showPopAnchor'><cite>弹出层</cite></a></li>
 				<li><a href="javascript:;" forid='pictureAnchor'><cite>图片展示</cite></a></li>
 				<li><a href="javascript:;" forid='pagingAnchor'><cite>分页</cite></a></li>
-				<li><a href="javascript:;" forid=''><cite>导航</cite><em>菜单、tab</em></a></li>
-				<li><a href="javascript:;" forid=''><cite>图标icon</cite></a></li>
-				<li><a href="javascript:;" forid=''><cite>表单</cite></a></li>
-				<li><a href="javascript:;" forid=''><cite>表格</cite></a></li>
+				<li><a href="javascript:;" forid='iconfontAnchor'><cite>图标icon</cite></a></li>
+				<li><a href="javascript:;" forid='formAnchor'><cite>表单</cite></a></li>
+				<!-- <li><a href="javascript:;" forid=''><cite>导航</cite><em>菜单、tab</em></a></li>
+				<li><a href="javascript:;" forid=''><cite>表格</cite></a></li> -->
 
 				<li>
 					<h2>API</h2>
@@ -396,7 +396,7 @@
 			
 				<div class="dm_title2">8种提示类型</div>
 				<div class="dm_tit2Content">
-					<div class="layui-layer-ico" style="height: 32px"></div>
+					<div class="ttl-layer-ico" style="height: 32px"></div>
 					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert">icon=-1,默认,无图片</a>
 					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert0">icon=0，感叹号：重要提示</a>
 					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showAlert1">icon=1，对勾：操作完成提示</a>
@@ -453,7 +453,7 @@
 					<a href="javascript:void(0);" class="ttl-btn ttl-btn-primary" id="showLayerTab">tab层</a>
 				</div>		
 				<div class="dm_title2">示例代码</div>
-				<div class="cnblogs_code">
+				<div>
 					<pre>		$('#showMsg').click(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
 				            Turtle.layer.msg(</span>'Hello layer'<span style="color: #000000;">);
 				        });
@@ -481,7 +481,7 @@
 				        $(</span>'#showAlert6').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{icon: 6<span style="color: #000000;">,});});
 				        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 拖动行为</span>
 				        $('#showAlert7').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{move: <span style="color: #0000ff;">false</span><span style="color: #000000;">});});
-				        $(</span>'#showAlert8').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{move: '.layui-layer-content'<span style="color: #000000;">});});
+				        $(</span>'#showAlert8').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{move: '.ttl-layer-content'<span style="color: #000000;">});});
 				        $(</span>'#showAlert9').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{moveType: 0<span style="color: #000000;">});});
 				        $(</span>'#showAlert10').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{moveType: 1<span style="color: #000000;">});});
 				        $(</span>'#showAlert11').click(<span style="color: #0000ff;">function</span>(){Turtle.layer.alert('Hello layer',{moveOut: <span style="color: #0000ff;">false</span><span style="color: #000000;">});});
@@ -628,7 +628,7 @@
 				<div class="dm_title2">图片轮播</div>
 				<div class="dm_tit2Content">
 					<div class="imgSliderDiv" style="width:700px;height:300px;"></div>
-					<div class="dm_title3">示例代码</div>
+					<div class="dm_code">示例代码</div>
 					<div>
 						<pre>		$('.imgSliderDiv'<span style="color: #000000;">).createImgSlider({
 				            imgList:[{
@@ -660,7 +660,7 @@
 			          <img layer-src="images/lb4.jpg" layer-pid="" src="images/lb4.jpg" alt="国足" layer-index="3">
 			          <img layer-src="images/lb5.jpg" layer-pid="" src="images/lb5.jpg" alt="三清山" layer-index="4">
 			        </div>
-			        <div class="dm_title3">示例代码</div>
+			        <div class="dm_code">示例代码</div>
 			        <div>
 						<pre>		$('#showPhoto').click(<span style="color: #0000ff;">function</span><span style="color: #000000;">() {
 				            </span><span style="color: #008000;">/*</span><span style="color: #008000;">
@@ -735,7 +735,7 @@
 					<div class="pageDiv"></div>
 					<div class="pageDiv2" style="margin-top: 5px;"></div>
 					<div class="pageDiv3" style="margin-top: 5px;"></div>
-					<div class="dm_title3">示例代码</div>
+					<div class="dm_code">示例代码</div>
 					<div>
 						<pre>
 					        <span style="color: #0000ff;">var</span> pageIndex = Turtle.getQueryString('pageIndex'<span style="color: #000000;">);
@@ -770,8 +770,8 @@
 					<div class="pageDivAjax"></div>
 					<div class="pageDivAjax2" style="margin-top: 5px;"></div>
 					<div class="pageDivAjax3" style="margin-top: 5px;"></div>
-					<div class="dm_title3">示例代码</div>
-					<div class="cnblogs_code">
+					<div class="dm_code">示例代码</div>
+					<div>
 						<pre>        
 					        <span style="color: #0000ff;">function</span><span style="color: #000000;"> getPageAjax (pageIndex,pageTotal,pageSize) {
 					            $(</span>'.pageDivAjax'<span style="color: #000000;">).createPageAjax({
@@ -809,6 +809,322 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="dm_title" id='iconfontAnchor'>图标icon</div>
+			<div class="dm-item">
+				<div class="dm_desc">
+					更多图标Unicode字符<a target="_blank" href="iconfont.html">1500+公用图标字体文件</a>，这些图标已经包含在Turtle中，可直接使用。
+				</div>
+				<div class="dm_title2">使用说明</div>
+				<div class="dm_tit2Content">
+					<div><pre>
+						&lt;i class="iconfont"&gt;&amp;#xe6bd;&lt;/i&gt;
+						其中的 &amp;<span style="color: #000000;">#xe6bd; 即是图标对应的Unicode字符
+						                         
+						你可以去定义它的颜色或者大小，如：<i class="iconfont" style="font-size: 30px; color: #1E9FFF;">&#xe6bd;</i> 
+						</span>&lt;i class="iconfont" style="font-size: 30px; color: #1E9FFF;"&gt;&amp;#xe6bd;&lt;/i&gt; </pre>
+					</div> 
+				</div>
+				<div class="dm_title2">实例演示</div>
+				<div class="dm_tit2Content">
+					<i class="iconfont"style="font-size: 30px; color: green;">&#xe666;</i>
+					<i class="iconfont"style="font-size: 30px; color: red;">&#xe677;</i>
+					<i class="iconfont"style="font-size: 30px; color: blue;">&#xe689;</i>
+					<i class="iconfont"style="font-size: 30px; color: yellow;">&#xe693;</i>
+				</div>
+				<div class="dm_title2">独立使用iconfont</div>
+				<div class="dm_tit2Content">
+					<p>1. 把build中的iconfont文件夹拷贝到你项目中。</p>
+					<p>2. 添加以下css代码到你的css文件或者单独的css文件（注意代码中的url路径）：</p>
+					<div><pre>
+						<span style="color: #800000;">@font-face </span>{<span style="color: #ff0000;">font-family</span>:<span style="color: #0000ff;"> "iconfont"</span>;<span style="color: #ff0000;">
+						  src</span>:<span style="color: #0000ff;"> url('iconfont.eot')</span>; <span style="color: #008000;">/*</span><span style="color: #008000;"> IE9</span><span style="color: #008000;">*/</span><span style="color: #ff0000;">
+						  src</span>:<span style="color: #0000ff;"> url('iconfont.eot?#iefix') format('embedded-opentype'), </span><span style="color: #008000;">/*</span><span style="color: #008000;"> IE6-IE8 </span><span style="color: #008000;">*/</span><span style="color: #0000ff;">
+						  url('iconfont.woff') format('woff'), </span><span style="color: #008000;">/*</span><span style="color: #008000;"> chrome, firefox </span><span style="color: #008000;">*/</span><span style="color: #0000ff;">
+						  url('iconfont.ttf') format('truetype'), </span><span style="color: #008000;">/*</span><span style="color: #008000;"> chrome, firefox, opera, Safari, Android, iOS 4.2+</span><span style="color: #008000;">*/</span><span style="color: #0000ff;">
+						  url('iconfont.svg#iconfont') format('svg')</span>; <span style="color: #008000;">/*</span><span style="color: #008000;"> iOS 4.1- </span><span style="color: #008000;">*/</span>
+						}<span style="color: #800000;">
+						.iconfont </span>{<span style="color: #ff0000;">
+						  font-family</span>:<span style="color: #0000ff;">"iconfont" !important</span>;<span style="color: #ff0000;">
+						  font-size</span>:<span style="color: #0000ff;">30px</span>;<span style="color: #ff0000;">
+						  font-style</span>:<span style="color: #0000ff;">normal</span>;<span style="color: #ff0000;">
+						  -webkit-font-smoothing</span>:<span style="color: #0000ff;"> antialiased</span>;<span style="color: #ff0000;">
+						  -webkit-text-stroke-width</span>:<span style="color: #0000ff;"> 0.2px</span>;<span style="color: #ff0000;">
+						  -moz-osx-font-smoothing</span>:<span style="color: #0000ff;"> grayscale</span>;
+						}</pre>
+					</div>
+				</div>
+			</div>
+			
+			<div class="dm_title" id='formAnchor'>表单</div>
+			<div class="dm-item">
+				<div class="dm_title2">输入框</div>
+				<div class="dm_tit2Content">
+					<input type="text" name="title" placeholder="请输入标题" class="ttl-input">
+					<div class="dm_code">实例代码</div>
+					<div>
+						<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="text"</span><span style="color: #ff0000;"> name</span><span style="color: #0000ff;">="title"</span><span style="color: #ff0000;"> placeholder</span><span style="color: #0000ff;">="请输入标题"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="ttl-input"</span><span style="color: #0000ff;">&gt;</span> </pre>
+					</div>
+				</div>
+				<div class="dm_title2">下拉选择框</div>
+				<div class="dm_tit2Content">
+					<div class="dm_title3"><span>基本用法</span></div>
+					<div class="dm_tit3Content">
+						<div class="ttl-select dm_showSelect1" value='' title=''></div>
+						<div class="ttl-select dm_showSelect2" value='' title=''></div><i></i>
+						<br/>
+						<div class="dm_code">实例代码</div>
+						<div><pre>		$('.dm_showSelect2'<span style="color: #000000;">).uiSelect({
+					            data:[{id:</span>1,title:'商丘'<span style="color: #000000;">},
+					                    {id:</span>2,title:'郑州'<span style="color: #000000;">},
+					                    {id:</span>3,title:'开封'<span style="color: #000000;">},
+					                    {id:</span>4,title:'洛阳'<span style="color: #000000;">},
+					                    {id:</span>5,title:'信阳'<span style="color: #000000;">},
+					                    {id:</span>6,title:'南阳'<span style="color: #000000;">}],
+					            index:</span>2, <span style="color: #008000;">//</span><span style="color: #008000;">默认选中项索引</span>
+					            id:1, <span style="color: #008000;">//</span><span style="color: #008000;">默认选中项id（优先级高于index）</span>
+					            onChange:<span style="color: #0000ff;">function</span><span style="color: #000000;">(item){
+					                $(</span>'.dm_showSelect2').next('i').text(item.id+':'+<span style="color: #000000;">item.title);
+					            }
+					        });</span>
+							</pre>
+						</div>
+					</div>
+					<div class="dm_title3"><span>过滤下拉框</span></div>
+					<div class="dm_tit3Content">
+						<div class="ttl-warn">
+							输入内容过滤，过滤列表支持键盘向上、向下和回车操作。
+						</div>
+						<div class="ttl-select dm_filterSelect1" value='' title=''></div>
+						<br/>
+						<div class="dm_code">实例代码</div>
+						<div class="cnblogs_code">
+							<pre>        
+						        $(<span style="color: #800000;">'</span><span style="color: #800000;">.dm_filterSelect1</span><span style="color: #800000;">'</span><span style="color: #000000;">).uiSelect({
+						            data:[{id:</span><span style="color: #800080;">1</span>,title:<span style="color: #800000;">'</span><span style="color: #800000;">平凡的世界</span><span style="color: #800000;">'</span><span style="color: #000000;">},
+						                    {id:</span><span style="color: #800080;">2</span>,title:<span style="color: #800000;">'</span><span style="color: #800000;">围城</span><span style="color: #800000;">'</span><span style="color: #000000;">},
+						                    {id:</span><span style="color: #800080;">3</span>,title:<span style="color: #800000;">'</span><span style="color: #800000;">放风筝的人</span><span style="color: #800000;">'</span><span style="color: #000000;">},
+						                    {id:</span><span style="color: #800080;">4</span>,title:<span style="color: #800000;">'</span><span style="color: #800000;">从你的世界走过</span><span style="color: #800000;">'</span><span style="color: #000000;">},
+						                    {id:</span><span style="color: #800080;">5</span>,title:<span style="color: #800000;">'</span><span style="color: #800000;">麻衣神相</span><span style="color: #800000;">'</span><span style="color: #000000;">},
+						                    {id:</span><span style="color: #800080;">6</span>,title:<span style="color: #800000;">'</span><span style="color: #800000;">水浒传</span><span style="color: #800000;">'</span><span style="color: #000000;">},
+						                    {id:</span><span style="color: #800080;">7</span>,title:<span style="color: #800000;">'</span><span style="color: #800000;">三国演义</span><span style="color: #800000;">'</span><span style="color: #000000;">},
+						                    {id:</span><span style="color: #800080;">8</span>,title:<span style="color: #800000;">'</span><span style="color: #800000;">史记</span><span style="color: #800000;">'</span><span style="color: #000000;">},
+						                    {id:</span><span style="color: #800080;">9</span>,title:<span style="color: #800000;">'</span><span style="color: #800000;">阿Q正传</span><span style="color: #800000;">'</span><span style="color: #000000;">},
+						                    {id:</span><span style="color: #800080;">10</span>,title:<span style="color: #800000;">'</span><span style="color: #800000;">西游记</span><span style="color: #800000;">'</span><span style="color: #000000;">}],
+						            isFilter:</span><span style="color: #0000ff;">true</span>,<span style="color: #008000;">//</span><span style="color: #008000;">是否允许过滤</span>
+						        });
+							</pre>
+						</div>
+					</div>
+
+				</div>
+				<div class="dm_title2">单选框</div>
+				<div class="dm_tit2Content">
+					<div class="ttl-checkbox dm_cbox1"></div><i></i>
+					<br/>
+					<div class="dm_code">实例代码</div>
+					<div><pre>		$('.dm_cbox1'<span style="color: #000000;">).uiCheckbox({
+				            data:[{id:</span>1,title:'男'<span style="color: #000000;">},
+				                    {id:</span>2,title:'女'<span style="color: #000000;">},
+				                    {id:</span>3,title:'保密'<span style="color: #000000;">}],
+				            index:</span>2, <span style="color: #008000;">//</span><span style="color: #008000;">默认选中项索引</span>
+				            id:5, <span style="color: #008000;">//</span><span style="color: #008000;">默认选中项id（优先级高于index）</span>
+				            onChange:<span style="color: #0000ff;">function</span><span style="color: #000000;">(item){
+				                $(</span>'.dm_cbox1').next('i').text(item.id+':'+<span style="color: #000000;">item.title);
+				            }
+				        });</span></pre>
+					</div>
+				</div>
+				<div class="dm_title2">复选框</div>
+				<div class="dm_tit2Content">
+					<div class="ttl-checkbox dm_cbox2"></div><i></i>
+					<br/>
+					<div class="dm_code">实例代码</div>
+					<div><pre>		$('.dm_cbox2'<span style="color: #000000;">).uiCheckbox({
+				            data:[{id:</span>1,title:'金立'<span style="color: #000000;">},
+				                    {id:</span>2,title:'华为'<span style="color: #000000;">},
+				                    {id:</span>3,title:'坚果'<span style="color: #000000;">}],
+				            index:</span>1, <span style="color: #008000;">//</span><span style="color: #008000;">默认选中项索引</span>
+				            id:2, <span style="color: #008000;">//</span><span style="color: #008000;">默认选中项id（优先级高于index）</span>
+				            isMultSelect:<span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;">是否多选</span>
+				            onSelect:<span style="color: #0000ff;">function</span><span style="color: #000000;">(data){
+				                </span><span style="color: #008000;">//</span><span style="color: #008000;"> 选中/取消某一项时触发，data是当前点击项</span>
+				                <span style="color: #0000ff;">var</span> str=data.state==1?'选中了':'取消选中'<span style="color: #000000;">;
+				                $(</span>'.dm_cbox2').next('i').text(str+'：'+data.item.id+', '+<span style="color: #000000;">data.item.title);
+				            }
+				        });</span></pre>
+					</div>
+				</div>
+				<div class="dm_title2">按钮</div>
+				<div class="dm_tit2Content">
+					<p>
+				        <button class="ttl-btn ttl-btn-primary">原始按钮</button>
+				        <button class="ttl-btn">默认按钮</button>
+				        <button class="ttl-btn ttl-btn-normal">百搭按钮</button>
+				        <button class="ttl-btn ttl-btn-warm">暖色按钮</button>
+				        <button class="ttl-btn ttl-btn-danger">警告按钮</button>
+				        <button class="ttl-btn ttl-btn-disabled">禁用按钮</button>
+				    </p>
+					<div class="dm_code">实例代码</div>
+					<div>
+						<pre>                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-primary"</span><span style="color: #0000ff;">&gt;</span>原始按钮<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;</span>默认按钮<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-normal"</span><span style="color: #0000ff;">&gt;</span>百搭按钮<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-warm"</span><span style="color: #0000ff;">&gt;</span>暖色按钮<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-danger"</span><span style="color: #0000ff;">&gt;</span>警告按钮<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-disabled"</span><span style="color: #0000ff;">&gt;</span>禁用按钮<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span></pre>
+					</div>
+					<br/>
+					<p>
+				        <button class="ttl-btn ttl-btn-big">大型按钮</button>
+				        <button class="ttl-btn">默认按钮</button>
+				        <button class="ttl-btn ttl-btn-small">小型按钮</button>
+				        <button class="ttl-btn ttl-btn-mini">迷你按钮</button>
+				    </p>
+					<div class="dm_code">实例代码</div>
+					<div>
+						<pre>                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-big"</span><span style="color: #0000ff;">&gt;</span>大型按钮<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;</span>默认按钮<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-small"</span><span style="color: #0000ff;">&gt;</span>小型按钮<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-mini"</span><span style="color: #0000ff;">&gt;</span>迷你按钮<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span></pre>
+						</div>
+					<br/>
+				    <p>
+				        <button class="ttl-btn ttl-btn-radius ttl-btn-primary">原始按钮</button>
+				        <button class="ttl-btn ttl-btn-radius">默认按钮</button>
+				        <button class="ttl-btn ttl-btn-radius ttl-btn-normal">百搭按钮</button>
+				        <button class="ttl-btn ttl-btn-radius ttl-btn-warm">暖色按钮</button>
+				        <button class="ttl-btn ttl-btn-radius ttl-btn-danger">警告按钮</button>
+				        <button class="ttl-btn ttl-btn-radius ttl-btn-disabled">禁用按钮</button>
+				    </p>
+					<div class="dm_code">实例代码</div>
+					<div>
+						<pre>                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-radius ttl-btn-primary"</span><span style="color: #0000ff;">&gt;</span>原始按钮<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-radius"</span><span style="color: #0000ff;">&gt;</span>默认按钮<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-radius ttl-btn-normal"</span><span style="color: #0000ff;">&gt;</span>百搭按钮<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-radius ttl-btn-warm"</span><span style="color: #0000ff;">&gt;</span>暖色按钮<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-radius ttl-btn-danger"</span><span style="color: #0000ff;">&gt;</span>警告按钮<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-radius ttl-btn-disabled"</span><span style="color: #0000ff;">&gt;</span>禁用按钮<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span></pre>
+						</div>
+					<br/>
+				    <p>
+				        <button class="ttl-btn ttl-btn-big ttl-btn-radius ttl-btn-normal">大型百搭</button>
+				        <button class="ttl-btn ttl-btn-small ttl-btn-radius ttl-btn-danger">小型警告</button>
+				        <button class="ttl-btn ttl-btn-mini ttl-btn-radius ttl-btn-disabled">迷你禁用</button>
+				    </p>
+					<div class="dm_code">实例代码</div>
+					<div>
+						<pre>                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-big ttl-btn-radius ttl-btn-normal"</span><span style="color: #0000ff;">&gt;</span>大型百搭<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-small ttl-btn-radius ttl-btn-danger"</span><span style="color: #0000ff;">&gt;</span>小型警告<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn ttl-btn-mini ttl-btn-radius ttl-btn-disabled"</span><span style="color: #0000ff;">&gt;</span>迷你禁用<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span></pre>
+						</div>
+					<br/>
+				    <p>
+				        <button class="ttl-btn"><i class="iconfont">&#xe819;</i> 添加</button>
+				        <button class="ttl-btn"><i class="iconfont">&#xe671;</i></button>
+				        <button class="ttl-btn"><i class="iconfont">&#xe913;</i></button>
+				        <button class="ttl-btn"><i class="iconfont">&#xe914;</i></button>
+				        <button class="ttl-btn"><i class="iconfont">&#xe646;</i></button>
+				        <button class="ttl-btn"><i class="iconfont">&#xe640;</i></button>
+				        <button class="ttl-btn"><i class="iconfont">&#xe67b;</i></button>
+				      </p>
+					<div class="dm_code">实例代码</div>
+					<div>
+						<pre>                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="iconfont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe819;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;</span> 添加<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="iconfont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe671;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="iconfont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe913;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="iconfont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe914;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="iconfont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe646;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="iconfont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe640;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="iconfont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe67b;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span></pre>
+						</div>
+					
+				</div>
+				<div class="dm_title2">文本域</div>
+				<div class="dm_tit2Content">
+					<textarea placeholder="请输入" class="ttl-textarea"></textarea>
+					<div class="dm_code">实例代码</div>
+					<div>
+						<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">textarea </span><span style="color: #ff0000;">placeholder</span><span style="color: #0000ff;">="请输入"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="ttl-textarea"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">textarea</span><span style="color: #0000ff;">&gt;</span></pre>
+					</div>
+				</div>
+
+				<div class="dm_title2">组合表单</div>
+				<div class="dm_tit2Content">
+					<div class="dm_formGroup">
+						<div class="ttl-form-item">
+				          <label>姓名</label>
+				          <p class="ttl-normal">
+				          	<input type="text" class="ttl-input">
+				          </p>
+				        </div>
+						<div class="ttl-form-item">
+				          <label>性别</label>
+				          <div class="ttl-normal">
+				          	<div class="ttl-checkbox dm_fgcbox1"></div>
+				          </div>
+				        </div>
+						<div class="ttl-form-item">
+				          <label>籍贯</label>
+				          <div class="ttl-normal">
+				          	<div class="ttl-select dm_fgSelect" value='' title=''></div>
+				          </div>
+				        </div>
+						<div class="ttl-form-item">
+				          <label>爱好</label>
+				          <div class="ttl-normal">
+				          	<div class="ttl-checkbox dm_fgcbox2"></div>
+				          </div>
+				        </div>						
+				        <div class="ttl-form-item">
+				          <label>电话</label>
+				          <p class="ttl-mult">
+				          	<input type="text" class="ttl-input">
+				          	<i class='ttl-warn'>*</i>
+				          	<i class='ttl-mark'>11位号码</i>
+				          </p>
+				        </div>
+				        <div class="ttl-form-item">
+				          <label>详细地址</label>
+				          <p class="ttl-full">
+				          	<input type="text" class="ttl-input">
+				          </p>
+				        </div>
+				        <div class="ttl-form-item">
+				          <label>密码</label>
+				          <p class="ttl-mult">
+				          	<input type="password" class="ttl-input">
+				          	<button class="ttl-btn ttl-btn-small">提示</button>
+				          </p>
+				        </div>
+				        <div class="ttl-form-item">
+				          <label>价格</label>
+				          <p class="ttl-mult ttl-small">
+				          	<input type="text" placeholder="￥" class="ttl-input">
+				          	<i class='ttl-mark'>-</i>
+				          	<input type="text" placeholder="￥" class="ttl-input">
+				          </p>
+				        </div>
+				        <div class="ttl-form-item">
+				          <label>个人经历</label>
+				          <div class="ttl-full">
+				          	<textarea placeholder="请输入" class="ttl-textarea"></textarea>
+				          </div>
+				        </div>
+					</div>
+
+					<div class="dm_code">实例代码</div>
+					<div><pre>			
+						<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-form-item"</span><span style="color: #0000ff;">&gt;</span>
+			                          <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">label</span><span style="color: #0000ff;">&gt;</span>姓名<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">label</span><span style="color: #0000ff;">&gt;</span>
+			                          <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-normal"</span><span style="color: #0000ff;">&gt; /*ttl-full,ttl-normal,ttl-mult,ttl-small*/</span>
+			                              <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="text"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="ttl-input"</span><span style="color: #0000ff;">&gt;</span>
+			                          <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+			                        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span></pre>
+					</div>
+					
+				</div>
+			</div>
 
 			<div class="dm_title" id='cpageViewAnchor'>cPageView（页面框架）</div>
 			<div class="dm_desc">
@@ -824,7 +1140,7 @@
 					<p>初始化时被改变：<span id="cpageviewTest3">初始化时会帮给我赋值</span></p>
 					<a href="javascript:;" class="ttl-btn ttl-btn" id="cpageviewTest1">apitest帮我定义事件</a>
 					<div id="cpageviewTest2">点击上面的按钮改变我的html</div>
-					<div class="dm_title3">示例代码</div>
+					<div class="dm_code">示例代码</div>
 					<div><pre>		define(['cPageView'],<span style="color: #0000ff;">function</span><span style="color: #000000;">(PageView) {
 					    </span><span style="color: #0000ff;">var</span> View =<span style="color: #000000;"> PageView.extend({
 					        events:{
@@ -857,14 +1173,14 @@
 				<div class="dm_tit2Content">
 					<a href="javascript:;" class="ttl-btn ttl-btn" id="templateA">点击我获取模板html</a>
 					<p id="templateTest">点击上面的按钮改变我</p>
-					<div class="dm_title3">html模板</div>
+					<div class="dm_code">html模板</div>
 					<div>
 						<pre>				<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
 						    你好，</span><span style="background-color: #ffff00; color: #000000;">&lt;%</span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;">name</span><span style="background-color: #ffff00; color: #000000;">%&gt;</span><span style="color: #000000;">，我来自模板 temptest.html
 						</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
 						</pre>
 					</div>
-					<div class="dm_title3">js调用</div>
+					<div class="dm_code">js调用</div>
 					<div>
 						<pre>				define(['cPageView','text!views/temple/temptest.html'],<span style="color: #0000ff;">function</span><span style="color: #000000;">(PageView,temptest) {
 						    </span><span style="color: #0000ff;">var</span> View =<span style="color: #000000;"> PageView.extend({
@@ -944,7 +1260,7 @@
 				<div class="dm_title2">获取当前位置</div>
 				<div class="dm_tit2Content">
 					<p><i>position.getCurrentPosition</i>: 获取当前位置（省市区街道）</p>
-					<div class="dm_title3">实例代码</div>
+					<div class="dm_code">实例代码</div>
 					<div class="dm_code">
 						turtle.position.getCurrentPosition('baidu',<span style="color: #0000ff;">function</span>(position){console.log(position)})；<span style="color: #008000;">//</span><span style="color: #008000;">["协和路", "长宁区", "上海市", "上海市", "中国"]</span>
 						<br/>

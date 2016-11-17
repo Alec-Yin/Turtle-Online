@@ -5,6 +5,7 @@ define([], function() {
 	showPopLayer();
 	pictureShow();
 	pagingShow();
+	showForm();
 
 	// 滚动页面事件
 	function scrollWindow(){
@@ -573,7 +574,109 @@ define([], function() {
 				var pageTotal = 120;
 				getPageAjax(pIndex,pageTotal,pageSize);
 				Turtle.hideLoading();
-			}.bind(this), 1000)
+			}.bind(this), 300)
 		}
+	}
+
+	// 表单控件
+	function showForm(){
+		// 下拉框
+		$('.dm_showSelect1').uiSelect({
+			data:[{id:1,title:'河南'},
+					{id:2,title:'山东'},
+					{id:3,title:'山西'},
+					{id:4,title:'河北'},
+					{id:5,title:'湖北'},
+					{id:6,title:'上海'}],
+			placeholder:'请选择一个省份'
+		});
+		$('.dm_showSelect2').uiSelect({
+			data:[{id:1,title:'平凡的世界'},
+					{id:2,title:'围城'},
+					{id:3,title:'放风筝的人'},
+					{id:4,title:'从你的世界走过'},
+					{id:5,title:'麻衣神相'},
+					{id:6,title:'水浒传'},
+					{id:7,title:'三国演义'},
+					{id:8,title:'史记'},
+					{id:9,title:'阿Q正传'},
+					{id:10,title:'西游记'}],
+			index:2, //默认选中项索引
+			id:1, //默认选中项id（优先级高于index）
+			onChange:function(item){
+				$('.dm_showSelect2').next('i').text(item.id+':'+item.title);
+			}
+		});
+		// 过滤筛选
+		$('.dm_filterSelect1').uiSelect({
+			data:[{id:1,title:'平凡的世界'},
+					{id:2,title:'围城'},
+					{id:3,title:'放风筝的人'},
+					{id:4,title:'从你的世界走过'},
+					{id:5,title:'麻衣神相'},
+					{id:6,title:'水浒传'},
+					{id:7,title:'三国演义'},
+					{id:8,title:'史记'},
+					{id:9,title:'阿Q正传'},
+					{id:10,title:'西游记'}],
+			isFilter:true,//是否允许过滤
+			placeholder:'输入关键字过滤'
+		});
+
+		// 单选框
+		$('.dm_cbox1').uiCheckbox({
+			data:[{id:1,title:'男'},
+					{id:2,title:'女'},
+					{id:3,title:'保密'}],
+			index:2, //默认选中项索引
+			id:10, //默认选中项id（优先级高于index）
+			onChange:function(item){
+				$('.dm_cbox1').next('i').text(item.id+':'+item.title);
+			}
+		});
+
+		// 复选框
+		$('.dm_cbox2').uiCheckbox({
+			data:[{id:1,title:'金立'},
+					{id:2,title:'华为'},
+					{id:3,title:'坚果'}],
+			index:1, //默认选中项索引
+			id:2, //默认选中项id（优先级高于index）
+			isMultSelect:true, //是否多选
+			onSelect:function(data){
+				// 选中/取消某一项时触发，data是当前点击项
+				var str=data.state==1?'选中了':'取消选中';
+				$('.dm_cbox2').next('i').text(str+'：'+data.item.id+', '+data.item.title);
+			}
+		});
+
+		
+		$('.dm_fgcbox1').uiCheckbox({
+			data:[{id:1,title:'男'},
+					{id:2,title:'女'}]
+		});
+		
+		// 复选框
+		$('.dm_fgcbox2').uiCheckbox({
+			data:[{id:1,title:'睡觉'},
+					{id:2,title:'发呆'},
+					{id:3,title:'超市捏方便面'},
+					{id:4,title:'写代码'},
+					{id:5,title:'吃'}],
+			isMultSelect:true //是否多选
+		});
+		
+		
+		$('.dm_fgSelect').uiSelect({
+			data:[{id:1,title:'河南'},
+					{id:2,title:'山东'},
+					{id:3,title:'山西'},
+					{id:4,title:'河北'},
+					{id:5,title:'湖北'},
+					{id:6,title:'上海'}],
+			placeholder:'请选择一个省份'
+		});
+
+
 	}
 });	

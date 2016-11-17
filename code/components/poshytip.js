@@ -27,7 +27,7 @@ $.fn.poshytip.defaults = {
 	alignY:'top',   
 	offsetX:-22,// 水平偏移量   
 	offsetY:18,// 垂直方向偏移量   
-	//hover显示方式下，允许鼠标离开元素仍然显示提示信息   
+	//hover显示方式下，允许鼠示标离开元素仍然显示提信息   
 	allowTipHover:true,   
 	// 提示信息随着鼠标移动  只在满足hover显示方式下，对齐方式为alignTo:'cursor' 才有效  
 	followCursor:false,   
