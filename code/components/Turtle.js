@@ -799,7 +799,8 @@ define('_tcommUtil',function(){
 				loadCss: this.loadCss,
 				loadCssHref: this.loadCssHref,
 				loadJs: this.loadJs,
-				loadJsSrc: this.loadJsSrc
+				loadJsSrc: this.loadJsSrc,
+				loadJsSrcOrder: this.loadJsSrcOrder
 			}
 		},
 		isNullValue: function(val) {
@@ -1092,6 +1093,40 @@ define('_tcommUtil',function(){
 				script.src = urlList[i];
 				document.getElementsByTagName("head")[0].appendChild(script);
 			}
+		},
+		// 加载js引用，多个js时按顺序加载，前一个加载完成再加载下一个，全部加载完，执行回调
+		loadJsSrcOrder:function(urlList, callback) {
+			urlList = urlList || [];
+			if(_.isString(urlList)){
+				urlList = [urlList];
+			}
+			callback = callback || function() {};
+			var mark = 0;
+			var loadJavaScript = function(jsurl) {
+				var oHead = document.getElementsByTagName('head')[0];
+				if (oHead) {
+					var oScript = document.createElement('script');
+					oScript.setAttribute('src', jsurl);
+					oScript.setAttribute('type', 'text/javascript');
+					oScript.onreadystatechange = loadFunction;
+					oScript.onload = callbackfunction;
+					oHead.appendChild(oScript);
+				}
+			}
+			var callbackfunction = function() {
+				mark++;
+				if (mark < urlList.length) {
+					loadJavaScript(urlList[mark]);
+				} else {
+					callback();
+				}
+			};
+			var loadFunction = function() {
+				if (this.readyState == 'complete' || this.readyState == 'loaded') {
+					callbackfunction();
+				}
+			};
+			loadJavaScript(urlList[mark]);
 		}
 	}
 	return new fun();

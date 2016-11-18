@@ -7,8 +7,6 @@
 	<meta name="keywords" content="PC前端框架，JS" />
     <meta name="description" content="一款专注于PC前端的架构" />
     <link type="text/css" rel="stylesheet" href="css/demo.css"></link>
-<link rel="stylesheet" type="text/css" href="../build/css/Turtle.min.css">
- <script type="text/javascript" src="../build/Turtle.min.js"></script>
     <script type="text/javascript">
 		function _getQS(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -26,19 +24,35 @@
 				document.getElementsByTagName("head")[0].appendChild(link);
 			}
 		}
-		var interval='';
-		function _loadJS(urlList){
-			var mark=0;
-			interval = setInterval(function(){
-				var script = document.createElement("script");
-				script.type = "text/javascript";
-				script.src = urlList[mark];
-				document.getElementsByTagName("head")[0].appendChild(script);
-				if(mark==urlList.length-1){
-					clearInterval(interval);
+		function _loadJS(urlList, callback) {
+			callback = callback || function() {};
+			var mark = 0;
+			var loadJavaScript = function(jsurl) {
+				var oHead = document.getElementsByTagName('head')[0];
+				if (oHead) {
+					var oScript = document.createElement('script');
+					oScript.setAttribute('src', jsurl);
+					oScript.setAttribute('type', 'text/javascript');
+					oScript.onreadystatechange = loadFunction;
+					oScript.onload = callbackfunction;
+					oHead.appendChild(oScript);
 				}
+			}
+			var callbackfunction = function() {
+				console.log(urlList[mark] + '加载完成');
 				mark++;
-			}, 100)
+				if (mark < urlList.length) {
+					loadJavaScript(urlList[mark]);
+				} else {
+					callback();
+				}
+			};
+			var loadFunction = function() {
+				if (this.readyState == 'complete' || this.readyState == 'loaded') {
+					callbackfunction();
+				}
+			};
+			loadJavaScript(urlList[mark]);
 		}
 		if(_getQS('debug')==1){
 			_loadCss([
@@ -61,7 +75,9 @@
 				'../components/uiSelect.js',
 				'../components/uiCheckbox.js',
 				'../components/Turtle.js'
-			]);
+			],function(){
+				console.log('全部js加载完成');
+			});
 		}else{
 			_loadCss(["../build/css/Turtle.min.css"]);
 			_loadJS(["../build/Turtle.min.js"]);
@@ -1264,10 +1280,8 @@
 				<div class="dm_tit2Content">
 					<p><i>position.getCurrentPosition</i>: 获取当前位置（省市区街道）</p>
 					<div class="dm_code">实例代码</div>
-					<div class="dm_code">
-						turtle.position.getCurrentPosition('baidu',<span style="color: #0000ff;">function</span>(position){console.log(position)})；<span style="color: #008000;">//</span><span style="color: #008000;">["协和路", "长宁区", "上海市", "上海市", "中国"]</span>
-						<br/>
-						turtle.position.getCurrentPosition('google',<span style="color: #0000ff;">function</span>(position){console.log(position)})；<span style="color: #008000;">//</span><span style="color: #008000;">["S20外环高速入口", "长宁区", "上海市", "上海市", "中国"]</span>
+					<div>
+						<pre>turtle.position.getCurrentPosition('baidu',<span style="color: #0000ff;">function</span>(position){console.log(position)})；<div style="color: #008000;">//</span><span style="color: #008000;">["协和路", "长宁区", "上海市", "上海市", "中国"]</div>turtle.position.getCurrentPosition('google',<span style="color: #0000ff;">function</span>(position){console.log(position)})；<div style="color: #008000;">//</span><span style="color: #008000;">["S20外环高速入口", "长宁区", "上海市", "上海市", "中国"]</div></pre>
 					</div>					
 				</div>
 				<div class="dm_title2">其他常用</div>
@@ -1290,6 +1304,7 @@
 					<p><i>loadCssHref</i>: 加载CSS引用到head中，参数：数组/字符串</p>
 					<p><i>loadJs</i>: 加载js脚本，直接把css内容加载body后</p>
 					<p><i>loadJsSrc</i>: 加载js引用到head中，参数：数组/字符串</p>
+					<p><i>loadJsSrcOrder</i>: 按顺序加载js引用到head中，前一个加载完成再加载下一个(下一个在前一个回调函数中加载)，全部加载完，执行总体回调，参数：数组/字符串，总体回调</p>
 				</div>				
 				<div class="dm_title2">浏览器判断</div>
 				<div class="dm_tit2Content">
@@ -1338,7 +1353,7 @@
 		}
 		function requirejsLoad(){
 			requirejs.config({
-				baseUrl: "http://localhost/TurtleOnline",
+				baseUrl: location.href.indexOf('localhost')>-1?"http://localhost/TurtleOnline":"http://yinluhui.oschina.io/turtle-online/code",
 				paths: _paths,
 				waitSeconds: 20
 			});
