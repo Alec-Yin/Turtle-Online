@@ -7,8 +7,6 @@
 	<meta name="keywords" content="PC前端框架，JS" />
     <meta name="description" content="一款专注于PC前端的架构" />
     <link type="text/css" rel="stylesheet" href="css/demo.css"></link>
-<link rel="stylesheet" type="text/css" href="../build/css/Turtle.min.css">
- <script type="text/javascript" src="../build/Turtle.min.js"></script>
     <script type="text/javascript">
 		function _getQS(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -815,44 +813,45 @@
 			<div class="dm_title" id='iconfontAnchor'>图标icon</div>
 			<div class="dm-item">
 				<div class="dm_desc">
-					更多图标Unicode字符<a target="_blank" href="iconfont.html">1500+公用图标字体文件</a>，这些图标已经包含在Turtle中，可直接使用。
+					更多图标Unicode字符<a target="_blank" href="iconfont.html">Turtle Online公用图标字体文件</a>，这些图标已经包含在Turtle中，可直接使用。
 				</div>
 				<div class="dm_title2">使用说明</div>
 				<div class="dm_tit2Content">
 					<div><pre>
-						&lt;i class="iconfont"&gt;&amp;#xe6bd;&lt;/i&gt;
+						&lt;i class="ttlofont"&gt;&amp;#xe6bd;&lt;/i&gt;
 						其中的 &amp;<span style="color: #000000;">#xe6bd; 即是图标对应的Unicode字符
 						                         
-						你可以去定义它的颜色或者大小，如：<i class="iconfont" style="font-size: 30px; color: #1E9FFF;">&#xe6bd;</i> 
-						</span>&lt;i class="iconfont" style="font-size: 30px; color: #1E9FFF;"&gt;&amp;#xe6bd;&lt;/i&gt; </pre>
+						你可以去定义它的颜色或者大小，如：<i class="ttlofont" style="font-size: 30px; color: #1E9FFF;">&#xe6bd;</i> 
+						</span>&lt;i class="ttlofont" style="font-size: 30px; color: #1E9FFF;"&gt;&amp;#xe6bd;&lt;/i&gt; </pre>
 					</div> 
 				</div>
 				<div class="dm_title2">实例演示</div>
 				<div class="dm_tit2Content">
-					<i class="iconfont"style="font-size: 30px; color: green;">&#xe666;</i>
-					<i class="iconfont"style="font-size: 30px; color: red;">&#xe677;</i>
-					<i class="iconfont"style="font-size: 30px; color: blue;">&#xe689;</i>
-					<i class="iconfont"style="font-size: 30px; color: yellow;">&#xe693;</i>
+					<i class="ttlofont"style="font-size: 30px; color: green;">&#xe666;</i>
+					<i class="ttlofont"style="font-size: 30px; color: red;">&#xe677;</i>
+					<i class="ttlofont"style="font-size: 30px; color: blue;">&#xe689;</i>
+					<i class="ttlofont"style="font-size: 30px; color: yellow;">&#xe64c;</i>
 				</div>
 				<div class="dm_title2">独立使用iconfont</div>
 				<div class="dm_tit2Content">
 					<p>1. 把build中的iconfont文件夹拷贝到你项目中。</p>
 					<p>2. 添加以下css代码到你的css文件或者单独的css文件（注意代码中的url路径）：</p>
 					<div><pre>
-						<span style="color: #800000;">@font-face </span>{<span style="color: #ff0000;">font-family</span>:<span style="color: #0000ff;"> "iconfont"</span>;<span style="color: #ff0000;">
+						<span style="color: #800000;">@font-face </span>{<span style="color: #ff0000;">font-family</span>:<span style="color: #0000ff;"> "ttlofont"</span>;<span style="color: #ff0000;">
 						  src</span>:<span style="color: #0000ff;"> url('iconfont.eot')</span>; <span style="color: #008000;">/*</span><span style="color: #008000;"> IE9</span><span style="color: #008000;">*/</span><span style="color: #ff0000;">
 						  src</span>:<span style="color: #0000ff;"> url('iconfont.eot?#iefix') format('embedded-opentype'), </span><span style="color: #008000;">/*</span><span style="color: #008000;"> IE6-IE8 </span><span style="color: #008000;">*/</span><span style="color: #0000ff;">
 						  url('iconfont.woff') format('woff'), </span><span style="color: #008000;">/*</span><span style="color: #008000;"> chrome, firefox </span><span style="color: #008000;">*/</span><span style="color: #0000ff;">
 						  url('iconfont.ttf') format('truetype'), </span><span style="color: #008000;">/*</span><span style="color: #008000;"> chrome, firefox, opera, Safari, Android, iOS 4.2+</span><span style="color: #008000;">*/</span><span style="color: #0000ff;">
-						  url('iconfont.svg#iconfont') format('svg')</span>; <span style="color: #008000;">/*</span><span style="color: #008000;"> iOS 4.1- </span><span style="color: #008000;">*/</span>
+						  url('iconfont.svg#ttlofont') format('svg')</span>; <span style="color: #008000;">/*</span><span style="color: #008000;"> iOS 4.1- </span><span style="color: #008000;">*/</span>
 						}<span style="color: #800000;">
-						.iconfont </span>{<span style="color: #ff0000;">
-						  font-family</span>:<span style="color: #0000ff;">"iconfont" !important</span>;<span style="color: #ff0000;">
+						.ttlofont </span>{<span style="color: #ff0000;">
+						  font-family</span>:<span style="color: #0000ff;">"ttlofont" !important</span>;<span style="color: #ff0000;">
 						  font-size</span>:<span style="color: #0000ff;">30px</span>;<span style="color: #ff0000;">
 						  font-style</span>:<span style="color: #0000ff;">normal</span>;<span style="color: #ff0000;">
 						  -webkit-font-smoothing</span>:<span style="color: #0000ff;"> antialiased</span>;<span style="color: #ff0000;">
-						  -webkit-text-stroke-width</span>:<span style="color: #0000ff;"> 0.2px</span>;<span style="color: #ff0000;">
-						  -moz-osx-font-smoothing</span>:<span style="color: #0000ff;"> grayscale</span>;
+						  -webkit-text-stroke-width</span>:<span style="color: #0000ff;"> 0px</span>;<span style="color: #ff0000;">
+						  -moz-osx-font-smoothing</span>:<span style="color: #0000ff;"> grayscale</span>;<span style="color: #ff0000;">
+						  vertical-align</span>:<span style="color: #0000ff;"> middle</span>;
 						}</pre>
 					</div>
 				</div>
@@ -1022,23 +1021,23 @@
 						</div>
 					<br/>
 				    <p>
-				        <button class="ttl-btn"><i class="iconfont">&#xe819;</i> 添加</button>
-				        <button class="ttl-btn"><i class="iconfont">&#xe671;</i></button>
-				        <button class="ttl-btn"><i class="iconfont">&#xe913;</i></button>
-				        <button class="ttl-btn"><i class="iconfont">&#xe914;</i></button>
-				        <button class="ttl-btn"><i class="iconfont">&#xe646;</i></button>
-				        <button class="ttl-btn"><i class="iconfont">&#xe640;</i></button>
-				        <button class="ttl-btn"><i class="iconfont">&#xe67b;</i></button>
+				        <button class="ttl-btn"><i class="ttlofont">&#xe6d9;</i> 添加</button>
+				        <button class="ttl-btn"><i class="ttlofont">&#xe6a4;</i></button>
+				        <button class="ttl-btn"><i class="ttlofont">&#xe679;</i></button>
+				        <button class="ttl-btn"><i class="ttlofont">&#xe6a3;</i></button>
+				        <button class="ttl-btn"><i class="ttlofont">&#xe761;</i></button>
+				        <button class="ttl-btn"><i class="ttlofont">&#xe6b4;</i></button>
+				        <button class="ttl-btn"><i class="ttlofont">&#xe6f3;</i></button>
 				      </p>
 					<div class="dm_code">实例代码</div>
 					<div>
-						<pre>                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="iconfont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe819;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;</span> 添加<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
-                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="iconfont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe671;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
-                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="iconfont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe913;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
-                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="iconfont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe914;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
-                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="iconfont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe646;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
-                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="iconfont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe640;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
-                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="iconfont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe67b;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span></pre>
+						<pre>                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttlofont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe6d9;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;</span> 添加<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttlofont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe6a4;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttlofont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe679;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttlofont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe6a3;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttlofont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe761;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttlofont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe6b4;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+                        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttl-btn"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">i </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="ttlofont"</span><span style="color: #0000ff;">&gt;</span>&amp;#xe6f3;<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span></pre>
 						</div>
 					
 				</div>

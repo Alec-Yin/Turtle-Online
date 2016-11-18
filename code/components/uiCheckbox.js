@@ -13,8 +13,8 @@
 		this.wrapper = wrapper;
 		this.beforeIndex=this.options.id ? null : this.options.index;
 		this.isMultSelect = this.options.isMultSelect;
-		this.checkIcon = this.isMultSelect ? '&#xe752;' : '&#xeb2a;';
-		this.unCheckIcon = this.isMultSelect ? '&#xe751;' : '&#xe753;';
+		this.checkIcon = this.isMultSelect ? '&#xe6d6;' : '&#xe75b;';
+		this.unCheckIcon = this.isMultSelect ? '&#xe6d5;' : '&#xe6d7;';
 		this.init();
 	}
 
@@ -39,9 +39,9 @@
 			var html ='';
 			this.options.data.map(function(item){
 				if(item.id==defaultData.id){
-					html+='<span value="'+item.id+'" class="checked"><i class="iconfont ttl-anim">'+this.checkIcon+'</i><em>'+item.title+'</em></span>';
+					html+='<span value="'+item.id+'" class="checked"><i class="ttlofont ttl-anim">'+this.checkIcon+'</i><em>'+item.title+'</em></span>';
 				}else{
-					html+='<span value="'+item.id+'"><i value="'+item.id+'" class="iconfont ttl-anim">'+this.unCheckIcon+'</i><em>'+item.title+'</em></span>';
+					html+='<span value="'+item.id+'"><i value="'+item.id+'" class="ttlofont ttl-anim">'+this.unCheckIcon+'</i><em>'+item.title+'</em></span>';
 				}
 			}.bind(this))
 			return html;
